@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.manager.mapper.website.BannerMapper">
+	<insert id="insert" parameterType="Banner" useGeneratedKeys="true" keyProperty="id">
+		insert into t_banner
+		(title,description,url,status,create_time,file_id,user_id)
+		values
+		(#{title},#{description},#{url},#{status},#{createTime},#{fileId},#{userId})
+	</insert>
+	
+	<update id="update" parameterType="Banner">
+		update t_banner set title=#{title},description=#{description},url=#{url} where id=#{id}
+	</update>
+	
+	<update id="updateStatus">
+		update t_banner set status=#{status} where id=#{id}
+	</update>
+	
+	<select id="selectById" resultType="Banner">
+		select id,title,digest,content,status from t_banner where id=#{id}
+	</select>
+	
+	<select id="selectActiveBanner" resultType="Banner">
+		select * from t_banner where status=0 order by id desc;
+	</select>
+	
+	<delete id="deleteByIds">
+		delete from t_banner
+		<where>
+		<choose>
+			<when test="null != ids">
+				<foreach collection="ids" item="id" separator="," open="id in (" close=")">
+				#{id}
+				</foreach>
+			</when>
+			<otherwise>
+			0=1
+			</otherwise>
+		</choose>
+		</where>
+	</delete>
+	
+	<sql id="gridWhere">
+	from t_banner a
+	<where>
+		<if test="null != entity">
+			<if test="null != entity.title and '' != entity.title">
+			and a.title like '%${entity.title}%'
+			</if>
+		</if>
+	</where>
+	</sql>
+	<select id="listPaged" resultType="Banner">
+		select a.*
+		<include refid="gridWhere"/>
+		<if test="tableParam.length > -1">
+		limit #{tableParam.start},#{tableParam.length}
+		</if>
+	</select>
+	<select id="count" resultType="int">
+		select count(a.id)
+		<include refid="gridWhere"/>
+	</select>
+</mapper>

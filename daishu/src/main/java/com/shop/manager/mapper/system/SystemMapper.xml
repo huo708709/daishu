@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.manager.mapper.system.SystemMapper">
+	<insert id="insertMenu" parameterType="Menu">
+		<choose>
+			<when test="0 != parentId and null != parentId">
+			insert into t_menu
+			(name,code,url,icon,status,parent_id)
+			values
+			(#{name},#{code},#{url},#{icon},#{status},#{parentId})
+			on duplicate key update name=#{name},url=#{url},icon=#{icon},status=#{status},parentId=#{parentId}
+			</when>
+			<otherwise>
+			insert into t_menu
+			(name,code,url,icon,status)
+			values
+			(#{name},#{code},#{url},#{icon},#{status})
+			on duplicate key update name=#{name},url=#{url},icon=#{icon},status=#{status}
+			</otherwise>
+		</choose>
+	</insert>
+	<update id="update" parameterType="Menu">
+		update t_menu set name=#{name},url=#{url},icon=#{icon},status=#{status}
+		<if test="0 != parentId and null != parentId">
+			,parent_id=#{parentId}
+		</if>
+		where id=#{id}
+	</update>
+	<select id="selectMenu" parameterType="int" resultType="Menu">
+		select * from t_menu where id = #{id}
+	</select>
+	
+	<insert id="insertFunction" parameterType="Function">
+		insert into t_function (menu_id,name,status,code)
+		values (#{menu_id},#{name},#{status},#{code})
+	</insert>
+	
+	<insert id="insertUser" parameterType="User">
+		insert into t_user
+		(username,password,status,createTime,phone,email)
+		values
+		(#{username},#{password},#{status},#{createTime},#{phone},#{email})
+		on duplicate key update password=#{password},status=#{status},createTime=#{createTime},phone=#{phone},email=#{email}
+	</insert>
+	<update id="updateUser" parameterType="User">
+		update t_user set username=#{username},phone=#{phone},email=#{email} where id=#{id}
+	</update>
+	
+	<insert id="insertRole" parameterType="Role">
+		insert into t_role
+		(name,description)
+		values
+		(#{name},#{description})
+		on duplicate key update description=#{description}
+	</insert>
+	
+	<insert id="insertUserRole" parameterType="UsersRoles">
+		insert into t_user_role
+		(user_id,role_id)
+		values
+		(#{user_id},#{role_id})
+	</insert>
+</mapper>

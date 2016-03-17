@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.manager.mapper.website.BusinessMapper">
+	<insert id="insert" parameterType="Business" useGeneratedKeys="true" keyProperty="id">
+		insert into t_business
+		(name,code,description)
+		values
+		(#{name},#{code},#{description})
+	</insert>
+	
+	<update id="update" parameterType="Business">
+		update t_business set name=#{name},code=#{code},description=#{description} where id=#{id}
+	</update>
+	
+	<select id="selectById" resultType="Business">
+		select * from t_business where id=#{id}
+	</select>
+	
+	<select id="listAll" resultType="Business">
+		select * from t_business;
+	</select>
+	
+	<delete id="deleteByIds">
+		delete from t_business
+		<where>
+		<choose>
+			<when test="null != ids">
+				<foreach collection="ids" item="id" separator="," open="id in (" close=")">
+				#{id}
+				</foreach>
+			</when>
+			<otherwise>
+			0=1
+			</otherwise>
+		</choose>
+		</where>
+	</delete>
+	
+	<sql id="gridWhere">
+	from t_business a
+	<where>
+		<if test="null != entity">
+			<if test="null != entity.name and '' != entity.name">
+			and a.name like '%${entity.name}%'
+			</if>
+		</if>
+	</where>
+	</sql>
+	<select id="listPaged" resultType="Business">
+		select a.*
+		<include refid="gridWhere"/>
+		<if test="tableParam.length > -1">
+		limit #{tableParam.start},#{tableParam.length}
+		</if>
+	</select>
+	<select id="count" resultType="int">
+		select count(a.id)
+		<include refid="gridWhere"/>
+	</select>
+</mapper>

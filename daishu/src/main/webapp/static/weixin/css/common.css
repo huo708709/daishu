@@ -1,0 +1,72 @@
+html, body {
+	height: 100%;
+	width: 100%;
+}
+
+.bg {
+	background: rgba(0, 0, 0, 0) url("../../../static/img/6.jpg") repeat scroll
+		center top / 100% auto;
+	height: 100%;
+	width: 100%;
+}
+
+.img-title-div {
+	margin-top: 30px;
+	text-align: center;
+	width: 100%;
+}
+
+.img-title {
+	width: 80%;
+	height: 55%;
+}
+
+.orderform {
+	background-color: #fff;
+	margin-top: 20%;
+	margin-bottom: 20px;
+	margin-left: 5%;
+	margin-right: 5%;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+.point_img {
+	float: left;
+	height: 25px;
+	width: 23%;
+	margin-right: 2.6%;
+	margin-bottom: 2px;
+}
+.point_img.point_img1 {
+	margin-right: 0;
+}
+
+.img-bottom {
+	width: 60%;
+	height: 60%px;
+}
+.img-bottom-div {
+	margin-top: 10px;
+	text-align: center;
+	width: 100%;
+}
+button.btn-custom {
+	background: rgba(0, 0, 0, 0) url("../../../static/img/btn.png") no-repeat scroll
+		center left/100% auto;
+	text-align:left; 
+}
+button.btn-custom1 {
+	background: rgba(0, 0, 0, 0) url("../../../static/img/btn1.png") no-repeat scroll
+		center left/100% auto;
+	text-align:left;
+}
+.phone-div {
+	margin-top: 30%;
+	text-align: center;
+	width: 100%;
+}
+.phone-div label, .phone-div a {
+text-align: center;width: 100%;
+color: #fff;
+}
