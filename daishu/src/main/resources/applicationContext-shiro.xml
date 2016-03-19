@@ -19,9 +19,9 @@
 	<!-- ShiroFilter基本配置 -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />
-		<property name="loginUrl" value="/login" />
-		<property name="successUrl" value="/" />
-		<property name="unauthorizedUrl" value="/unauthorized"></property>
+		<property name="loginUrl" value="/manager/login" />
+		<property name="successUrl" value="/manager" />
+		<property name="unauthorizedUrl" value="/manager/unauthorized"></property>
         <property name="filters">
 	        <map>
 	        	<!-- 是否启用验证码检验 -->
@@ -31,11 +31,12 @@
         </property>
 		<property name="filterChainDefinitions">
 			<value>
+				/ = anon
 				/Captcha.jpg = anon
 				/static/** = anon
 				/pc/** = anon
-				/login = authc
-				/logout = logout
+				/manager/login = authc
+				/manager/logout = logout
 		    	/** = user
 		 	</value>
 		</property>

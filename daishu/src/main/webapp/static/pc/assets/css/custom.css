@@ -68,10 +68,10 @@
 .news .news-item .news-desc {
     position: absolute;
     top: 0px;
-    bottom: 5px;
+    bottom: 0px;
     text-align: center;
     left: 15px;
-    right: 20px;
+    right: 15px;
     background-color: #f39910;
     font-size: 21px;
     opacity:0.6;

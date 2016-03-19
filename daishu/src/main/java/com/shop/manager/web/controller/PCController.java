@@ -17,7 +17,6 @@ import com.shop.manager.service.website.NewsService;
 import com.shop.manager.service.website.SystemConfigService;
 
 @Controller
-@RequestMapping(value = "pc")
 public class PCController {
 	
 	@Autowired
@@ -29,7 +28,7 @@ public class PCController {
 	@Autowired
 	private SystemConfigService systemConfigService;
 
-	@RequestMapping(value = "index")
+	@RequestMapping(value = "")
 	public ModelAndView index() {
 		ModelAndView mav = new ModelAndView("pc/index");
 		List<News> news = newsService.selectTop5();
@@ -41,7 +40,7 @@ public class PCController {
 		return mav;
 	}
 
-	@RequestMapping(value = "news")
+	@RequestMapping(value = "pc/news")
 	public ModelAndView news() {
 		ModelAndView mav = new ModelAndView("pc/news");
 		List<News> news = newsService.selectTop5();
@@ -51,7 +50,7 @@ public class PCController {
 		return mav;
 	}
 
-	@RequestMapping(value = "news_detail")
+	@RequestMapping(value = "pc/news_detail")
 	public ModelAndView newsDetail(String id) {
 		ModelAndView mav = new ModelAndView("pc/news_detail");
 		News news = newsService.selectById(id);
@@ -61,7 +60,7 @@ public class PCController {
 		return mav;
 	}
 
-	@RequestMapping(value = "business")
+	@RequestMapping(value = "pc/business")
 	public ModelAndView business() {
 		ModelAndView mav = new ModelAndView("pc/business");
 		List<Banner> banners = bannerService.selectActiveBanner();

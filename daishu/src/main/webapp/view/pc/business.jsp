@@ -127,11 +127,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
             <div class="col-md-9 pull-right">
                 <ul class="header-navigation">
-                    <li><a href="pc/index/#promo-block">首页</a></li>
-                    <li><a href="pc/index/#services">服务介绍</a></li>
-                    <li><a href="pc/index/#news">新闻动态</a></li>
-                    <li><a href="pc/index/#company">公司介绍</a></li>
-                    <li><a href="pc/index/#recruitment">招聘</a></li>
+                    <li><a href="/daishu/#promo-block">首页</a></li>
+                    <li><a href="/daishu/#services">服务介绍</a></li>
+                    <li><a href="/daishu/#news">新闻动态</a></li>
+                    <li><a href="/daishu/#company">公司介绍</a></li>
+                    <li><a href="/daishu/#recruitment">招聘</a></li>
                 </ul>
             </div>
         </div>

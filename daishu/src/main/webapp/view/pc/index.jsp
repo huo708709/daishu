@@ -31,8 +31,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link href="static/pc/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="static/pc/assets/plugins/slider-revolution-slider/rs-plugin/css/settings.css" rel="stylesheet">
 
-    <link href="static/pc/assets/plugins/fancybox/source/jquery.fancybox.css" rel="stylesheet">
-
     <link href="static/pc/assets/css/components.css" rel="stylesheet">
     <link href="static/pc/assets/css/style.css" rel="stylesheet">
     <link href="static/pc/assets/css/style-responsive.css" rel="stylesheet">
@@ -70,28 +68,45 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <c:if test="${not empty banners }">
 <div class="promo-block" id="promo-block">
-    <div class="tp-banner-container">
-        <div class="tp-banner">
-            <ul>
-            <c:forEach items="${banners }" var="banner">
-            	<li data-transition="fade" data-slotamount="5" data-masterspeed="700" data-delay="9400" class="slider-item-1">
-                    <img src="static/upload/${banner.fileId }" alt="" data-bgfit="cover" style="opacity:0.4 !important;" data-bgposition="center center" data-bgrepeat="no-repeat">
-                    <div class="tp-caption large_text customin customout start"
-                         data-x="center"
-                         data-hoffset="0"
-                         data-y="center"
-                         data-voffset="60"
-                         data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
-                         data-customout="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.75;scaleY:0.75;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
-                         data-speed="1000"
-                         data-start="500"
-                         data-easing="Back.easeInOut"
-                         data-endspeed="300">
-                    </div>
-                </li>
-            </c:forEach>
-            </ul>
-        </div>
+	<div class="container">
+		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+			<ol class="carousel-indicators">
+			<c:forEach items="${banners }" var="banner" varStatus="status">
+				<c:choose>
+					<c:when test="${status.index == 0 }">
+					<li data-target="#carousel-example-generic" data-slide-to="${status.index }" class="active"></li>
+					</c:when>
+					<c:otherwise>
+					<li data-target="#carousel-example-generic" data-slide-to="${status.index }"></li>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			</ol>
+			<div class="carousel-inner" role="listbox">
+				<c:forEach items="${banners }" var="banner" varStatus="status">
+				<c:choose>
+					<c:when test="${status.index == 0 }">
+						<div class="item active">
+							<img src="static/upload/${banner.fileId }">
+						</div>
+					</c:when>
+					<c:otherwise>
+						<div class="item">
+							<img src="static/upload/${banner.fileId }">
+						</div>
+					</c:otherwise>
+				</c:choose>
+				</c:forEach>
+			</div>
+			<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+			    <span class="sr-only">Previous</span>
+			</a>
+			<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+			    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+			    <span class="sr-only">Next</span>
+			</a>
+		</div>
     </div>
 </div>
 </c:if>
@@ -226,7 +241,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="row margin-top-30">
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <img class="img-responsive" alt="公司介绍" src="static/pc/assets/img/company-logo.png">
-                <img src="static/pc/assets/img/erweima.png" style="padding-left: 40px;padding-top: 20px;">
+                <img src="static/pc/assets/img/erweima.png" style="padding-left: 60px;padding-top: 30px;">
             </div>
             <div class="col-md-8 col-sm-8 col-xs-12 company-intr" style="text-align: left;">
                 <p style="font-size: 17px;">袋鼠管家是做什么的？听起来好像是搞IT的……</p>
@@ -289,11 +304,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="static/pc/assets/plugins/jquery-migrate.min.js" type="text/javascript"></script>
 <script src="static/pc/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 
-<script src="static/pc/assets/plugins/slider-revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js" type="text/javascript"></script>
-<script src="static/pc/assets/plugins/slider-revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js" type="text/javascript"></script>
-<script src="static/pc/assets/js/revo-ini.js" type="text/javascript"></script>
-
-<script src="static/pc/assets/plugins/fancybox/source/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
 <script src="static/pc/assets/plugins/jquery.easing.js"></script>
 <script src="static/pc/assets/plugins/jquery.parallax.js"></script>
 <script src="static/pc/assets/plugins/jquery.scrollTo.min.js"></script>

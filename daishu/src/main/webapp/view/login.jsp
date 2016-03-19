@@ -2,6 +2,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
@@ -9,6 +13,7 @@
 <html lang="en">
     <!--<![endif]-->
     <head>
+    <base href="<%=basePath %>" />
         <meta charset="utf-8" />
         <title>Metronic | User Login 2</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -43,7 +48,7 @@
         <!-- BEGIN LOGIN -->
         <div class="content">
             <!-- BEGIN LOGIN FORM -->
-            <form class="login-form" action="login" method="post">
+            <form class="login-form" action="manager/login" method="post">
                 <div class="form-title">
                     <span class="form-title">Welcome.</span>
                     <span class="form-subtitle">Please login.</span>

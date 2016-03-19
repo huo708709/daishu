@@ -18,13 +18,14 @@ import com.shop.manager.service.system.MenuService;
 import com.shop.manager.shiro.ShiroDbRealm;
 
 @Controller
+@RequestMapping(value = "manager")
 public class HomeController {
 
 	@Autowired
 	private MenuService menuService;
 
 	@RequiresAuthentication
-	@RequestMapping(value = "/")
+	@RequestMapping(value = "")
 	public ModelAndView index(HttpSession session) {
 		Subject subject = SecurityUtils.getSubject();
 		ShiroDbRealm.ShiroUser shiroUser = (ShiroDbRealm.ShiroUser)subject.getPrincipal();
