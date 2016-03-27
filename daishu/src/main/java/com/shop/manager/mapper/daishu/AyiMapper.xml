@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.manager.mapper.daishu.AyiMapper">
+	<insert id="insert" parameterType="Ayi" useGeneratedKeys="true" keyProperty="id">
+		insert into t_ayi
+		(name,phone,card_no,card_place,address,job_no,birthday)
+		values
+		(#{name},#{phone},#{cardNo},#{cardPlace},#{address},#{jobNo},#{birthday})
+	</insert>
+	
+	<update id="update" parameterType="Ayi">
+		update t_ayi set name=#{name},phone=#{phone},card_no=#{cardNo},
+		card_place=#{cardPlace},address=#{address},birthday=#{birthday} where id=#{id}
+	</update>
+	
+	<update id="updateJobNo">
+		update t_ayi set job_no = #{jobNo} where id=#{id}
+	</update>
+	
+	<select id="selectById" resultType="Ayi">
+		select * from t_ayi where id=#{id}
+	</select>
+	
+	<delete id="deleteByIds">
+		delete from t_ayi
+		<where>
+		<choose>
+			<when test="null != ids">
+				<foreach collection="ids" item="id" separator="," open="id in (" close=")">
+				#{id}
+				</foreach>
+			</when>
+			<otherwise>
+			0=1
+			</otherwise>
+		</choose>
+		</where>
+	</delete>
+	
+	<sql id="gridWhere">
+	from t_ayi a
+	<where>
+		<if test="null != entity">
+			<if test="null != entity.name and '' != entity.name">
+			a.name like '%${entity.name}%'
+			</if>
+			<if test="null != entity.jobNo and '' != entity.jobNo">
+			a.job_no like '%${entity.jobNo}%'
+			</if>
+		</if>
+	</where>
+	</sql>
+	<select id="listPaged" resultType="Ayi">
+		select a.*
+		<include refid="gridWhere"/>
+		<if test="tableParam.length > -1">
+		limit #{tableParam.start},#{tableParam.length}
+		</if>
+	</select>
+	<select id="count" resultType="int">
+		select count(*)
+		<include refid="gridWhere"/>
+	</select>
+</mapper>

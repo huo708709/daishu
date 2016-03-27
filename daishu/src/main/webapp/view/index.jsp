@@ -8,7 +8,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 <!DOCTYPE>
 <head lang="en">
-    <!--<![endif]-->
 <base href="<%=basePath %>" />
     <!-- BEGIN HEAD -->
 
@@ -35,6 +34,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <link href="static/global/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
         <link href="static/global/plugins/bootstrap-summernote/summernote.css" rel="stylesheet" type="text/css" />
         <link href="static/global/plugins/bootstrap-editable/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet" type="text/css" />
+        <link href="static/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" />
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL STYLES -->
         <link href="static/global/css/components.css" rel="stylesheet" id="style_components" type="text/css" />
@@ -96,7 +96,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <ul class="sub-menu">
                             	<c:forEach items="${menu.children }" var="child">
                                 <li class="nav-item start">
-                                    <a href="#${child.url }" class="nav-link ajaxify">
+                                    <a href="manager/#${child.url }" class="nav-link ajaxify">
                                         <i class="icon-bar-chart"></i>
                                         <span class="title">${child.name }</span>
                                     </a>
@@ -169,6 +169,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <script src="static/global/plugins/bootstrap-summernote/lang/summernote-zh-CN.js" type="text/javascript"></script>
         <script src="static/global/plugins/jquery.mockjax.js" type="text/javascript"></script>
         <script src="static/global/plugins/bootstrap-editable/bootstrap-editable/js/bootstrap-editable.min.js" type="text/javascript"></script>
+        <script src="static/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+        <script src="static/global/plugins/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" type="text/javascript"></script>
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         <script src="static/global/plugins/require.js" type="text/javascript"></script>

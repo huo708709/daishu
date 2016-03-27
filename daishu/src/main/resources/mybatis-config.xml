@@ -19,6 +19,12 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.shop.manager.mapper.website.Business" alias="Business" />
 		<typeAlias type="com.shop.manager.mapper.website.Banner" alias="Banner" />
 		<typeAlias type="com.shop.manager.mapper.website.SystemConfig" alias="SystemConfig" />
+		
+		<typeAlias type="com.shop.manager.mapper.daishu.Ayi" alias="Ayi" />
+		<typeAlias type="com.shop.manager.mapper.daishu.Customer" alias="Customer" />
+		<typeAlias type="com.shop.manager.mapper.daishu.Unit" alias="Unit" />
+		<typeAlias type="com.shop.manager.mapper.daishu.Address" alias="Address" />
+		<typeAlias type="com.shop.manager.mapper.daishu.Order" alias="Order" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="com/shop/manager/mapper/system/SystemMapper.xml" />
@@ -32,5 +38,11 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="com/shop/manager/mapper/website/BusinessMapper.xml" />
 		<mapper resource="com/shop/manager/mapper/website/BannerMapper.xml" />
 		<mapper resource="com/shop/manager/mapper/website/SystemConfigMapper.xml" />
+		
+		<mapper resource="com/shop/manager/mapper/daishu/AyiMapper.xml" />
+		<mapper resource="com/shop/manager/mapper/daishu/CustomerMapper.xml" />
+		<mapper resource="com/shop/manager/mapper/daishu/UnitMapper.xml" />
+		<mapper resource="com/shop/manager/mapper/daishu/AddressMapper.xml" />
+		<mapper resource="com/shop/manager/mapper/daishu/OrderMapper.xml" />
 	</mappers>
 </configuration>

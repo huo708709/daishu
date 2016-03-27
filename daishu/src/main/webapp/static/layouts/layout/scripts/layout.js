@@ -232,11 +232,10 @@ var Layout = function () {
             });
             page_bar_html = page_bar_html.reverse();
             $('.page-bar > ul').html(page_bar_html.join(''));
-            
             $.ajax({
                 type: "GET",
                 cache: false,
-                url: url.substring(1),
+                url: url.substring(9),
                 dataType: "html",
                 success: function (res) {
                     if (the.parents('li.open').size() === 0) {
@@ -246,7 +245,7 @@ var Layout = function () {
                     pageContentBody.html(res);
                     $('.page-content > .page-content-body').slideDown();
             		$('.page-content > .page-edit-body').slideUp();
-                    require(['page/' + url.substring(1)], function(Module) {
+                    require(['page/' + url.substring(9)], function(Module) {
                     	if (Module) {
                     		if (currentModule) {
                     			currentModule.destroy && currentModule.destroy();
@@ -288,14 +287,14 @@ var Layout = function () {
             $.ajax({
                 type: "GET",
                 cache: false,
-                url: url.substring(1),
+                url: url.substring(9),
                 dataType: "html",
                 success: function (res) {
                     App.stopPageLoading();
                     pageContentBody.html(res);
                     $('.page-content > .page-content-body').slideDown();
             		$('.page-content > .page-edit-body').slideUp();
-                    require(['page/' + url.substring(1)], function(Module) {
+                    require(['page/' + url.substring(9)], function(Module) {
                     	if (Module) {
                     		if (currentModule) {
                     			currentModule.destroy && currentModule.destroy();

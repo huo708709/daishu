@@ -56,4 +56,13 @@ public abstract class AbstractController<T> {
 		this.getAbstractService().deleteByIds(ids);
 		return this.response("删除成功", ResponseData.ACTION_TOAST);
 	}
+	
+//	@InitBinder
+//	protected void initBinder(HttpServletRequest request,
+//            ServletRequestDataBinder binder) throws Exception {
+////		DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//	    DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+//	    CustomDateEditor dateEditor = new CustomDateEditor(format, true);
+//	    binder.registerCustomEditor(Date.class, dateEditor);
+//	}
 }

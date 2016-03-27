@@ -48,6 +48,8 @@ define('component/curd', [], function() {
 						});
 					}
 				});
+			} else {
+				showMessage({action: 'toast',message: '请选择需要删除项目'});
 			}
 		},
 		ajax: function(options, successCallBack, errorCallBack) {
