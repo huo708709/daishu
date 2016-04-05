@@ -1,0 +1,36 @@
+.am-list .list-item-address {
+    margin-top: 1rem;
+}
+.am-list .list-item-address:first-child {
+    margin-top: 0rem;
+}
+.am-list .list-item-address .address-icon {
+    margin: 0;
+    height: 24px;
+    width: auto;
+}
+.am-list .list-item-address span {
+    padding-left: 0.4rem;
+}
+.am-list .list-item-address .address-content-wrapper {
+    border-bottom: 1px solid #C0C9CC;
+}
+.am-list .list-item-address label,.am-list .list-item-address a {
+    vertical-align: middle;
+    margin: 1rem 0;
+    font-weight: normal;
+    color: #7d7d7d;
+}
+.am-list .list-item-address .address-content {
+    font-size: 1.8rem;
+    vertical-align: middle;
+    color: #5d5d5d;
+}
+.am-list .list-item-address .address-loaction, .am-list .list-item-address .address-edit, .am-list .list-item-address .address-delete {
+    font-size: 1.5rem;
+    vertical-align: middle;
+}
+.am-list .list-item-address .address-icon-small {
+    height: 18px;
+    width: auto;
+}

@@ -1,0 +1,31 @@
+.huiyuanka-logo-wrapper {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+.huiyuan-opt {
+    background-color: #cccccc;
+}
+.huiyuan-opt li {
+    padding: 0 0.4rem;
+    margin: 0.8rem 0;
+    border-right: 1px solid #fef3f2;
+    text-align: center;
+}
+.huiyuan-opt li:last-child {
+    border-right: none;
+}
+.huiyuan-opt li a {
+    color: #959595;
+    font-size: 1.5rem;
+}
+.huiyuan-opt li img {
+    width: 20px;
+    height: auto;
+}
+.huiyuanka-list {
+    margin: 1rem 0;
+}
+.huiyuanka-list li {
+    /*background: url("../img/huiyuanka-bg.png") repeat-x;*/
+    margin: 1rem 0;
+}

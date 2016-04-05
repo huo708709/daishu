@@ -1,0 +1,17 @@
+.user-center-opt {
+    text-align: center;
+    background-color: #f0a431;
+}
+.user-center-opt li {
+    margin: 0.8rem 0;
+    color: #ffffff;
+    font-size: 1.85rem;
+}
+.user-center-opt li:last-child {
+    border-left: 1px solid #eeeeee;
+}
+.user-center-opt li img {
+    width: 25px;
+    height: auto;
+    margin-right: 0.5rem;
+}

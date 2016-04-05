@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="callSettersOnNulls" value="true" />
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+	<typeAliases>
+		<typeAlias type="com.shop.manager.mapper.daishu.Ayi" alias="Ayi" />
+		<typeAlias type="com.shop.manager.mapper.daishu.Customer" alias="Customer" />
+		<typeAlias type="com.shop.manager.mapper.daishu.Unit" alias="Unit" />
+		<typeAlias type="com.shop.manager.mapper.daishu.Address" alias="Address" />
+		<typeAlias type="com.shop.manager.mapper.daishu.Order" alias="Order" />
+	</typeAliases>
+	<mappers>
+		<mapper resource="com/shop/manager/mapper/daishu/AyiMapper.xml" />
+		<mapper resource="com/shop/manager/mapper/daishu/CustomerMapper.xml" />
+		<mapper resource="com/shop/manager/mapper/daishu/UnitMapper.xml" />
+		<mapper resource="com/shop/manager/mapper/daishu/AddressMapper.xml" />
+		<mapper resource="com/shop/manager/mapper/daishu/OrderMapper.xml" />
+	</mappers>
+</configuration>

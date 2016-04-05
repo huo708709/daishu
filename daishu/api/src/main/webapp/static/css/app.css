@@ -1,0 +1,145 @@
+body {
+    background-color: #eef1f5;
+}
+
+/** common **/
+body {
+    font-family: 微软雅黑;
+}
+.margin-top-05 {
+    margin-top: 0.5rem !important;
+}
+.margin-top-1 {
+    margin-top: 1rem !important;
+}
+.margin-top-2 {
+    margin-top: 2rem !important;
+}
+.padding-left-025 {
+    padding-left: 0.25rem !important;
+}
+.padding-right-025 {
+    padding-right: 0.25rem !important;
+}
+.padding-bottom-05 {
+    padding-bottom: 0.5rem !important;
+}
+.padding-top-05 {
+    padding-top: 0.5rem !important;
+}
+
+/**form**/
+.group {
+    margin: 1.875rem 0;
+}
+.group .group-header {
+    padding: .3125rem .9375rem;
+    color: #6d6d72;
+    font-size: .875rem;
+}
+.group .group-body {
+    display: block;
+    padding: .9375rem;
+    background: #fff;
+}
+.group-no-padded .group-body {
+    padding: 0;
+}
+
+.forminfo-container {
+    margin-top: 0rem;
+}
+.forminfo-container .am-form-field,.forminfo-container .am-input-group-label {
+    border: none;
+    background-color: #ffffff;
+}
+.forminfo-container .forminfo-wrapper {
+    background-color: #ffffff;
+}
+.forminfo-container .forminfo-wrapper .am-input-group {
+    margin: 0 0.6rem;
+    border-bottom: 1px solid #cccccc;
+}
+.forminfo-container .forminfo-wrapper .am-input-group:last-child {
+    margin: 0 0.6rem;
+    border-bottom: none;
+}
+
+/**portlet**/
+.portlet {
+    border-radius: 0px;
+    margin-bottom: 15px;
+    margin-top: 0;
+    padding: 0;
+}
+.portlet > .portlet-title {
+    border-bottom: 1px solid #eee;
+    border-radius: 4px 4px 0 0;
+    margin-bottom: 10px;
+    min-height: 41px;
+    padding: 0;
+}
+.portlet > .portlet-title > .caption {
+    display: inline-block;
+    float: left;
+    font-size: 16px;
+    line-height: 16px;
+    padding: 10px 0;
+}
+.portlet > .portlet-title > .caption > i {
+    color: #666;
+    display: inline-block;
+    float: left;
+    font-size: 13px;
+    margin-right: 5px;
+    margin-top: 4px;
+}
+.portlet > .portlet-title > .caption > .caption-helper {
+    color: #9eacb4;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 13px;
+    margin: 0;
+    padding: 0;
+}
+.portlet > .portlet-title > .actions {
+    display: inline-block;
+    float: right;
+    padding: 6px 0;
+}
+.portlet > .portlet-body {
+    border-radius: 0 0 4px 4px;
+}
+.portlet > .portlet-body, .portlet > .portlet-title::after {
+    clear: both;
+}
+/**light**/
+.portlet.light {
+    background-color: #fff;
+    padding: 12px 20px 15px;
+}
+.portlet.light > .portlet-title {
+    min-height: 48px;
+    padding: 0;
+}
+.portlet.light > .portlet-title > .caption {
+    color: #666;
+    padding: 10px 0;
+}
+.portlet.light > .portlet-title > .caption > i {
+    color: #777;
+    font-size: 15px;
+    font-weight: 300;
+    margin-top: 3px;
+}
+.portlet.light > .portlet-title > .caption > .caption-subject {
+    font-size: 16px;
+}
+.portlet.light > .portlet-title > .caption > .caption-subject > img {
+    width: 22px;
+    height: auto;
+    margin-right: 6px;
+}
+.portlet.light > .portlet-title > .actions {
+    padding: 6px 0 14px;
+}

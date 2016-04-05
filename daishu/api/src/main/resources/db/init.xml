@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system>
+	<menus>
+		<menu name="系统管理" code="system" icon="icon-home">
+			<functions>
+				<function name="访问" code="access" />
+			</functions>
+			<children>
+				<menu name="用户管理" code="user" icon="icon-home" url="system/user">
+					<functions>
+						<function name="访问" code="access" />
+						<function name="添加" code="add" />
+						<function name="更新" code="update" />
+						<function name="删除" code="detele" />
+					</functions>
+				</menu>
+				<menu name="角色管理" code="role" icon="icon-home" url="system/role">
+					<functions>
+						<function name="访问" code="access" />
+						<function name="添加" code="add" />
+						<function name="更新" code="update" />
+						<function name="删除" code="detele" />
+					</functions>
+				</menu>
+				<menu name="菜单管理" code="menu" icon="icon-home" url="system/menu">
+					<functions>
+						<function name="访问" code="access" />
+						<function name="添加" code="add" />
+						<function name="更新" code="update" />
+						<function name="删除" code="detele" />
+					</functions>
+				</menu>
+			</children>
+		</menu>
+	</menus>
+	<users>
+		<user username="admin" password="admin" />
+	</users>
+	<roles>
+		<role name="系统管理员" description="系统管理员" />
+	</roles>
+	<userroles>
+		<userrole username="admin" rolename="系统管理员" />
+	</userroles>
+</system>

@@ -1,0 +1,170 @@
+/** index item **/
+.index-panel {
+    padding: 0 0.5rem;
+}
+.index-panel > a,.index-panel > ul > li > a,.index-panel > a > div,.index-panel > ul > li > a > div {
+    position: relative;
+}
+.changguibaojie {
+    background-color: #f39910;
+    border-radius: 8px;
+}
+.changguibaojie img.img-logo {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    height: 60%;
+}
+.changguibaojie img.img-title {
+    position: absolute;
+    left: 1rem;
+    top: 1.5rem;
+    width: 60%;
+    height: auto;
+}
+.jingxibaojie {
+    background-color: #ec51b3;
+    border-radius: 8px;
+}
+.jingxibaojie .img-logo {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    height: 60%;
+}
+.jingxibaojie .img-title {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    width: 60%;
+    height: auto;
+}
+.caboli {
+    background-color: #00c2b2;
+    border-radius: 8px;
+}
+.caboli .img-logo {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    height: 60%;
+}
+.caboli .img-title {
+    position: absolute;
+    left: 1.5rem;
+    top: 1.5rem;
+    width: 60%;
+    height: auto;
+}
+.ganxi {
+    background-color: #8749b4;
+    border-radius: 8px;
+}
+.ganxi .img-logo {
+    position: absolute;
+    top: 1.5rem;
+    right: 1rem;
+    height: 70%;
+}
+.ganxi .img-title {
+    position: absolute;
+    left: 1.5rem;
+    top: 2rem;
+    width: 60%;
+    height: auto;
+}
+.shendubaojie {
+    background-color: #96cb22;
+    border-radius: 8px;
+}
+.shendubaojie .img-logo {
+    position: absolute;
+    top: 1.2rem;
+    right: 0.7rem;
+    height: 60%;
+}
+.shendubaojie .img-title {
+    position: absolute;
+    left: 0.5rem;
+    top: 1.2rem;
+    width: 60%;
+    height: auto;
+}
+.xinjukaihuang {
+    background-color: #0698c7;
+    border-radius: 8px;
+}
+.xinjukaihuang .img-logo {
+    position: absolute;
+    top: 1.2rem;
+    right: 0.7rem;
+    height: 60%;
+}
+.xinjukaihuang .img-title {
+    position: absolute;
+    left: 0.5rem;
+    top: 1.2rem;
+    width: 60%;
+    height: auto;
+}
+.jiajuhuli {
+    background-color: #ff5152;
+    border-radius: 8px;
+}
+.jiajuhuli .img-logo {
+    position: absolute;
+    top: 1.2rem;
+    right: 0.7rem;
+    height: 60%;
+}
+.jiajuhuli .img-title {
+    position: absolute;
+    left: 0.5rem;
+    top: 1.2rem;
+    width: 60%;
+    height: auto;
+}
+.jiadianqingxi {
+    background-color: #e5b107;
+    border-radius: 8px;
+}
+.jiadianqingxi .img-logo {
+    position: absolute;
+    top: 1.2rem;
+    right: 0.7rem;
+    height: 60%;
+}
+.jiadianqingxi .img-title {
+    position: absolute;
+    left: 0.5rem;
+    top: 1.2rem;
+    width: 70%;
+    height: auto;
+}
+.guanjiayuyue {
+    background-color: #f64d7d;
+    border-radius: 8px;
+}
+.guanjiayuyue .img-logo {
+    position: absolute;
+    bottom: 1rem;
+    right: 15%;
+    left: 15%;
+    width: 70%;
+    height: auto;
+}
+.guanjiayuyue .img-title {
+    position: absolute;
+    right: 15%;
+    left: 15%;
+    top: 4.5rem;
+    width: 70%;
+    height: auto;
+}
+.guanjiayuyue .img-yue {
+    position: absolute;
+    right: 1rem;
+    top: 0rem;
+    width: 30%;
+    height: auto;
+}
