@@ -1,15 +1,7 @@
 package com.shop.manager.web.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.shop.data.model.TableData;
-import com.shop.data.model.TableParameter;
 import com.shop.manager.web.model.ResponseData;
 import com.shop.service.AbstractService;
-
 
 public abstract class AbstractController<T> {
 	
@@ -34,18 +26,4 @@ public abstract class AbstractController<T> {
 	protected ResponseData response(int code, String message, String action) {
 		return new ResponseData(code, message, action);
 	}
-	
-	@ResponseBody
-	@RequestMapping(value = "list_paged")
-	public TableData listPaged(TableParameter parameter, T entity) {
-		return this.getAbstractService().listPaged(parameter, entity);
-	}
-	
-	@ResponseBody
-	@RequestMapping(value = "delete", method = RequestMethod.POST)
-	public ResponseData delete(@RequestParam("ids[]") int[] ids) {
-		this.getAbstractService().deleteByIds(ids);
-		return this.response("删除成功", ResponseData.ACTION_TOAST);
-	}
-	
 }

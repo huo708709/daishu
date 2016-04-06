@@ -18,6 +18,10 @@ public class CustomerService extends AbstractService<Customer> {
 		super(Customer.class);
 	}
 	
+	public Customer selectByOpenid(String openid) {
+		return this.customerMapper.selectByOpenid(openid);
+	}
+	
 	@Override
 	public AbstractMapper getAbstractMapper() {
 		return this.customerMapper;

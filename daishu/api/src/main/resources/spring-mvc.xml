@@ -37,12 +37,11 @@
 	</beans:bean>
 	
 	<!-- 全局异常配置 start --> 
-	<beans:bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">  
+	<!-- <beans:bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">  
 	    <beans:property name="exceptionMappings">
 	        <beans:props>
 	            <beans:prop key="java.lang.Exception">error/500</beans:prop>  
 	            <beans:prop key="java.lang.Throwable">error/500</beans:prop>
-	            <beans:prop key="org.apache.shiro.authz.UnauthorizedException">error/403</beans:prop>  
 	        </beans:props>  
 	    </beans:property>  
 	    <beans:property name="statusCodes">  
@@ -52,13 +51,13 @@
 	            <beans:prop key="403">403</beans:prop>  
 	        </beans:props>  
 	    </beans:property>  
-	    <!-- 设置日志输出级别，不定义则默认不输出警告等错误日志信息 --> 
+	    设置日志输出级别，不定义则默认不输出警告等错误日志信息 
 	    <beans:property name="warnLogCategory" value="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"/>  
-	    <!-- 默认错误页面，当找不到上面mappings中指定的异常对应视图时，使用本默认配置 --> 
+	    默认错误页面，当找不到上面mappings中指定的异常对应视图时，使用本默认配置 
 	    <beans:property name="defaultErrorView" value="error/500"/>  
-	    <!-- 默认HTTP状态码 --> 
+	    默认HTTP状态码 
 	    <beans:property name="defaultStatusCode" value="500"/>  
-	</beans:bean>  
+	</beans:bean>   -->
 	<!-- 全局异常配置 end --> 
 	
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

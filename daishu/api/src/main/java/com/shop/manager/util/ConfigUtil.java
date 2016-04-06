@@ -59,4 +59,6 @@ public class ConfigUtil {
 	public final static String SHORT_URL = "https://api.mch.weixin.qq.com/tools/shorturl";
 	// 接口调用上报接口(POST)
 	public final static String REPORT_URL = "https://api.mch.weixin.qq.com/payitil/report";
+	
+	public final static String AUTH_LOGIN = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx2f7d7a7227c84073&redirect_uri=http%3A%2F%2Fdaishuguanjia.cn%2Fapi%2Fauth&response_type=code&scope=snsapi_userinfo#wechat_redirect";
 }

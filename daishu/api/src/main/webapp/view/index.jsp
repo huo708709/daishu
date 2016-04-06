@@ -44,12 +44,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="am-container margin-top-10" style="height: 71.4%;">
 		<div class="am-g">
 			<div class="am-u-sm-6 index-panel margin-top-05 padding-right-025">
-				<a href="baojie.html">
+				<a href="baojie?type=1">
 					<div id="changguibaojie" class="changguibaojie">
 						<img class="img-logo" src="static/img/changguibaojie_logo.png">
 						<img class="img-title" src="static/img/changguibaojie_title.png">
 					</div>
-				</a> <a>
+				</a> <a href="baojie?type=2">
 					<div id="jingxibaojie" class="margin-top-05 jingxibaojie">
 						<img class="img-logo" src="static/img/jingxibaojie_logo.png">
 						<img class="img-title" src="static/img/jingxibaojie_title.png">
@@ -57,10 +57,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</a>
 			</div>
 			<div class="am-u-sm-6 index-panel margin-top-05 padding-left-025">
-				<a><div id="caboli" class="caboli">
+				<a href="baojie?type=4"><div id="caboli" class="caboli">
 						<img class="img-logo" src="static/img/caboli_logo.png"> <img
 							class="img-title" src="static/img/caboli_title.png">
-					</div></a> <a><div id="ganxi" class="ganxi margin-top-05">
+					</div></a> <a href="baojie?type=8"><div id="ganxi" class="ganxi margin-top-05">
 						<img class="img-logo" src="static/img/ganxi_logo.png"> <img
 							class="img-title" src="static/img/ganxi_title.png">
 					</div></a>
@@ -69,22 +69,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="am-g">
 			<div class="am-u-sm-9 index-panel padding-right-025">
 				<ul class="am-avg-sm-2">
-					<li class="padding-right-025 margin-top-05"><a><div
+					<li class="padding-right-025 margin-top-05"><a href="baojie?type=3"><div
 								id="shendubaojie" class="shendubaojie">
 								<img class="img-logo" src="static/img/shendubaojie_logo.png">
 								<img class="img-title" src="static/img/shendubaojie_title.png">
 							</div></a></li>
-					<li class="padding-left-025 margin-top-05"><a><div
+					<li class="padding-left-025 margin-top-05"><a href="baojie?type=5"><div
 								id="xinjukaihuang" class="xinjukaihuang">
 								<img class="img-logo" src="static/img/xinjukaihuang_logo.png">
 								<img class="img-title" src="static/img/xinjukaihuang_title.png">
 							</div></a></li>
-					<li class="padding-right-025 margin-top-05"><a><div
+					<li class="padding-right-025 margin-top-05"><a href="baojie?type=7"><div
 								id="jiajuhuli" class="jiajuhuli">
 								<img class="img-logo" src="static/img/jiajuhuli_logo.png">
 								<img class="img-title" src="static/img/jiajuhuli_title.png">
 							</div></a></li>
-					<li class="padding-left-025 margin-top-05"><a><div
+					<li class="padding-left-025 margin-top-05"><a href="baojie?type=6"><div
 								id="jiadianqingxi" class="jiadianqingxi">
 								<img class="img-logo" src="static/img/jiadianqingxi_logo.png">
 								<img class="img-title" src="static/img/jiadianqingxi_title.png">

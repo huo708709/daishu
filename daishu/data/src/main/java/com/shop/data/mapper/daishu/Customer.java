@@ -10,13 +10,14 @@ public class Customer extends IntEntity {
 	public static final int STATUS_LOCK = 2;
 
 	private String weixinName;
-	private Date last_time;
-	private Date first_time;
+	private Date lastTime;
+	private Date firstTime;
 	private String address;
 	private String phone;
 	private String name;
 	private int status;
 	private String openid;
+	private String detail;
 
 	public String getWeixinName() {
 		return weixinName;
@@ -26,20 +27,20 @@ public class Customer extends IntEntity {
 		this.weixinName = weixinName;
 	}
 
-	public Date getLast_time() {
-		return last_time;
+	public Date getLastTime() {
+		return lastTime;
 	}
 
-	public void setLast_time(Date last_time) {
-		this.last_time = last_time;
+	public void setLastTime(Date lastTime) {
+		this.lastTime = lastTime;
 	}
 
 	public Date getFirst_time() {
-		return first_time;
+		return firstTime;
 	}
 
-	public void setFirst_time(Date first_time) {
-		this.first_time = first_time;
+	public void setFirstTime(Date firstTime) {
+		this.firstTime = firstTime;
 	}
 
 	public String getAddress() {
@@ -80,6 +81,14 @@ public class Customer extends IntEntity {
 
 	public void setOpenid(String openid) {
 		this.openid = openid;
+	}
+
+	public String getDetail() {
+		return detail;
+	}
+
+	public void setDetail(String detail) {
+		this.detail = detail;
 	}
 
 }

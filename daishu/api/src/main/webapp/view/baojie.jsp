@@ -1,3 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html>
 <html class="no-js">
 <head lang="en">
@@ -14,11 +20,12 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
-    <meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
+    <meta name="msapplication-TileImage" content="static/i/app-icon72x72@2x.png">
     <meta name="msapplication-TileColor" content="#0e90d2">
-    <link rel="stylesheet" href="assets/css/amazeui.min.css">
-    <link rel="stylesheet" href="assets/css/app.css">
-    <link rel="stylesheet" href="assets/css/order.css">
+    <link rel="stylesheet" href="static/css/amazeui.min.css">
+    <link rel="stylesheet" href="static/css/app.css">
+    <link rel="stylesheet" href="static/css/order.css">
+    <link rel="stylesheet" href="static/css/address.css">
 </head>
 <body>
 <div id="baojie_frist" class="am-container" style="padding: 0;">
@@ -38,7 +45,7 @@
         <div class="am-u-sm-12 forminfo-wrapper margin-top-1">
             <div class="am-input-group am-input-group-lg">
                 <span class="am-input-group-label">服务地址：</span>
-                <input type="text" class="am-form-field" placeholder="请选择您的服务地址">
+                <input id="address" type="text" class="am-form-field" placeholder="请选择您的服务地址">
             </div>
         </div>
     </div>
@@ -114,10 +121,10 @@
                 <span class="am-input-group-label" style="text-align: left">请选择支付方式</span>
             </div>
             <div class="am-input-group am-input-group-lg">
-                <img src="assets/img/weixin.png">
+                <img src="static/img/weixin.png">
             </div>
             <div class="am-input-group am-input-group-lg">
-                <img src="assets/img/weixin.png">
+                <img src="static/img/weixin.png">
             </div>
         </div>
     </div>
@@ -125,9 +132,12 @@
         <a type="button" class="am-btn am-btn-warning am-btn-block am-btn-lg am-radius">确认支付</a>
     </div>
 </div>
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/amazeui.min.js"></script>
-<script src="assets/js/daishu.js"></script>
-<script src="assets/js/baojie.js"></script>
+<div id="address_container" class="am-container"style="padding: 0;display: none">
+</div>
+<script src="static/js/jquery.min.js"></script>
+<script src="static/js/amazeui.min.js"></script>
+<script src="static/js/daishu.js"></script>
+<script src="static/js/baojie.js"></script>
+<script src="static/js/address.js"></script>
 </body>
 </html>

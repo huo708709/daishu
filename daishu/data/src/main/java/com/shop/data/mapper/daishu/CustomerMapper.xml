@@ -4,9 +4,9 @@
 <mapper namespace="com.shop.data.mapper.daishu.CustomerMapper">
 	<insert id="insert" parameterType="Customer" useGeneratedKeys="true" keyProperty="id">
 		insert into t_customer
-		(weixin_name,address,phone,name,status)
+		(weixin_name,address,phone,name,status,openid,detail,first_time,last_time)
 		values
-		(#{weixinName},#{address},#{phone},#{name},#{status})
+		(#{weixinName},#{address},#{phone},#{name},#{status},#{openid},#{detail},#{first_time},#{last_time})
 	</insert>
 	
 	<update id="update" parameterType="Customer">
@@ -16,6 +16,10 @@
 	
 	<select id="selectById" resultType="Customer">
 		select * from t_customer where id=#{id}
+	</select>
+	
+	<select id="selectByOpenid" resultType="Customer">
+		select * from t_customer where openid=#{openid}
 	</select>
 	
 	<delete id="deleteByIds">
