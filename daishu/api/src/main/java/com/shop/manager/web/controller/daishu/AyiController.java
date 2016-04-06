@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.shop.manager.mapper.daishu.Ayi;
-import com.shop.manager.service.AbstractService;
-import com.shop.manager.service.daishu.AyiService;
+import com.shop.data.mapper.daishu.Ayi;
 import com.shop.manager.web.controller.AbstractController;
 import com.shop.manager.web.model.ResponseData;
+import com.shop.service.AbstractService;
+import com.shop.service.daishu.AyiService;
 
 @Controller
 @RequestMapping("daishu/ayi")

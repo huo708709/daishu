@@ -16,12 +16,12 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.shop.data.mapper.system.Menu;
+import com.shop.data.mapper.system.User;
 import com.shop.manager.exception.IncorrectCaptchaException;
-import com.shop.manager.mapper.system.Menu;
-import com.shop.manager.mapper.system.User;
-import com.shop.manager.service.system.MenuService;
-import com.shop.manager.service.system.UserService;
 import com.shop.manager.web.servlet.SimpleCaptchaServlet;
+import com.shop.service.system.MenuService;
+import com.shop.service.system.UserService;
 
 public class ShiroDbRealm extends AuthorizingRealm {
 

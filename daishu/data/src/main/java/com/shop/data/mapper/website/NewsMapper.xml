@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.data.mapper.website.NewsMapper">
+	<insert id="insert" parameterType="News" useGeneratedKeys="true" keyProperty="id">
+		insert into t_news
+		(title,digest,content,status,create_time,file_id,user_id)
+		values
+		(#{title},#{digest},#{content},#{status},#{createTime},#{fileId},#{userId})
+	</insert>
+	
+	<update id="update" parameterType="News">
+		update t_news set title=#{title},digest=#{digest},content=#{content} where id=#{id}
+	</update>
+	
+	<update id="updateStatus">
+		update t_news set status=#{status} where id=#{id}
+	</update>
+	
+	<select id="selectById" resultType="News">
+		select * from t_news where id=#{id}
+	</select>
+	
+	<select id="selectTop5" resultType="News">
+		select * from t_news where status=0 order by id desc limit 0,5
+	</select>
+	
+	<delete id="deleteByIds">
+		delete from t_news
+		<where>
+		<choose>
+			<when test="null != ids">
+				<foreach collection="ids" item="id" separator="," open="id in (" close=")">
+				#{id}
+				</foreach>
+			</when>
+			<otherwise>
+			0=1
+			</otherwise>
+		</choose>
+		</where>
+	</delete>
+	
+	<sql id="gridWhere">
+	from t_news a
+	<where>
+		<if test="null != entity">
+			<if test="null != entity.id and 0 != entity.id">
+			and a.id=#{entity.id}
+			</if>
+			<if test="null != entity.title and '' != entity.title">
+			and a.title like '%${entity.title}%'
+			</if>
+		</if>
+	</where>
+	</sql>
+	<select id="listPaged" resultType="News">
+		select a.id,a.title,a.digest,a.content,a.status,a.user_id,a.create_time
+		<include refid="gridWhere"/>
+		<if test="tableParam.length > -1">
+		limit #{tableParam.start},#{tableParam.length}
+		</if>
+	</select>
+	<select id="count" resultType="int">
+		select count(a.id)
+		<include refid="gridWhere"/>
+	</select>
+</mapper>

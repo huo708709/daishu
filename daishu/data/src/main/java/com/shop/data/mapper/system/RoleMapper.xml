@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.data.mapper.system.RoleMapper">
+	<insert id="insert" parameterType="Role" useGeneratedKeys="true" keyProperty="id">
+		insert into t_role
+		(name,description)
+		values
+		(#{name},#{description})
+	</insert>
+	
+	<update id="update" parameterType="Role">
+		update t_role set name=#{name},description=#{description} where id=#{id}
+	</update>
+	
+	<select id="selectById" resultType="Role">
+		select id,name,description from t_role where id=#{id}
+	</select>
+	
+	<select id="selectWithUserId" resultMap="RoleWithUserMap">
+		select id,name,description,
+		case when b.user_id=#{userId} then 1 else 0 end selected
+		from t_role a 
+		left join t_user_role b on a.id=b.role_id
+	</select>
+	
+	<delete id="deleteByIds">
+		delete from t_role
+		<where>
+		<choose>
+			<when test="null != ids">
+				<foreach collection="ids" item="id" separator="," open="id in (" close=")">
+				#{id}
+				</foreach>
+			</when>
+			<otherwise>
+			0=1
+			</otherwise>
+		</choose>
+		</where>
+	</delete>
+	
+	<delete id="unAuthorizeAll">
+		delete from t_permission where role_id=#{roleId}
+	</delete>
+	<insert id="authorize">
+		insert into t_permission (role_id, function_id) values
+		<foreach collection="functionIds" item="functionId" separator=",">
+		(#{roleId},#{functionId})
+		</foreach>
+	</insert>
+	
+	<sql id="gridWhere">
+	from t_role a
+	<where>
+		<if test="null != entity">
+			<if test="null != entity.name and '' != entity.name">
+			a.name like '%${entity.name}%'
+			</if>
+		</if>
+	</where>
+	</sql>
+	<select id="listPaged" resultType="Role">
+		select a.id,a.name,a.description
+		<include refid="gridWhere"/>
+		<if test="tableParam.length > -1">
+		limit #{tableParam.start},#{tableParam.length}
+		</if>
+	</select>
+	<select id="count" resultType="int">
+		select count(*)
+		<include refid="gridWhere"/>
+	</select>
+	
+	<resultMap type="map" id="RoleWithUserMap">
+		<result column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="description" property="description"/>
+		<result column="selected" property="selected" javaType="boolean"/>
+	</resultMap>
+</mapper>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.data.mapper.daishu.UnitMapper">
+	<insert id="insert" parameterType="Unit" useGeneratedKeys="true" keyProperty="id">
+		insert into t_unit
+		(name,price)
+		values
+		(#{name},#{price})
+	</insert>
+	
+	<update id="update" parameterType="Unit">
+		update t_unit set name=#{name},price=#{price} where id=#{id}
+	</update>
+	
+	<select id="selectById" resultType="Unit">
+		select * from t_unit where id=#{id}
+	</select>
+	
+	<delete id="deleteByIds">
+		delete from t_unit
+		<where>
+		<choose>
+			<when test="null != ids">
+				<foreach collection="ids" item="id" separator="," open="id in (" close=")">
+				#{id}
+				</foreach>
+			</when>
+			<otherwise>
+			0=1
+			</otherwise>
+		</choose>
+		</where>
+	</delete>
+	
+	<sql id="gridWhere">
+	from t_unit a
+	<where>
+		<if test="null != entity">
+			<if test="null != entity.name and '' != entity.name">
+			a.name like '%${entity.name}%'
+			</if>
+		</if>
+	</where>
+	</sql>
+	<select id="listPaged" resultType="Unit">
+		select a.*
+		<include refid="gridWhere"/>
+		<if test="tableParam.length > -1">
+		limit #{tableParam.start},#{tableParam.length}
+		</if>
+	</select>
+	<select id="count" resultType="int">
+		select count(*)
+		<include refid="gridWhere"/>
+	</select>
+</mapper>

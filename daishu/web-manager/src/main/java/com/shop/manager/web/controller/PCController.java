@@ -7,14 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.shop.manager.mapper.website.Banner;
-import com.shop.manager.mapper.website.Business;
-import com.shop.manager.mapper.website.News;
-import com.shop.manager.mapper.website.SystemConfig;
-import com.shop.manager.service.website.BannerService;
-import com.shop.manager.service.website.BusinessService;
-import com.shop.manager.service.website.NewsService;
-import com.shop.manager.service.website.SystemConfigService;
+import com.shop.data.mapper.website.Banner;
+import com.shop.data.mapper.website.Business;
+import com.shop.data.mapper.website.News;
+import com.shop.data.mapper.website.SystemConfig;
+import com.shop.service.website.BannerService;
+import com.shop.service.website.BusinessService;
+import com.shop.service.website.NewsService;
+import com.shop.service.website.SystemConfigService;
 
 @Controller
 public class PCController {

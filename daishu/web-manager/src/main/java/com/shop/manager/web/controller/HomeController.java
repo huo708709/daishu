@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.shop.manager.service.system.MenuService;
 import com.shop.manager.shiro.ShiroDbRealm;
+import com.shop.service.system.MenuService;
 
 @Controller
 @RequestMapping(value = "manager")

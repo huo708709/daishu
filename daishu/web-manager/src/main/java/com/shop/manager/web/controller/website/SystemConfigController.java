@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.shop.manager.mapper.website.SystemConfig;
-import com.shop.manager.service.AbstractService;
-import com.shop.manager.service.website.SystemConfigService;
+import com.shop.data.mapper.website.SystemConfig;
 import com.shop.manager.web.controller.AbstractController;
+import com.shop.service.AbstractService;
+import com.shop.service.website.SystemConfigService;
 
 @Controller
 @RequestMapping("website/system_config")

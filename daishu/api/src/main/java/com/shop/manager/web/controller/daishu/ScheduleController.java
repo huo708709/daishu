@@ -4,9 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.shop.manager.mapper.daishu.Schedule;
-import com.shop.manager.service.AbstractService;
+import com.shop.data.mapper.daishu.Schedule;
 import com.shop.manager.web.controller.AbstractController;
+import com.shop.service.AbstractService;
 
 @Controller
 @RequestMapping("daishu/schedule")

@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.shop.manager.mapper.website.News;
-import com.shop.manager.service.AbstractService;
-import com.shop.manager.service.system.FileService;
-import com.shop.manager.service.website.NewsService;
+import com.shop.data.mapper.website.News;
 import com.shop.manager.web.controller.AbstractController;
 import com.shop.manager.web.model.ResponseData;
+import com.shop.service.AbstractService;
+import com.shop.service.system.FileService;
+import com.shop.service.website.NewsService;
 
 @Controller
 @RequestMapping("website/news")

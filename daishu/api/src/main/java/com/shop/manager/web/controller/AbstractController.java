@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.shop.manager.service.AbstractService;
+import com.shop.data.model.TableData;
+import com.shop.data.model.TableParameter;
 import com.shop.manager.web.model.ResponseData;
-import com.shop.manager.web.model.TableData;
-import com.shop.manager.web.model.TableParameter;
+import com.shop.service.AbstractService;
 
 
 public abstract class AbstractController<T> {

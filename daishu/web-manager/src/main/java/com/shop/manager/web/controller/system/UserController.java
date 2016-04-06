@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.shop.manager.mapper.system.User;
-import com.shop.manager.service.AbstractService;
-import com.shop.manager.service.system.UserService;
+import com.shop.data.mapper.system.User;
 import com.shop.manager.web.controller.AbstractController;
 import com.shop.manager.web.model.ResponseData;
+import com.shop.service.AbstractService;
+import com.shop.service.system.UserService;
 
 @Controller
 @RequestMapping(value = "system/user")

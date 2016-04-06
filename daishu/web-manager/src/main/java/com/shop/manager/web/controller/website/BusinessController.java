@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.shop.manager.mapper.website.Business;
-import com.shop.manager.service.AbstractService;
-import com.shop.manager.service.website.BusinessService;
+import com.shop.data.mapper.website.Business;
 import com.shop.manager.web.controller.AbstractController;
 import com.shop.manager.web.model.ResponseData;
+import com.shop.service.AbstractService;
+import com.shop.service.website.BusinessService;
 
 @Controller
 @RequestMapping("website/business")
