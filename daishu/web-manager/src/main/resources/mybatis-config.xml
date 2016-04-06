@@ -8,41 +8,41 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<setting name="mapUnderscoreToCamelCase" value="true" />
 	</settings>
 	<typeAliases>
-		<typeAlias type="com.shop.manager.mapper.system.User" alias="User" />
-		<typeAlias type="com.shop.manager.mapper.system.UsersRoles" alias="UsersRoles" />
-		<typeAlias type="com.shop.manager.mapper.system.Role" alias="Role" />
-		<typeAlias type="com.shop.manager.mapper.system.Menu" alias="Menu" />
-		<typeAlias type="com.shop.manager.mapper.system.Function" alias="Function" />
-		<typeAlias type="com.shop.manager.mapper.system.File" alias="File" />
+		<typeAlias type="com.shop.data.mapper.system.User" alias="User" />
+		<typeAlias type="com.shop.data.mapper.system.UsersRoles" alias="UsersRoles" />
+		<typeAlias type="com.shop.data.mapper.system.Role" alias="Role" />
+		<typeAlias type="com.shop.data.mapper.system.Menu" alias="Menu" />
+		<typeAlias type="com.shop.data.mapper.system.Function" alias="Function" />
+		<typeAlias type="com.shop.data.mapper.system.File" alias="File" />
 		
-		<typeAlias type="com.shop.manager.mapper.website.News" alias="News" />
-		<typeAlias type="com.shop.manager.mapper.website.Business" alias="Business" />
-		<typeAlias type="com.shop.manager.mapper.website.Banner" alias="Banner" />
-		<typeAlias type="com.shop.manager.mapper.website.SystemConfig" alias="SystemConfig" />
+		<typeAlias type="com.shop.data.mapper.website.News" alias="News" />
+		<typeAlias type="com.shop.data.mapper.website.Business" alias="Business" />
+		<typeAlias type="com.shop.data.mapper.website.Banner" alias="Banner" />
+		<typeAlias type="com.shop.data.mapper.website.SystemConfig" alias="SystemConfig" />
 		
-		<typeAlias type="com.shop.manager.mapper.daishu.Ayi" alias="Ayi" />
-		<typeAlias type="com.shop.manager.mapper.daishu.Customer" alias="Customer" />
-		<typeAlias type="com.shop.manager.mapper.daishu.Unit" alias="Unit" />
-		<typeAlias type="com.shop.manager.mapper.daishu.Address" alias="Address" />
-		<typeAlias type="com.shop.manager.mapper.daishu.Order" alias="Order" />
+		<typeAlias type="com.shop.data.mapper.daishu.Ayi" alias="Ayi" />
+		<typeAlias type="com.shop.data.mapper.daishu.Customer" alias="Customer" />
+		<typeAlias type="com.shop.data.mapper.daishu.Unit" alias="Unit" />
+		<typeAlias type="com.shop.data.mapper.daishu.Address" alias="Address" />
+		<typeAlias type="com.shop.data.mapper.daishu.Order" alias="Order" />
 	</typeAliases>
 	<mappers>
-		<mapper resource="com/shop/manager/mapper/system/SystemMapper.xml" />
+		<mapper resource="com/shop/data/mapper/system/SystemMapper.xml" />
 		
-		<mapper resource="com/shop/manager/mapper/system/UserMapper.xml" />
-		<mapper resource="com/shop/manager/mapper/system/RoleMapper.xml" />
-		<mapper resource="com/shop/manager/mapper/system/MenuMapper.xml" />
-		<mapper resource="com/shop/manager/mapper/system/FileMapper.xml" />
+		<mapper resource="com/shop/data/mapper/system/UserMapper.xml" />
+		<mapper resource="com/shop/data/mapper/system/RoleMapper.xml" />
+		<mapper resource="com/shop/data/mapper/system/MenuMapper.xml" />
+		<mapper resource="com/shop/data/mapper/system/FileMapper.xml" />
 		
-		<mapper resource="com/shop/manager/mapper/website/NewsMapper.xml" />
-		<mapper resource="com/shop/manager/mapper/website/BusinessMapper.xml" />
-		<mapper resource="com/shop/manager/mapper/website/BannerMapper.xml" />
-		<mapper resource="com/shop/manager/mapper/website/SystemConfigMapper.xml" />
+		<mapper resource="com/shop/data/mapper/website/NewsMapper.xml" />
+		<mapper resource="com/shop/data/mapper/website/BusinessMapper.xml" />
+		<mapper resource="com/shop/data/mapper/website/BannerMapper.xml" />
+		<mapper resource="com/shop/data/mapper/website/SystemConfigMapper.xml" />
 		
-		<mapper resource="com/shop/manager/mapper/daishu/AyiMapper.xml" />
-		<mapper resource="com/shop/manager/mapper/daishu/CustomerMapper.xml" />
-		<mapper resource="com/shop/manager/mapper/daishu/UnitMapper.xml" />
-		<mapper resource="com/shop/manager/mapper/daishu/AddressMapper.xml" />
-		<mapper resource="com/shop/manager/mapper/daishu/OrderMapper.xml" />
+		<mapper resource="com/shop/data/mapper/daishu/AyiMapper.xml" />
+		<mapper resource="com/shop/data/mapper/daishu/CustomerMapper.xml" />
+		<mapper resource="com/shop/data/mapper/daishu/UnitMapper.xml" />
+		<mapper resource="com/shop/data/mapper/daishu/AddressMapper.xml" />
+		<mapper resource="com/shop/data/mapper/daishu/OrderMapper.xml" />
 	</mappers>
 </configuration>

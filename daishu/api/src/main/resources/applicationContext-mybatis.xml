@@ -68,8 +68,8 @@
 
 	<!-- spring与mybatis整合配置，扫描所有dao -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
-		p:basePackage="com.shop.manager.mapper" p:sqlSessionFactoryBeanName="sqlSessionFactory">
-		<property name="markerInterface" value="com.shop.manager.mapper.AbstractMapper" />
+		p:basePackage="com.shop.data.mapper" p:sqlSessionFactoryBeanName="sqlSessionFactory">
+		<property name="markerInterface" value="com.shop.data.mapper.AbstractMapper" />
 	</bean>
 
 	<!-- 对数据源进行事务管理 -->

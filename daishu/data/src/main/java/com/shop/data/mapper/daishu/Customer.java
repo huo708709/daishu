@@ -16,6 +16,7 @@ public class Customer extends IntEntity {
 	private String phone;
 	private String name;
 	private int status;
+	private String openid;
 
 	public String getWeixinName() {
 		return weixinName;
@@ -71,6 +72,14 @@ public class Customer extends IntEntity {
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+
+	public String getOpenid() {
+		return openid;
+	}
+
+	public void setOpenid(String openid) {
+		this.openid = openid;
 	}
 
 }

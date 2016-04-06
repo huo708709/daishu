@@ -18,7 +18,7 @@
 	<import resource="applicationContext-mybatis.xml" />
 
 	<!-- 扫描文件（自动将servicec层注入） -->
-	<context:component-scan base-package="com.shop.manager.service">
+	<context:component-scan base-package="com.shop.service">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 </beans>
