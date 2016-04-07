@@ -14,7 +14,8 @@ import org.w3c.dom.NodeList;
 public class SystemInit {
 
 	public static void main(String[] args) throws Exception {
-		File f = new File("E:/Workspaces/rizu/shop-manager/src/test/resources/init.xml");
+		String path = SystemInit.class.getResource("/").getPath();
+		File f = new File(path + "/init.xml");
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = factory.newDocumentBuilder();
 		Document doc = builder.parse(f);
