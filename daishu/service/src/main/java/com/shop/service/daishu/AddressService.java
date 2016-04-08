@@ -1,5 +1,7 @@
 package com.shop.service.daishu;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,10 @@ public class AddressService extends AbstractService<Address> {
 	
 	public AddressService() {
 		super(Address.class);
+	}
+	
+	public List<Address> getAddressListByCustomerId(int customerId) {
+		return this.addressMapper.getAddressListByCustomerId(customerId);
 	}
 	
 	@Override

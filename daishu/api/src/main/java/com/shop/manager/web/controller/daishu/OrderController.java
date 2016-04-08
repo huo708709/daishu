@@ -35,7 +35,10 @@ public class OrderController extends AbstractController<Order> {
 	@ResponseBody
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public ResponseData add(Order order) {
+		// TODO 判断排期是否已满
+		// TODO 新增订单
 		this.getAbstractService().insert(order);
+		// TODO 更新排期人数
 		return this.response("添加订单成功", ResponseData.ACTION_TOAST);
 	}
 	

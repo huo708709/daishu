@@ -18,6 +18,8 @@ import com.shop.manager.util.ConfigUtil;
 
 @WebFilter(filterName = "aclFilter", urlPatterns = "/*")
 public class AclFilter implements Filter {
+	
+	public final static String loginCustomer = "loginCustomer";
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -39,7 +41,7 @@ public class AclFilter implements Filter {
 		}
 		
 		if (null != url && !url.startsWith("auth")) {
-			Customer customer = (Customer) session.getAttribute("loginCustomer");
+			Customer customer = (Customer) session.getAttribute(loginCustomer);
 			if (null == customer) {
 				response.sendRedirect(ConfigUtil.AUTH_LOGIN);
 				return;
