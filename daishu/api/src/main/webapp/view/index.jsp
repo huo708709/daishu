@@ -103,7 +103,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	<div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default ">
 		<ul class="am-navbar-nav am-cf am-avg-sm-4">
-			<li><a href="huiyuanka.html" class=""> <span
+			<li><a href="vip" class=""> <span
 					class="am-icon-phone"></span> <span class="am-navbar-label">会员卡</span>
 			</a></li>
 			<li><a href="user_center.html" class=""> <span

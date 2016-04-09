@@ -2,6 +2,7 @@ package com.shop.manager.web.controller;
 
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -18,6 +19,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.shop.data.mapper.daishu.Customer;
 import com.shop.manager.util.CommonUtil;
 import com.shop.manager.util.ConfigUtil;
+import com.shop.manager.util.PayCommonUtil;
+import com.shop.manager.util.weixin.SignatureUtil;
 import com.shop.manager.web.filter.AclFilter;
 import com.shop.service.daishu.CustomerService;
 
@@ -64,6 +67,8 @@ public class HomeController {
 			}
 			HttpSession session = request.getSession();
 			session.setAttribute(AclFilter.loginCustomer, customer);
+			session.setAttribute(AclFilter.CODE, code);
+			session.setAttribute(AclFilter.OPENID, openid);
 		}
 		
 		ModelAndView mav = new ModelAndView("index");
@@ -90,6 +95,24 @@ public class HomeController {
 	@RequestMapping(value = "baojie")
 	public ModelAndView baojie(int type) {
 		ModelAndView mav = new ModelAndView("baojie");
+		return mav;
+	}
+
+	@RequestMapping(value = "vip")
+	public ModelAndView vip(HttpSession session) {
+		ModelAndView mav = new ModelAndView("vip");
+		String code = (String) session.getAttribute(AclFilter.CODE);
+		String nonceStr = PayCommonUtil.CreateNoncestr();
+		Map<String, String> sign = SignatureUtil.getSignMap(nonceStr);
+		mav.addObject("appId", ConfigUtil.APPID);
+		mav.addObject("sign", sign);
+		mav.addObject("code", code);
+		return mav;
+	}
+	
+	@RequestMapping(value = "consumeDetail")
+	public ModelAndView consumeDetail() {
+		ModelAndView mav = new ModelAndView("consumeDetail");
 		return mav;
 	}
 }

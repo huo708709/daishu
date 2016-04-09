@@ -14,6 +14,10 @@
 			,name=#{name} where id=#{id}
 	</update>
 	
+	<update id="updateBalance">
+		update t_customer set balance=balance + ${balance} where openid=#{openId}
+	</update>
+	
 	<select id="selectById" resultType="Customer">
 		select * from t_customer where id=#{id}
 	</select>

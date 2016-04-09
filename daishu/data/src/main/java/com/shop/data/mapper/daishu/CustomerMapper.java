@@ -12,4 +12,12 @@ public interface CustomerMapper extends AbstractMapper {
 	 * @return
 	 */
 	public Customer selectByOpenid(@Param("openid") String openid);
+	
+	/**
+	 * 更新用户的会员余额
+	 * @param id
+	 * @param balance
+	 * @return
+	 */
+	public int updateBalance(@Param("openid") String openid, @Param("balance") double balance);
 }

@@ -12,7 +12,7 @@ public class Consume extends IntEntity {
 	 */
 	private double money;
 	/**
-	 * 充值时间
+	 * 消费时间
 	 */
 	private Date time;
 	/**

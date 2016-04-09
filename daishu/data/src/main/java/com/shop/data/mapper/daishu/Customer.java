@@ -18,6 +18,7 @@ public class Customer extends IntEntity {
 	private int status;
 	private String openid;
 	private String detail;
+	private double balance;
 
 	public String getWeixinName() {
 		return weixinName;
@@ -33,14 +34,6 @@ public class Customer extends IntEntity {
 
 	public void setLastTime(Date lastTime) {
 		this.lastTime = lastTime;
-	}
-
-	public Date getFirst_time() {
-		return firstTime;
-	}
-
-	public void setFirstTime(Date firstTime) {
-		this.firstTime = firstTime;
 	}
 
 	public String getAddress() {
@@ -91,4 +84,19 @@ public class Customer extends IntEntity {
 		this.detail = detail;
 	}
 
+	public double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+
+	public Date getFirstTime() {
+		return firstTime;
+	}
+
+	public void setFirstTime(Date firstTime) {
+		this.firstTime = firstTime;
+	}
 }

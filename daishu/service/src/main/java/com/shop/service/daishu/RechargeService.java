@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shop.data.mapper.AbstractMapper;
+import com.shop.data.mapper.daishu.CustomerMapper;
 import com.shop.data.mapper.daishu.Recharge;
 import com.shop.data.mapper.daishu.RechargeMapper;
 import com.shop.service.AbstractService;
@@ -13,9 +14,16 @@ public class RechargeService extends AbstractService<Recharge> {
 
 	@Autowired
 	private RechargeMapper rechargeMapper;
+	@Autowired
+	private CustomerMapper customerMapper;
 	
 	public RechargeService() {
 		super(Recharge.class);
+	}
+	
+	public int paySuccess(Recharge recharge) {
+		customerMapper.updateBalance(recharge.getOpenId(), recharge.getMoney());
+		return this.rechargeMapper.paySuccess(recharge);
 	}
 	
 	@Override

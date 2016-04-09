@@ -20,6 +20,8 @@ import com.shop.manager.util.ConfigUtil;
 public class AclFilter implements Filter {
 	
 	public final static String loginCustomer = "loginCustomer";
+	public final static String CODE = "code";
+	public final static String OPENID = "openid";
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {

@@ -18,7 +18,7 @@ public class ConfigUtil {
 	public final static String SIGN_TYPE = "MD5";// 签名加密方式
 	public final static String CERT_PATH = "D:/apiclient_cert.p12";// 微信支付证书存放路径地址
 	// 微信支付统一接口的回调action
-	public final static String NOTIFY_URL = "http://www.qjboss.com/order/business_activity/order/pay_success";
+	public final static String NOTIFY_URL = "http://daishuguanjia.cn/api/order/pay_success";
 	// 微信支付成功支付后跳转的地址
 	public final static String SUCCESS_URL = "http://14.117.25.80:8016/wxweb/contents/config/pay_success.jsp";
 	// oauth2授权时回调action

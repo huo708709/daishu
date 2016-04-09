@@ -4,13 +4,14 @@
 <mapper namespace="com.shop.data.mapper.daishu.RechargeMapper">
 	<insert id="insert" parameterType="Recharge" useGeneratedKeys="true" keyProperty="id">
 		insert into t_recharge
-		(customer_id,type,money,time,status)
+		(customer_id,type,money,time,status,out_trade_no,open_id,sign)
 		values
-		(#{customer_id},#{type},#{money},#{time},#{status})
+		(#{customerId},#{type},#{money},#{time},#{status},#{outTradeNo},#{openId},#{sign})
 	</insert>
 	
-	<update id="updateStatus" parameterType="Recharge">
-		update t_recharge set status=#{status} where id=#{id}
+	<update id="paySuccess" parameterType="Recharge">
+		update t_recharge set pay_status=1,transaction_id=#{transactionId},detail=#{detail}
+		where out_trade_no=#{outTradeNo} and open_id=#{openId} and sign=#{sign}
 	</update>
 	
 	<select id="selectById" resultType="Recharge">

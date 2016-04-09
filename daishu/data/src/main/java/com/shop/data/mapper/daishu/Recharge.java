@@ -6,6 +6,13 @@ import com.shop.data.mapper.IntEntity;
 
 public class Recharge extends IntEntity {
 
+	public final static int MAMA = 1;
+	public final static int BABA = 2;
+	public final static int BAOBAO = 3;
+	
+	public final static int STATUS_NOT_PAY = 0;
+	public final static int STATUS_PAY = 1;
+
 	private int customerId;
 	/**
 	 * 会员卡类型
@@ -23,6 +30,13 @@ public class Recharge extends IntEntity {
 	 * 充值状态 0失败1成功
 	 */
 	private int status;
+
+	private String outTradeNo;
+	private String openId;
+	private String sign;
+	private String detail;
+	private String transactionId;
+
 	public int getCustomerId() {
 		return customerId;
 	}
@@ -52,6 +66,36 @@ public class Recharge extends IntEntity {
 	}
 	public void setStatus(int status) {
 		this.status = status;
+	}
+	public String getOutTradeNo() {
+		return outTradeNo;
+	}
+	public void setOutTradeNo(String outTradeNo) {
+		this.outTradeNo = outTradeNo;
+	}
+	public String getOpenId() {
+		return openId;
+	}
+	public void setOpenId(String openId) {
+		this.openId = openId;
+	}
+	public String getSign() {
+		return sign;
+	}
+	public void setSign(String sign) {
+		this.sign = sign;
+	}
+	public String getDetail() {
+		return detail;
+	}
+	public void setDetail(String detail) {
+		this.detail = detail;
+	}
+	public String getTransactionId() {
+		return transactionId;
+	}
+	public void setTransactionId(String transactionId) {
+		this.transactionId = transactionId;
 	}
 
 }
