@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <div class="portlet light bg-inverse">
 	<div class="portlet-body form">
 		<form id="business_form" class="form-horizontal" action="website/business/add" method="post">
@@ -13,6 +16,16 @@
 		            <label class="control-label col-md-2">名称</label>
 		            <div class="col-md-10">
 		                <input name="name" type="text" placeholder="名称" class="form-control">
+		            </div>
+		        </div>
+		        <div class="form-group">
+		            <label class="control-label col-md-2">单位</label>
+		            <div class="col-md-10">
+		            	<select name="unitId" class="form-control">
+		            		<c:forEach items="${units}" var="unit">
+		            			<option value="${unit.id }">${unit.name}</option>
+				            </c:forEach>
+		            	</select>
 		            </div>
 		        </div>
 		        <div class="form-group">

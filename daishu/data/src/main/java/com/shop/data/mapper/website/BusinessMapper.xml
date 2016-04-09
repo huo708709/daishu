@@ -4,9 +4,9 @@
 <mapper namespace="com.shop.data.mapper.website.BusinessMapper">
 	<insert id="insert" parameterType="Business" useGeneratedKeys="true" keyProperty="id">
 		insert into t_business
-		(name,code,description)
+		(name,code,description,unit_id)
 		values
-		(#{name},#{code},#{description})
+		(#{name},#{code},#{description},#{unitId})
 	</insert>
 	
 	<update id="update" parameterType="Business">
@@ -48,8 +48,14 @@
 	</where>
 	</sql>
 	<select id="listPaged" resultType="Business">
-		select a.*
-		<include refid="gridWhere"/>
+		select a.*,b.name unitName from t_business a left join t_unit b on a.unit_id = b.id
+		<where>
+			<if test="null != entity">
+				<if test="null != entity.name and '' != entity.name">
+				and a.name like '%${entity.name}%'
+				</if>
+			</if>
+		</where>
 		<if test="tableParam.length > -1">
 		limit #{tableParam.start},#{tableParam.length}
 		</if>
