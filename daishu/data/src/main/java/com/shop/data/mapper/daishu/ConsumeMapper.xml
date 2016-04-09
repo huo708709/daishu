@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.data.mapper.daishu.ConsumeMapper">
+	<insert id="insert" parameterType="Consume" useGeneratedKeys="true" keyProperty="id">
+		insert into t_consume
+		(customer_id,order_id,money,time)
+		values
+		(#{customer_id},#{order_id},#{money},#{time})
+	</insert>
+	
+	<select id="selectById" resultType="Consume">
+		select * from t_consume where id=#{id}
+	</select>
+	
+	<sql id="gridWhere">
+	from t_consume a
+	</sql>
+	<select id="listPaged" resultType="Consume">
+		select a.*
+		<include refid="gridWhere"/>
+		<if test="tableParam.length > -1">
+		limit #{tableParam.start},#{tableParam.length}
+		</if>
+	</select>
+	<select id="count" resultType="int">
+		select count(*)
+		<include refid="gridWhere"/>
+	</select>
+</mapper>
