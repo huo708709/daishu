@@ -31,7 +31,16 @@ public class OrderController extends AbstractController<Order> {
 		ModelAndView mav = new ModelAndView("daishu/order/add");
 		return mav;
 	}
-	
+	@ResponseBody
+	@RequestMapping(value = "changePrice", method = RequestMethod.POST)
+	public String changePrice(int pk,String name,String value) {
+		try {
+			this.orderService.changeProperty(pk,name, Double.valueOf(value));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
 	@ResponseBody
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public ResponseData add(Order order) {

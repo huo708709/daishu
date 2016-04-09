@@ -8,7 +8,18 @@
 		values
 		(#{name},#{phone},#{cardNo},#{cardPlace},#{address},#{jobNo},#{birthday})
 	</insert>
-	
+	<select id="selectWithOrderId" resultMap="AyiWithOrderMap">
+		select a.id,name,card_no cardNo,
+		case when b.ayi_id=a.id then 1 else 0 end selected
+		from t_ayi a 
+		left join t_order b on a.id=b.ayi_id and b.id =#{orderId}
+	</select>
+	<resultMap type="map" id="AyiWithOrderMap">
+		<result column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="cardNo" property="cardNo"/>
+		<result column="selected" property="selected" javaType="boolean"/>
+	</resultMap>
 	<update id="update" parameterType="Ayi">
 		update t_ayi set name=#{name},phone=#{phone},card_no=#{cardNo},
 		card_place=#{cardPlace},address=#{address},birthday=#{birthday} where id=#{id}
@@ -16,6 +27,9 @@
 	
 	<update id="updateJobNo">
 		update t_ayi set job_no = #{jobNo} where id=#{id}
+	</update>
+	<update id="assignAyi">
+		update t_order set ayi_id = #{ayiId} where id=#{orderId}
 	</update>
 	
 	<select id="selectById" resultType="Ayi">

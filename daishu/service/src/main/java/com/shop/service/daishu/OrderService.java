@@ -23,4 +23,8 @@ public class OrderService extends AbstractService<Order> {
 		return this.orderMapper;
 	}
 
+	public void changeProperty(int orderId,String name, double value) {
+		this.orderMapper.changeProperty(orderId,name, value);
+	}
+
 }
