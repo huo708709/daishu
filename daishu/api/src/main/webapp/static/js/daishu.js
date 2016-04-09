@@ -135,8 +135,7 @@ var daishu = {
     /**
      * GET ajax
      */
-    ds.io.httpget = function(module, params, jsonp, success, error) {
-        var url = rz.io.generateUrl(module, params, jsonp);
+    ds.io.httpget = function(url, params, jsonp, success, error) {
         var req = $.ajax({
             type: 'GET',
             url: url,
@@ -149,12 +148,7 @@ var daishu = {
     /**
      * POST ajax
      */
-    ds.io.httppost = function(module, params, jsonp, success, error) {
-        var url = urlroot + module;
-        var ts = new Date().getTime();
-        params['timestamp'] = ts;
-        var signstr = rz.io.makeSign(module, ts);
-        params['sign'] = signstr;
+    ds.io.httppost = function(url, params, jsonp, success, error) {
         var req = $.ajax({
             type: 'POST',
             url: url,

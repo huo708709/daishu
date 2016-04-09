@@ -18,6 +18,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.shop.data.mapper.daishu.Customer;
 import com.shop.manager.util.CommonUtil;
 import com.shop.manager.util.ConfigUtil;
+import com.shop.manager.web.filter.AclFilter;
 import com.shop.service.daishu.CustomerService;
 
 @Controller
@@ -62,7 +63,7 @@ public class HomeController {
 				this.customerService.insert(customer);
 			}
 			HttpSession session = request.getSession();
-			session.setAttribute("loginCustomer", customer);
+			session.setAttribute(AclFilter.loginCustomer, customer);
 		}
 		
 		ModelAndView mav = new ModelAndView("index");

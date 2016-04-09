@@ -7,4 +7,5 @@ $(function() {
         $('#baojie_second').hide();
         $('#baojie_payment').show();
     });
+    var address = new Address();
 });

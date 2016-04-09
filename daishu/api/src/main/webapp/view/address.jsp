@@ -37,25 +37,27 @@
             </div>
         </li>
     </ul>
+    <button type="button" class="am-btn am-btn-default am-btn-block">添加新地址</button>
 </div>
 <div id="address_edit" style="padding: 0;display: none">
+	<input type="hidden" name="id">
     <div class="am-g forminfo-container">
         <div class="am-u-sm-12 forminfo-wrapper">
             <div class="am-input-group am-input-group-lg">
                 <span class="am-input-group-label">所在区域：</span>
-                <input type="text" class="am-form-field" placeholder="请填写您所在省市区">
+                <input type="text" class="am-form-field" placeholder="请填写您所在省市区" required="required">
             </div>
         </div>
         <div class="am-u-sm-12 forminfo-wrapper margin-top-1">
             <div class="am-input-group am-input-group-lg">
                 <span class="am-input-group-label">街 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;道：</span>
-                <input type="text" class="am-form-field" placeholder="请填写您所在街道">
+                <input type="text" class="am-form-field" placeholder="请填写您所在街道" required>
             </div>
         </div>
         <div class="am-u-sm-12 forminfo-wrapper margin-top-1">
             <div class="am-input-group am-input-group-lg">
                 <span class="am-input-group-label">详细地址：</span>
-                <input type="text" class="am-form-field" placeholder="请填写您的详细地址">
+                <input type="text" class="am-form-field" placeholder="请填写您的详细地址" required>
             </div>
         </div>
     </div>
