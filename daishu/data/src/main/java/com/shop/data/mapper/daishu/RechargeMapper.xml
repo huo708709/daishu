@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.data.mapper.daishu.RechargeMapper">
+	<insert id="insert" parameterType="Recharge" useGeneratedKeys="true" keyProperty="id">
+		insert into t_recharge
+		(customer_id,type,money,time,status)
+		values
+		(#{customer_id},#{type},#{money},#{time},#{status})
+	</insert>
+	
+	<update id="updateStatus" parameterType="Recharge">
+		update t_recharge set status=#{status} where id=#{id}
+	</update>
+	
+	<select id="selectById" resultType="Recharge">
+		select * from t_recharge where id=#{id}
+	</select>
+	
+	<sql id="gridWhere">
+	from t_recharge a
+	</sql>
+	<select id="listPaged" resultType="Recharge">
+		select a.*
+		<include refid="gridWhere"/>
+		<if test="tableParam.length > -1">
+		limit #{tableParam.start},#{tableParam.length}
+		</if>
+	</select>
+	<select id="count" resultType="int">
+		select count(*)
+		<include refid="gridWhere"/>
+	</select>
+</mapper>
