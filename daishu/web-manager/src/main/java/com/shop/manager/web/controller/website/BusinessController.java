@@ -1,5 +1,7 @@
 package com.shop.manager.web.controller.website;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,10 +9,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.shop.data.mapper.daishu.Unit;
 import com.shop.data.mapper.website.Business;
 import com.shop.manager.web.controller.AbstractController;
 import com.shop.manager.web.model.ResponseData;
 import com.shop.service.AbstractService;
+import com.shop.service.daishu.UnitService;
 import com.shop.service.website.BusinessService;
 
 @Controller
@@ -19,6 +23,8 @@ public class BusinessController extends AbstractController<Business> {
 
 	@Autowired
 	private BusinessService businessService;
+	@Autowired
+	private UnitService unitService;
 	
 	@RequestMapping
 	public ModelAndView page() {
@@ -29,6 +35,8 @@ public class BusinessController extends AbstractController<Business> {
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public ModelAndView add() {
 		ModelAndView mav = new ModelAndView("website/business/add");
+		List<Unit> units = unitService.listAll();
+		mav.addObject("units", units);
 		return mav;
 	}
 	

@@ -25,6 +25,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.shop.data.mapper.daishu.Unit" alias="Unit" />
 		<typeAlias type="com.shop.data.mapper.daishu.Address" alias="Address" />
 		<typeAlias type="com.shop.data.mapper.daishu.Order" alias="Order" />
+		<typeAlias type="com.shop.data.mapper.daishu.Schedule" alias="Schedule" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="com/shop/data/mapper/system/SystemMapper.xml" />
@@ -44,5 +45,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="com/shop/data/mapper/daishu/UnitMapper.xml" />
 		<mapper resource="com/shop/data/mapper/daishu/AddressMapper.xml" />
 		<mapper resource="com/shop/data/mapper/daishu/OrderMapper.xml" />
+		<mapper resource="com/shop/data/mapper/daishu/ScheduleMapper.xml" />
 	</mappers>
 </configuration>

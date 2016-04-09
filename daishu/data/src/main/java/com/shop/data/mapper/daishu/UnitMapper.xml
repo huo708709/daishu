@@ -50,6 +50,10 @@
 		limit #{tableParam.start},#{tableParam.length}
 		</if>
 	</select>
+	<select id="listAll" resultType="Unit">
+		select a.*
+		<include refid="gridWhere"/>
+	</select>
 	<select id="count" resultType="int">
 		select count(*)
 		<include refid="gridWhere"/>

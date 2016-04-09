@@ -40,7 +40,8 @@ public class Business extends IntEntity {
 	private String name;
 	private String code;
 	private String description;
-
+	private int unitId;
+	private String unitName;
 	public String getName() {
 		return name;
 	}
@@ -63,6 +64,22 @@ public class Business extends IntEntity {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public int getUnitId() {
+		return unitId;
+	}
+
+	public void setUnitId(int unitId) {
+		this.unitId = unitId;
+	}
+
+	public String getUnitName() {
+		return unitName;
+	}
+
+	public void setUnitName(String unitName) {
+		this.unitName = unitName;
 	}
 
 }
