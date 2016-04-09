@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.data.mapper.daishu.MemberCardMapper">
+	<update id="update">
+		update t_member_card set ${name}=#{value} where type=#{type}
+	</update>
+	
+	<select id="listAll" resultType="MemberCard">
+		select a.* from t_member_card a
+	</select>
+	
+	<select id="selectByType" resultType="MemberCard">
+		select a.* from t_member_card a where type=#{type}
+	</select>
+</mapper>
