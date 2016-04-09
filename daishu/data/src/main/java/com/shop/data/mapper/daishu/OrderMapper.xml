@@ -12,7 +12,9 @@
 	<update id="update" parameterType="Order">
 		update t_order set order_no=#{order_no} where id=#{id}
 	</update>
-	
+	<update id="changeProperty">
+		update t_order set ${name}=#{value} where id=#{orderId}
+	</update>
 	<select id="selectById" resultType="Order">
 		select * from t_order where id=#{id}
 	</select>
@@ -37,8 +39,20 @@
 	from t_order a
 	</sql>
 	<select id="listPaged" resultType="Order">
-		select a.*
-		<include refid="gridWhere"/>
+		select a.*,b.name customerName,c.name ayiName 
+		from t_order a 
+		inner join t_customer b on a.customer_id = b.id 
+		left join t_ayi c on a.ayi_id= c.id
+		<where>
+			<if test="null != entity">
+				<if test="null != entity.orderNo and '' != entity.orderNo">
+				and a.order_no like '%${entity.orderNo}%'
+				</if>
+				<if test="null != entity.customerName and '' != entity.customerName">
+				and b.name like '%${entity.customerName}%'
+				</if>
+			</if>
+		</where>
 		<if test="tableParam.length > -1">
 		limit #{tableParam.start},#{tableParam.length}
 		</if>

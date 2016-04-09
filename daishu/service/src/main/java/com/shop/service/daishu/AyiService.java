@@ -1,5 +1,8 @@
 package com.shop.service.daishu;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,5 +32,16 @@ public class AyiService extends AbstractService<Ayi> {
 	public AbstractMapper getAbstractMapper() {
 		return this.ayiMapper;
 	}
-
+	/**
+	 * 
+	 * @param user_id
+	 * @return
+	 */
+	public List<Map<String, Object>> selectWithOrderId(int orderId) {
+		return this.ayiMapper.selectWithOrderId(orderId);
+	}
+	public int assignAyi(int orderId, int ayiId) {
+		this.ayiMapper.assignAyi(orderId,ayiId);
+		return 0;
+	}
 }

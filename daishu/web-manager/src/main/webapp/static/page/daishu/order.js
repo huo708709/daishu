@@ -1,4 +1,4 @@
-define('page/daishu/order', ['component/curd', 'component/form', 'component/formatter'], function(CURD, FORM, Formatter) {
+define('page/daishu/order', ['component/curd', 'component/form', 'component/formatter', 'component/chooseAyi','component/modal'], function(CURD, FORM, Formatter,ChooseAyi,Modal) {
 	
 	var grid = null;
 	return {
@@ -6,6 +6,12 @@ define('page/daishu/order', ['component/curd', 'component/form', 'component/form
 			grid = new Datatable();
 			grid.init({
 	            src: $('#datatable_order'),
+	            onDataLoad: function() {
+	            	$.fn.editable.defaults.mode = 'inline';
+	    			$.fn.editable.defaults.inputclass = 'form-control';
+	    	        $.fn.editable.defaults.url = 'daishu/order/changePrice';
+	    			$('#datatable_order .editable_item').editable();
+	            },
 	            dataTable: { 
 	                ajax: {
 	                    url: 'daishu/order/list_paged',
@@ -20,6 +26,10 @@ define('page/daishu/order', ['component/curd', 'component/form', 'component/form
 	                }, {
 	                	data: 'orderNo'
 	                }, {
+	                	data: 'price', render: function(data, type, row, meta) {
+	                		return '<a class="editable_item" href="javascript:;" id="price" data-type="text" data-pk="'+row.id+'" data-original-title="输入价格">'+data+'</a>';
+	                	}
+	                },{
 	                	data: 'customerName'
 	                }, {
 	                	data: 'createTime'
@@ -31,7 +41,8 @@ define('page/daishu/order', ['component/curd', 'component/form', 'component/form
 	                	data: 'ayiName'
 	                }, {
 	                	orderabel: false, render: function(data, type, row, meta) {
-	                		var s = '<a class="btn btn-xs default blue skip_to_edit" href="daishu/order/update?id=' + row.id + '"> 修改 </a>';
+	                		var s = '<a class="btn btn-xs default purple choose_ayi" data-id="' + row.id + '" href="javascript:"> 指派阿姨 </a>';
+//	                		s += '<a class="btn btn-xs default blue skip_to_edit" href="daishu/order/update?id=' + row.id + '"> 修改 </a>';
 	                		s += '<a class="btn btn-xs default red order_delete" data-id="' + row.id + '" href="javascript:"> 删除 </a>';
 	                		return s;
 	                	}
@@ -82,9 +93,14 @@ define('page/daishu/order', ['component/curd', 'component/form', 'component/form
 			}).on('click', '.orders_delete', function() {
 				the.deleteAyi(grid.getSelectedRows());
 			});
+			$(document).on('click', '.choose_ayi', function() {
+				var userId = $(this).data('id');
+				ChooseAyi.assignAyi(userId);
+			});
 		},
 		unbind: function() {
 			$('#order_container').off();
+			$(document).off('click', '.choose_ayi');
 		},
 		deleteAyi: function(orderIds) {
 			var the = this;
