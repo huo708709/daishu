@@ -8,4 +8,7 @@
 	<select id="selectById" resultType="Schedule">
 		select * from t_schedule where id=1
 	</select>
+	<select id="countOrderByServiceDateAndTimeType" resultType="int">
+		SELECT count(*) FROM t_order where baojie_type = #{baoJieType} and service_date=#{serviceDate} and service_time_type = #{serviceTimeType} and ayi_id is not null
+	</select>
 </mapper>

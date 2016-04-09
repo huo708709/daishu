@@ -27,12 +27,16 @@
 			<tr role="row" class="heading">
 				<th width="2%"><input type="checkbox" class="group-checkable"></th>
 				<th width="8%">订单号</th>
-				<th width="14%">订单价格</th>
-				<th width="10%">顾客</th>
-				<th width="16%">下单时间</th>
-				<th width="16%">保洁类型</th>
-				<th width="16%">服务阿姨</th>
-				<th width="18%">操作</th>
+				<th width="5%">顾客</th>
+				<th width="10%">下单时间</th>
+				<th width="10%">服务日期</th>
+				<th width="10%">服务时间</th>
+				<th width="8%">审核状态</th>
+				<th width="8%">支付状态</th>
+				<th width="10%">保洁类型</th>
+				<th width="10%">服务阿姨</th>
+				<th width="8%">订单价格</th>
+				<th width="21%">操作</th>
 			</tr>
 		</thead>
 	</table>

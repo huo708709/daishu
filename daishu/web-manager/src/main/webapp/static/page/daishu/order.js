@@ -26,19 +26,27 @@ define('page/daishu/order', ['component/curd', 'component/form', 'component/form
 	                }, {
 	                	data: 'orderNo'
 	                }, {
-	                	data: 'price', render: function(data, type, row, meta) {
-	                		return '<a class="editable_item" href="javascript:;" id="price" data-type="text" data-pk="'+row.id+'" data-original-title="输入价格">'+data+'</a>';
-	                	}
-	                },{
 	                	data: 'customerName'
 	                }, {
 	                	data: 'createTime'
 	                }, {
+	                	data: 'serviceDate'
+	                },{
+	                	data: 'serviceTime'
+	                },{
+	                	data: 'auditStatus'
+	                },{
+	                	data: 'payStatus'
+	                },{
 	                	data: 'baojieType', render: function(data) {
 	                		return Formatter.baojieTypeFormatter(data);
 	                	}
 	                }, {
 	                	data: 'ayiName'
+	                },{
+	                	data: 'price', render: function(data, type, row, meta) {
+	                		return '<a class="editable_item" href="javascript:;" id="price" data-type="text" data-pk="'+row.id+'" data-original-title="输入价格">'+data+'</a>';
+	                	}
 	                }, {
 	                	orderabel: false, render: function(data, type, row, meta) {
 	                		var s = '<a class="btn btn-xs default purple choose_ayi" data-id="' + row.id + '" href="javascript:"> 指派阿姨 </a>';

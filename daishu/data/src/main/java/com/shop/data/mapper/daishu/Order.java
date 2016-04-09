@@ -23,6 +23,9 @@ public class Order extends IntEntity {
 	private int payStatus;//支付状态
 	private int auditStatus;//审核状态
 
+	private String serviceDate;//服务日期
+	private String serviceTime;//服务时间
+	private String serviceTimeType;//服务时间段类型
 	public String getOrderNo() {
 		return orderNo;
 	}
@@ -110,4 +113,29 @@ public class Order extends IntEntity {
 	public void setAuditStatus(int auditStatus) {
 		this.auditStatus = auditStatus;
 	}
+
+	public String getServiceDate() {
+		return serviceDate;
+	}
+
+	public void setServiceDate(String serviceDate) {
+		this.serviceDate = serviceDate;
+	}
+
+	public String getServiceTime() {
+		return serviceTime;
+	}
+
+	public void setServiceTime(String serviceTime) {
+		this.serviceTime = serviceTime;
+	}
+
+	public String getServiceTimeType() {
+		return serviceTimeType;
+	}
+
+	public void setServiceTimeType(String serviceTimeType) {
+		this.serviceTimeType = serviceTimeType;
+	}
+	
 }

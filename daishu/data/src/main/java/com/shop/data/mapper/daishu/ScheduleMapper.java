@@ -6,4 +6,6 @@ import com.shop.data.mapper.AbstractMapper;
 
 public interface ScheduleMapper extends AbstractMapper {
 	public void update(@Param("name") String name, @Param("value") String value);
+
+	public int countOrderByServiceDateAndTimeTypeAndBaoJieType(@Param("baoJieType") int baoJieType,@Param("serviceDate") String serviceDate,@Param("serviceTimeType") int serviceTimeType);
 }

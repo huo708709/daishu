@@ -7,6 +7,7 @@ import com.shop.data.mapper.AbstractMapper;
 import com.shop.data.mapper.daishu.Schedule;
 import com.shop.data.mapper.daishu.ScheduleMapper;
 import com.shop.service.AbstractService;
+import com.shop.util.DateUtils;
 
 @Service
 public class ScheduleService extends AbstractService<Schedule> {
@@ -24,5 +25,12 @@ public class ScheduleService extends AbstractService<Schedule> {
 	public AbstractMapper getAbstractMapper() {
 		return this.scheduleMapper;
 	}
-
+	public int countOrderByServiceDateAndTimeTypeAndBaoJieType(int baoJieType,String serviceDate,int serviceTimeType){
+		return this.scheduleMapper.countOrderByServiceDateAndTimeTypeAndBaoJieType(baoJieType,serviceDate,serviceTimeType);
+	}
+	public int countAyiByServiceDateAndBaoJieType(String serviceDate,int baoJieType){
+		int dayOfWeek = DateUtils.dayForWeek(serviceDate);
+		return 0;
+//		return this.scheduleMapper.countAyiByServiceDateAndBaoJieType(serviceDate,baoJieType);
+	}
 }
