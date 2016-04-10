@@ -1,5 +1,6 @@
 package com.shop.service.daishu;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,10 @@ public class UnitService extends AbstractService<Unit> {
 	
 	public UnitService() {
 		super(Unit.class);
+	}
+	
+	public Unit selectByBaojieType(@Param("baojieType") int baojieType) {
+		return this.unitMapper.selectByBaojieType(baojieType);
 	}
 
 	@Override

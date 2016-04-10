@@ -1,6 +1,9 @@
 package com.shop.manager.web.controller.daishu;
 
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,18 +12,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.shop.data.mapper.daishu.Customer;
 import com.shop.data.mapper.daishu.Order;
 import com.shop.manager.web.controller.AbstractController;
 import com.shop.manager.web.model.ResponseData;
 import com.shop.service.AbstractService;
 import com.shop.service.daishu.OrderService;
+import com.shop.service.daishu.ScheduleService;
 
 @Controller
-@RequestMapping("daishu/order")
+@RequestMapping("order")
 public class OrderController extends AbstractController<Order> {
 
 	@Autowired
 	private OrderService orderService;
+	@Autowired
+	private ScheduleService scheduleService;
 	
 	@RequestMapping
 	public ModelAndView page() {
@@ -34,13 +41,28 @@ public class OrderController extends AbstractController<Order> {
 		return mav;
 	}
 	
+	@RequestMapping(value = "order_pay", method = RequestMethod.GET)
+	public ModelAndView orderPay() {
+		ModelAndView mav = new ModelAndView("order_pay");
+		return mav;
+	}
+	
 	@ResponseBody
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public ResponseData add(Order order) {
+	public ResponseData add(HttpServletRequest request, Order order) {
 		// TODO 判断排期是否已满
-		// TODO 新增订单
-		this.getAbstractService().insert(order);
-		// TODO 更新排期人数
+		int count = scheduleService.availableAyiCount(order.getBaojieType(), order.getServiceDate(), order.getServiceTimeType());
+		if (count > 0) {
+			Customer customer = this.getLoginCustomer(request);
+			// TODO 新增订单
+			order.setOrderNo(System.currentTimeMillis() + "" + customer.getId());
+			order.setAuditStatus(Order.AUDIT_STATUS_WAIT);
+			order.setPayStatus(Order.PAY_STATUS_WAIT_PAY);
+			order.setCreateTime(new Date());
+			order.setPayType(Order.PAY_TYPE_CASH);
+			order.setCustomerId(customer.getId());
+			this.getAbstractService().insert(order);
+		}
 		return this.response("添加订单成功", ResponseData.ACTION_TOAST);
 	}
 	

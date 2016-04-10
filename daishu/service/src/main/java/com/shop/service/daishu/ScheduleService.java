@@ -55,8 +55,8 @@ public class ScheduleService extends AbstractService<Schedule> {
 	 * @param baoJieType 保洁类型 
 	 * @param serviceDate 服务日期 "2014-01-01"
 	 */
-	public Map<String,Integer> getAvailableAyiCountMap(int baoJieType,String serviceDate){
-		Map<String,Integer> map = new HashMap<String, Integer>();
+	public Map<String, Integer> getAvailableAyiCountMap(int baoJieType,String serviceDate){
+		Map<String, Integer> map = new HashMap<String, Integer>();
 		int c1 = this.availableAyiCount(baoJieType, serviceDate, 1);
 		int c2 = this.availableAyiCount(baoJieType, serviceDate, 2);
 		int c3 = this.availableAyiCount(baoJieType, serviceDate, 3);

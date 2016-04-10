@@ -17,6 +17,10 @@
 		select * from t_unit where id=#{id}
 	</select>
 	
+	<select id="selectByBaojieType" resultType="Unit">
+		select a.* from t_unit a inner join t_business b on a.id=b.unit_id where b.type=#{baojieType}
+	</select>
+	
 	<delete id="deleteByIds">
 		delete from t_unit
 		<where>
