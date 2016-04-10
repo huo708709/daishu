@@ -42,6 +42,7 @@ public class Business extends IntEntity {
 	private String description;
 	private int unitId;
 	private String unitName;
+	private int type;
 	public String getName() {
 		return name;
 	}
@@ -80,6 +81,14 @@ public class Business extends IntEntity {
 
 	public void setUnitName(String unitName) {
 		this.unitName = unitName;
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
 	}
 
 }

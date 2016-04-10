@@ -2,13 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.shop.data.mapper.daishu.ScheduleMapper">
-	<update id="update">
-		update t_schedule set ${name}=#{value} where id=1
-	</update>
-	<select id="selectById" resultType="Schedule">
-		select * from t_schedule where id=1
-	</select>
-	<select id="countOrderByServiceDateAndTimeType" resultType="int">
+	<select id="countOrderByServiceDateAndTimeTypeAndBaoJieType" resultType="int">
 		SELECT count(*) FROM t_order where baojie_type = #{baoJieType} and service_date=#{serviceDate} and service_time_type = #{serviceTimeType} and ayi_id is not null
 	</select>
+	<select id="countAyiByxingqiNumAndBaoJieType" resultType="int">
+		SELECT ${xingqiNum} FROM t_schedule where baojie_type = #{baoJieType}
+	</select>
+	<update id="update">
+		update t_schedule set ${name}=#{value} where baojie_type=#{baojieType}
+	</update>
+	
+	<select id="listAll" resultType="Schedule">
+		select a.*,b.name baojieName from t_schedule a inner join t_business b on a.baojie_type = b.type
+	</select>
+	
 </mapper>

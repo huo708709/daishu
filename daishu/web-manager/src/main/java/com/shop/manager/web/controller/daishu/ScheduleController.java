@@ -1,5 +1,7 @@
 package com.shop.manager.web.controller.daishu;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,15 +22,15 @@ public class ScheduleController extends AbstractController<Schedule> {
 	@RequestMapping
 	public ModelAndView page() {
 		ModelAndView mav = new ModelAndView("daishu/schedule/schedule");
-		Schedule schedule = scheduleService.selectById(1);
-		mav.addObject("schedule",schedule);
+		List<Schedule> schedules = scheduleService.listAll();
+		mav.addObject("schedules",schedules);
 		return mav;
 	}
 	@ResponseBody
 	@RequestMapping(value = "update")
-	public String update(String name, String value) {
+	public String update(int pk,String name, String value) {
 		try {
-			this.scheduleService.update(name, value);
+			this.scheduleService.update(pk, name, value);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
