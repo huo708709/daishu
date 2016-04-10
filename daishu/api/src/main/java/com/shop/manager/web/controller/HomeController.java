@@ -113,10 +113,12 @@ public class HomeController extends AbstractController<Object> {
 		List<Map<String, String>> dates = new ArrayList<Map<String, String>>();
 		long time = System.currentTimeMillis();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("M-d");
+		SimpleDateFormat dateFormat1 = new SimpleDateFormat("YYYY-MM-dd");
 		for (int i = 0; i < 7; i++) {
 			Date date = new Date(time + i * 1000 * 60 * 60 * 24);
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("date", dateFormat.format(date));
+			map.put("dateFormat", dateFormat1.format(date));
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(date);
 			if (0 == i) {
@@ -131,6 +133,7 @@ public class HomeController extends AbstractController<Object> {
 			dates.add(map);
 		}
 		mav.addObject("dates", dates);
+		mav.addObject("baojieType", type);
 		return mav;
 	}
 

@@ -61,7 +61,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="am-u-sm-12 week-wrapper">
             <ul class="week">
             <c:forEach items="${dates }" var="date" varStatus="varStatus">
-                <li class="day ${varStatus.index == 0 ? 'active' : '' }">
+                <li data-baojieType="${baojieType }" data-date="${date.dateFormat }" class="day ${varStatus.index == 0 ? 'active' : '' }">
                 <label style="font-weight: normal;"><p>${date.week }</p>
                 <input style="display: none;" type="radio" name="serviceDate" ${varStatus.index == 0 ? 'checked' : '' }>
                 <p>${date.date }</p>
@@ -71,23 +71,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     <div class="am-g schedule-container">
         <div class="am-u-sm-6 schedule-wrapper">
-            <a class="schedule-time"><label style="font-weight: normal;margin: 0">8:00-12:00
-            <input style="display: none;" type="radio" name="serviceTimeType">
+            <a class="schedule-time" data-servicetimetype="1"><label style="font-weight: normal;margin: 0">8:00-12:00
+            <input style="display: none;" type="radio" name="serviceTimeType" value="1">
             </label></a>
         </div>
         <div class="am-u-sm-6 schedule-wrapper">
-            <a class="schedule-time"><label style="font-weight: normal;margin: 0">12:00-15:00
-            <input style="display: none;" type="radio" name="serviceTimeType">
+            <a class="schedule-time" data-servicetimetype="2"><label style="font-weight: normal;margin: 0">12:00-15:00
+            <input style="display: none;" type="radio" name="serviceTimeType" value="2">
             </label></a>
         </div>
         <div class="am-u-sm-6 schedule-wrapper">
-            <a class="schedule-time"><label style="font-weight: normal;margin: 0">15:00-18:00
-            <input style="display: none;" type="radio" name="serviceTimeType">
+            <a class="schedule-time" data-servicetimetype="3"><label style="font-weight: normal;margin: 0">15:00-18:00
+            <input style="display: none;" type="radio" name="serviceTimeType" value="3">
             </label></a>
         </div>
         <div class="am-u-sm-6 schedule-wrapper">
-            <a class="schedule-time"><label style="font-weight: normal;margin: 0">18:00-20:00
-            <input style="display: none;" type="radio" name="serviceTimeType">
+            <a class="schedule-time" data-servicetimetype="4"><label style="font-weight: normal;margin: 0">18:00-20:00
+            <input style="display: none;" type="radio" name="serviceTimeType" value="4">
             </label></a>
         </div>
     </div>
@@ -95,15 +95,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="am-u-sm-12 forminfo-wrapper">
             <div class="am-input-group am-input-group-lg">
                 <span class="am-input-group-label">服务面积：</span>
-                <input type="text" class="am-form-field" placeholder="服务面积（单位：平方米）">
+                <input name="area" type="text" class="am-form-field" placeholder="服务面积（单位：平方米）">
             </div>
             <div class="am-input-group am-input-group-lg">
                 <span class="am-input-group-label">备注详情：</span>
-                <input type="text" class="am-form-field" placeholder="请填写您的特殊要求">
+                <input name="remark" type="text" class="am-form-field" placeholder="请填写您的特殊要求">
             </div>
         </div>
         <div class="am-u-sm-12" style="margin: 0.5rem 0;padding: 0 1.5rem">
-            <label><input type="checkbox"> 已阅读并同意<span>《袋鼠管家服务协议》</span></label>
+            <label><input id="agreeProtocol" type="checkbox"> 已阅读并同意<span>《袋鼠管家服务协议》</span></label>
         </div>
         <div class="am-u-sm-12 forminfo-wrapper">
             <div class="am-input-group am-input-group-lg">

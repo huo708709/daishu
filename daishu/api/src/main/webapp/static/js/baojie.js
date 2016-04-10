@@ -1,5 +1,8 @@
 $(function() {
 	window.onhashchange = function() {
+		showPage();
+	}
+	function showPage() {
 		var hashStr = location.hash.replace("#","");
 		if (hashStr == 'second') {
 			$('body > .am-container').hide();
@@ -15,14 +18,14 @@ $(function() {
 			$('#baojie_frist').show();
 		}
 	}
-    $('#next').on('click', function(event) {
-    	var name = $('#baojie_frist input[name="name"]').val();
+	function validateFirst() {
+		var name = $('#baojie_frist input[name="name"]').val();
     	if (!name) {
     		event.preventDefault();
     		$('#my-alert .am-modal-bd').text('请填写您的姓名');
     		$('#my-alert').modal();
     		$('#baojie_frist input[name="name"]').focus();
-    		return;
+    		return false;
     	}
     	var phone = $('#baojie_frist input[name="phone"]').val();
     	if (!phone) {
@@ -30,17 +33,20 @@ $(function() {
     		$('#my-alert .am-modal-bd').text('请填写您的电话');
     		$('#my-alert').modal();
     		$('#baojie_frist input[name="phone"]').focus();
-    		return;
+    		return false;
     	}
 //    	var addressId = $('#baojie_frist input[name="addressId"]').val();
 //    	if (!addressId) {
 //    		event.preventDefault();
 //    		$('#my-alert .am-modal-bd').text('请选择您的服务地址');
 //    		$('#my-alert').modal();
-//    		return;
+//    		return false;
 //    	}
-        $('#baojie_frist').hide();
-        $('#baojie_second').show();
+    	return true;
+	}
+	showPage();
+    $('#next').on('click', function(event) {
+    	validateFirst();
     });
     $('#submit_order').on('click', function() {
         $('#baojie_second').hide();
@@ -49,6 +55,20 @@ $(function() {
     $('#baojie_second').on('click', 'li.day', function() {
     	$('#baojie_second').find('li.day').removeClass('active');
     	$(this).addClass('active');
+    	$('#my-modal-loading').modal();
+    	var baojieType = $(this).data('baojietype');
+    	var date = $(this).data('date');
+    	daishu.io.httppost('schedule/getAvailableAyiCountMap', {
+    		baoJieType: baojieType,
+    		serviceDate: date
+    	}, '', function(data) {
+    		var type1 = data['1'];
+    		var type2 = data['2'];
+    		var type3 = data['3'];
+    		var type4 = data['4'];
+    		$('#baojie_second div.schedule-container').html(html.join(''));
+    		$('#my-modal-loading').modal('close');
+    	});
     });
     $('#baojie_second').on('click', 'a.schedule-time', function() {
     	$('#baojie_second').find('a.schedule-time').removeClass('active');
