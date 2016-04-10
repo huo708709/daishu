@@ -1,5 +1,7 @@
 package com.shop.manager.web.controller.daishu;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,6 +42,14 @@ public class OrderController extends AbstractController<Order> {
 		this.getAbstractService().insert(order);
 		// TODO 更新排期人数
 		return this.response("添加订单成功", ResponseData.ACTION_TOAST);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "list_orders_by_customerId", method = RequestMethod.POST)
+	public ResponseData listOrdersByCustomerId(int customerId) {
+		List<Order> orders = this.orderService.listOrdersByCustomerId(customerId);
+		ResponseData data = new ResponseData("获取订单信息成功！", orders);
+		return data;
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.GET)

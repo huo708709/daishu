@@ -4,9 +4,13 @@
 <mapper namespace="com.shop.data.mapper.daishu.OrderMapper">
 	<insert id="insert" parameterType="Order" useGeneratedKeys="true" keyProperty="id">
 		insert into t_order
-		(order_no,customer_id,address_id,create_time,baojie_type,ayi_id)
+		(order_no,customer_id,address_id,create_time,baojie_type,ayi_id,
+		price,pay_type,pay_status,audit_status,service_date,
+		service_time_type,name,phone,area,remark)
 		values
-		(#{order_no},#{customer_id},#{address_id},#{create_time},#{baojie_type},#{ayi_id})
+		(#{order_no},#{customer_id},#{address_id},#{create_time},#{baojie_type},#{ayi_id},
+		#{price},#{pay_type},#{pay_status},#{audit_status},#{service_date},
+		#{service_time_type},#{name},#{phone},#{area},#{remark})
 	</insert>
 	
 	<update id="update" parameterType="Order">
@@ -17,6 +21,13 @@
 	</update>
 	<select id="selectById" resultType="Order">
 		select * from t_order where id=#{id}
+	</select>
+	
+	<select id="listOrdersByCustomerId" resultType="Order">
+		select a.*,b.content addressContent
+		from t_order a 
+		left join t_address b on a.address_id = b.id
+		where a.customer_id = #{customerId}
 	</select>
 	
 	<delete id="deleteByIds">

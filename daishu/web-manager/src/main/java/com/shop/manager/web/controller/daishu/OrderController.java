@@ -44,6 +44,9 @@ public class OrderController extends AbstractController<Order> {
 	@ResponseBody
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public ResponseData add(Order order) {
+		order.setAuditStatus(1);
+		order.setPayStatus(1);
+		order.setOrderNo(System.currentTimeMillis() + order.getCustomerId() + "");
 		this.getAbstractService().insert(order);
 		return this.response("添加订单成功", ResponseData.ACTION_TOAST);
 	}

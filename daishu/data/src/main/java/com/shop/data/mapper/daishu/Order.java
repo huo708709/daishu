@@ -13,6 +13,7 @@ public class Order extends IntEntity {
 	private int customerId;
 	private String customerName;
 	private int addressId;
+	private String addressContent;//地址信息
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@JSONField(format = "YYYY-MM-dd")
 	private Date createTime;
@@ -20,6 +21,7 @@ public class Order extends IntEntity {
 	private int ayiId;
 	private String ayiName;
 	private double price;//订单价格
+	private int payType;//支付方式
 	private int payStatus;//支付状态
 	private int auditStatus;//审核状态
 	private String serviceDate;//服务日期
@@ -46,6 +48,10 @@ public class Order extends IntEntity {
 	public final static int SERVICE_TIME_TYPE_3 =3; //待评价
 	public final static int SERVICE_TIME_TYPE_4 =4; //已评价
 	
+	
+	public final static int PAY_TYPE_WEIXIN = 1; //支付方式-微信
+	public final static int PAY_TYPE_CASH = 2; //支付方式-现金
+	public final static int PAY_TYPE_MEMBER =3; //支付方式-会员卡
 	public String getOrderNo() {
 		return orderNo;
 	}
@@ -76,6 +82,14 @@ public class Order extends IntEntity {
 
 	public void setAddressId(int addressId) {
 		this.addressId = addressId;
+	}
+
+	public String getAddressContent() {
+		return addressContent;
+	}
+
+	public void setAddressContent(String addressContent) {
+		this.addressContent = addressContent;
 	}
 
 	public Date getCreateTime() {
@@ -116,6 +130,14 @@ public class Order extends IntEntity {
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+
+	public int getPayType() {
+		return payType;
+	}
+
+	public void setPayType(int payType) {
+		this.payType = payType;
 	}
 
 	public int getPayStatus() {
