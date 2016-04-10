@@ -32,7 +32,9 @@ define('page/daishu/order', ['component/curd', 'component/form', 'component/form
 	                }, {
 	                	data: 'serviceDate'
 	                },{
-	                	data: 'serviceTime'
+	                	data: 'serviceTimeType', render: function(data) {
+	                		return Formatter.serviceTimeTypeFormatter(data);
+	                	}
 	                },{
 	                	data: 'auditStatus', render: function(data) {
 	                		return Formatter.orderAuditStatusFormatter(data);

@@ -8,7 +8,7 @@
                  <div class="col-md-3">
                      <input name="customerName" type="text" placeholder="顾客名称" class="form-control form-filter">
                  </div>
-                 <label class="control-label col-md-1">工号</label>
+                 <label class="control-label col-md-1">订单号</label>
                  <div class="col-md-3">
                      <input name="orderNo" type="text" placeholder="订单号" class="form-control form-filter">
                  </div>
