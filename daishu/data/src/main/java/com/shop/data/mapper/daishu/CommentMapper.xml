@@ -30,17 +30,17 @@
 	</delete>
 	
 	<sql id="gridWhere">
-	from t_comment a
+	from t_comment a left join t_order b on a.order_id = b.id left join t_customer c on a.customer_id = c.id
 	<where>
 		<if test="null != entity">
-			<if test="null != entity.orderId and 0 != entity.orderId">
-			and a.order_id=#{entity.orderId}
+			<if test="null != entity.orderNo and 0 != entity.orderNo">
+			and b.order_no=#{entity.orderNo}
 			</if>
 		</if>
 	</where>
 	</sql>
 	<select id="listPaged" resultType="Comment">
-		select a.*
+		select a.*, b.order_no orderNo,c.name customerName
 		<include refid="gridWhere"/>
 		<if test="tableParam.length > -1">
 		limit #{tableParam.start},#{tableParam.length}

@@ -5,7 +5,7 @@ define('page/daishu/comment', ['component/curd', 'component/form'], function(CUR
 		init: function() {
 			grid = new Datatable();
 			grid.init({
-	            src: $('#datatable_unit'),
+	            src: $('#datatable_comment'),
 	            dataTable: { 
 	                ajax: {
 	                    url: 'daishu/comment/list_paged',
@@ -29,8 +29,7 @@ define('page/daishu/comment', ['component/curd', 'component/form'], function(CUR
 	                	data: 'createTime'
 	                },{
 	                	orderabel: false, render: function(data, type, row, meta) {
-	                		var s = '<a class="btn btn-xs default blue skip_to_edit" href="daishu/unit/update?id=' + row.id + '"> 修改 </a>';
-	                		s += '<a class="btn btn-xs default red unit_delete" data-id="' + row.id + '" href="javascript:"> 删除 </a>';
+	                		var s = '<a class="btn btn-xs default red comment_delete" data-id="' + row.id + '" href="javascript:"> 删除 </a>';
 	                		return s;
 	                	}
 	                }]
@@ -38,46 +37,24 @@ define('page/daishu/comment', ['component/curd', 'component/form'], function(CUR
 	        });
 			this.bind();
 		},
-		initEdit: function() {
-			var the = this;
-			$('#unit_birthday').datetimepicker({
-				format: 'yyyy-mm-dd',
-				language: 'zh-CN',
-				minView: 1
-			});
-			FORM.initFormValidate($('#unit_form'), {
-				rules: {
-					name: {
-						required: true,
-					},
-					price: {
-						required: true,
-					}
-				}
-			}, function() {
-            	the.gridReload();
-            }, function() {
-            	the.gridReload();
-            });
-		},
 		bind: function() {
 			var the = this;
-			$('#unit_container').on('click', '.unit_delete', function() {
-				var unitId = $(this).data('id');
-				the.deleteAyi([unitId]);
-			}).on('click', '.units_delete', function() {
-				the.deleteAyi(grid.getSelectedRows());
+			$('#comment_container').on('click', '.comment_delete', function() {
+				var commentId = $(this).data('id');
+				the.deleteComment([commentId]);
+			}).on('click', '.comments_delete', function() {
+				the.deleteComment(grid.getSelectedRows());
 			});
 		},
 		unbind: function() {
-			$('#unit_container').off();
+			$('#comment_container').off();
 		},
-		deleteAyi: function(unitIds) {
+		deleteComment: function(commentIds) {
 			var the = this;
 			CURD.deleteByIds({
-				url: 'daishu/unit/delete',
+				url: 'daishu/comment/delete',
 				data: {
-					ids: unitIds
+					ids: commentIds
 				}
 			}, function() {
 				the.gridReload();
