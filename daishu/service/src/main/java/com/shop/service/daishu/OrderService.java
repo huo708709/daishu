@@ -1,5 +1,7 @@
 package com.shop.service.daishu;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +28,7 @@ public class OrderService extends AbstractService<Order> {
 	public void changeProperty(int orderId,String name, double value) {
 		this.orderMapper.changeProperty(orderId,name, value);
 	}
-
+	public List<Order> listOrdersByCustomerId(int customerId){
+		return this.orderMapper.listOrdersByCustomerId(customerId);
+	}
 }

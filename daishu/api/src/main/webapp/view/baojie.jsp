@@ -32,6 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 <form id="orderSubmit" action="order/add" method="post">
+<input type="hidden" name="baojieType" value="${baojieType }">
 <div id="baojie_frist" class="am-container am-container-page" style="padding: 0;">
     <div class="am-g forminfo-container">
         <div class="am-u-sm-12 forminfo-wrapper">
@@ -50,6 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="am-input-group am-input-group-lg">
                 <span class="am-input-group-label">服务地址：</span>
                 <a href="#address" type="text" class="am-form-field" placeholder="请选择您的服务地址">请选择您的服务地址</a>
+                <input type="hidden" name="addressId" value="1">
             </div>
         </div>
     </div>
@@ -96,7 +98,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="am-u-sm-12 forminfo-wrapper">
             <div class="am-input-group am-input-group-lg">
                 <span class="am-input-group-label">服务面积：</span>
-                <input name="area" type="text" class="am-form-field" placeholder="服务面积（单位：平方米）">
+                <input id="area" name="area" type="text" class="am-form-field" placeholder="服务面积（单位：平方米）">
             </div>
             <div class="am-input-group am-input-group-lg">
                 <span class="am-input-group-label">备注详情：</span>
@@ -109,7 +111,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="am-u-sm-12 forminfo-wrapper">
             <div class="am-input-group am-input-group-lg">
                 <span class="am-input-group-label">预计费用：</span>
-                <input data-unit="${unit.price }" value="1" type="text" name="price" class="am-form-field" placeholder="填写相关信息后核算" disabled="true">
+                <input id="priceShow" type="text" class="am-form-field" placeholder="填写相关信息后核算" disabled="true">
+                <input id="price" data-unit="${unit.price }" type="hidden" name="price">
             </div>
         </div>
     </div>

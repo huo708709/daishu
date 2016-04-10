@@ -58,6 +58,17 @@ define('component/formatter', [], function() {
 			} else{
 				return data;
 			}
+		},
+		payTypeFormatter: function(data) {
+			if (1 == data) {
+				return '微信支付';
+			} else if (2 == data) {
+				return '现金支付';
+			} else if (3 == data) {
+				return '会员卡支付';
+			} else{
+				return data;
+			}
 		}
 	};
 });

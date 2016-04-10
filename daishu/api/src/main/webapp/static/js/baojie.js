@@ -91,6 +91,12 @@ $(function() {
     	$('#baojie_second').find('a.schedule-time').removeClass('active');
     	$(this).addClass('active');
     });
+    $('#area').blur(function() {
+    	var area = $('#area').val();
+    	var unit = $('#price').data('unit');
+    	$('#priceShow').val(area * unit);
+    	$('#price').val(area * unit);
+    });
     $('#submit_order').on('touchend', function(event) {
     	var serviceDate = $('#baojie_second input[name="serviceDate"]:checked').val();
     	if (!serviceDate) {

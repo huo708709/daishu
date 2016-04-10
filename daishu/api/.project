@@ -3,6 +3,8 @@
 	<name>api</name>
 	<comment></comment>
 	<projects>
+		<project>service</project>
+		<project>data</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

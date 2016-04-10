@@ -1,5 +1,8 @@
 package com.shop.manager.web.controller.daishu;
 
+import java.util.Date;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +41,12 @@ public class OrderController extends AbstractController<Order> {
 		return mav;
 	}
 	
+	@RequestMapping(value = "order_pay", method = RequestMethod.GET)
+	public ModelAndView orderPay() {
+		ModelAndView mav = new ModelAndView("order_pay");
+		return mav;
+	}
+	
 	@ResponseBody
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public ResponseData add(HttpServletRequest request, Order order) {
@@ -49,9 +58,20 @@ public class OrderController extends AbstractController<Order> {
 			order.setOrderNo(System.currentTimeMillis() + "" + customer.getId());
 			order.setAuditStatus(Order.AUDIT_STATUS_WAIT);
 			order.setPayStatus(Order.PAY_STATUS_WAIT_PAY);
+			order.setCreateTime(new Date());
+			order.setPayType(Order.PAY_TYPE_CASH);
+			order.setCustomerId(customer.getId());
 			this.getAbstractService().insert(order);
 		}
 		return this.response("添加订单成功", ResponseData.ACTION_TOAST);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "list_orders_by_customerId", method = RequestMethod.POST)
+	public ResponseData listOrdersByCustomerId(int customerId) {
+		List<Order> orders = this.orderService.listOrdersByCustomerId(customerId);
+		ResponseData data = new ResponseData("获取订单信息成功！", orders);
+		return data;
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.GET)
