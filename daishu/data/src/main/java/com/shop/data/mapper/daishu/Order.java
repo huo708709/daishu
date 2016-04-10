@@ -23,17 +23,28 @@ public class Order extends IntEntity {
 	private int payStatus;//支付状态
 	private int auditStatus;//审核状态
 	private String serviceDate;//服务日期
-	private String serviceTime;//服务时间
 	private String serviceTimeType;//服务时间段类型
 	
-	private final static int AUDIT_STATUS_WAIT = 1; //待审核
-	private final static int AUDIT_STATUS_PASS = 2; //审核通过
-	private final static int AUDIT_STATUS_NOT_PASS =3; //审核不通过
 	
-	private final static int PAY_STATUS_WAIT_PAY = 1; //待支付
-	private final static int PAY_STATUS_SERVICE = 2; //服务中
-	private final static int PAY_STATUS_WAIT_COMMENT =3; //待评价
-	private final static int PAY_STATUS_COMMENTED =4; //已评价
+	private String name;//联系人姓名
+	private String phone;//联系人电话
+	private double area;//服务面积
+	private String remark;//备注
+	
+	
+	public final static int AUDIT_STATUS_WAIT = 1; //待审核
+	public final static int AUDIT_STATUS_PASS = 2; //审核通过
+	public final static int AUDIT_STATUS_NOT_PASS =3; //审核不通过
+	
+	public final static int PAY_STATUS_WAIT_PAY = 1; //待支付
+	public final static int PAY_STATUS_SERVICE = 2; //服务中
+	public final static int PAY_STATUS_WAIT_COMMENT =3; //待评价
+	public final static int PAY_STATUS_COMMENTED =4; //已评价
+	
+	public final static int SERVICE_TIME_TYPE_1 = 1; //待支付
+	public final static int SERVICE_TIME_TYPE_2 = 2; //服务中
+	public final static int SERVICE_TIME_TYPE_3 =3; //待评价
+	public final static int SERVICE_TIME_TYPE_4 =4; //已评价
 	
 	public String getOrderNo() {
 		return orderNo;
@@ -131,20 +142,44 @@ public class Order extends IntEntity {
 		this.serviceDate = serviceDate;
 	}
 
-	public String getServiceTime() {
-		return serviceTime;
-	}
-
-	public void setServiceTime(String serviceTime) {
-		this.serviceTime = serviceTime;
-	}
-
 	public String getServiceTimeType() {
 		return serviceTimeType;
 	}
 
 	public void setServiceTimeType(String serviceTimeType) {
 		this.serviceTimeType = serviceTimeType;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public double getArea() {
+		return area;
+	}
+
+	public void setArea(double area) {
+		this.area = area;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 	
 }

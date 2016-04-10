@@ -51,6 +51,18 @@
 				<if test="null != entity.customerName and '' != entity.customerName">
 				and b.name like '%${entity.customerName}%'
 				</if>
+				<if test="null != entity.name and '' != entity.name">
+				and a.name like '%${entity.name}%'
+				</if>
+				<if test="null!=entity.payStatus and  0 != entity.payStatus">
+				and a.pay_status = ${entity.payStatus}
+				</if>
+				<if test="null!=entity.auditStatus and  0 != entity.auditStatus">
+				and a.audit_status = ${entity.auditStatus}
+				</if>
+				<if test="null!=entity.serviceTimeType and 0 != entity.serviceTimeType">
+				and a.service_time_type = ${entity.serviceTimeType}
+				</if>
 			</if>
 		</where>
 		<if test="tableParam.length > -1">

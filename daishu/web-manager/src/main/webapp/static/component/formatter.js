@@ -45,6 +45,19 @@ define('component/formatter', [], function() {
 			} else{
 				return data;
 			}
+		},
+		serviceTimeTypeFormatter: function(data) {
+			if (1 == data) {
+				return '8:00-12:00';
+			} else if (2 == data) {
+				return '12:00-15:00';
+			} else if (3 == data) {
+				return '15:00-18:00';
+			} else if (4 == data) {
+				return '18:00-20:00';
+			} else{
+				return data;
+			}
 		}
 	};
 });
