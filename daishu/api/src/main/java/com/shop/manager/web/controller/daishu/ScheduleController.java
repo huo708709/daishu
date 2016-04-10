@@ -30,7 +30,7 @@ public class ScheduleController extends AbstractController<Schedule> {
 	@ResponseBody
 	@RequestMapping(value = "getAvailableAyiCountMap")
 	public ResponseData getAvailableAyiCountMap(int baoJieType, String serviceDate) {
-		Map<Integer, Integer> map = this.scheduleService.getAvailableAyiCountMap(baoJieType, serviceDate);
+		Map<String, Integer> map = this.scheduleService.getAvailableAyiCountMap(baoJieType, serviceDate);
 		return this.response("", map);
 	}
 	

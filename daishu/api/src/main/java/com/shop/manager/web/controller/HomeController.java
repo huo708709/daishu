@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.shop.data.mapper.daishu.Customer;
+import com.shop.data.mapper.daishu.Unit;
 import com.shop.manager.util.CommonUtil;
 import com.shop.manager.util.ConfigUtil;
 import com.shop.manager.util.PayCommonUtil;
@@ -29,12 +30,15 @@ import com.shop.manager.util.weixin.SignatureUtil;
 import com.shop.manager.web.filter.AclFilter;
 import com.shop.service.AbstractService;
 import com.shop.service.daishu.CustomerService;
+import com.shop.service.daishu.UnitService;
 
 @Controller
 public class HomeController extends AbstractController<Object> {
 	
 	@Autowired
 	private CustomerService customerService;
+	@Autowired
+	private UnitService unitService;
 
 	@RequestMapping(value = "")
 	public ModelAndView index(HttpSession session) {
@@ -134,6 +138,8 @@ public class HomeController extends AbstractController<Object> {
 		}
 		mav.addObject("dates", dates);
 		mav.addObject("baojieType", type);
+		Unit unit = unitService.selectByBaojieType(type);
+		mav.addObject("unit", unit);
 		return mav;
 	}
 

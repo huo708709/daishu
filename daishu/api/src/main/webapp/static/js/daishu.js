@@ -149,30 +149,27 @@ var daishu = {
      * POST ajax
      */
     ds.io.httppost = function(url, params, jsonp, success, error) {
-        var req = $.ajax({
+        $.ajax({
             type: 'POST',
             url: url,
-            dataType : jsonp != '' ? 'jsonp' : 'json',
-            jsonpCallback: jsonp,
-            jsonp: 'jsonp',
+            dataType : 'json',
             data: params,
-            async: true
+            success: function(data) {
+            	if(success) {
+            		if (0 == data.code || '0' == data.code) {
+            			success.apply(this, [data.data]);
+            		} else {
+            			if (data.action == 'alert') {
+            				alert(data.message);
+            			}
+            		}
+                }
+            },
+            error: function() {
+            	if(error) {
+                	error.apply(this, arguments);
+                }
+            }
         });
-        if(success) {
-        	req.success(function(data) {
-        		if (0 == data.code) {
-        			success.apply(this, [data.data]);
-        		} else {
-        			if (data.action == 'alert') {
-        				alert(data.message);
-        			}
-        		}
-        	});
-        }
-        if(error) {
-        	req.error(function() {
-        		error.apply(this, arguments);
-        	});
-        }
     }
 })(daishu);

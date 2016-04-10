@@ -31,7 +31,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" href="static/css/address.css">
 </head>
 <body>
-<div id="baojie_frist" class="am-container" style="padding: 0;">
+<form id="orderSubmit" action="order/add" method="post">
+<div id="baojie_frist" class="am-container am-container-page" style="padding: 0;">
     <div class="am-g forminfo-container">
         <div class="am-u-sm-12 forminfo-wrapper">
             <div class="am-input-group am-input-group-lg">
@@ -56,14 +57,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <a href="#second" id="next" class="am-btn am-btn-warning am-btn-block am-btn-lg am-radius">下一步</a>
     </div>
 </div>
-<div id="baojie_second" class="am-container" style="padding: 0;display: none;">
+<div id="baojie_second" class="am-container am-container-page" style="padding: 0;display: none;">
     <div class="am-g week-container">
         <div class="am-u-sm-12 week-wrapper">
             <ul class="week">
             <c:forEach items="${dates }" var="date" varStatus="varStatus">
                 <li data-baojieType="${baojieType }" data-date="${date.dateFormat }" class="day ${varStatus.index == 0 ? 'active' : '' }">
                 <label style="font-weight: normal;"><p>${date.week }</p>
-                <input style="display: none;" type="radio" name="serviceDate" ${varStatus.index == 0 ? 'checked' : '' }>
+                <input style="display: none;" type="radio" name="serviceDate" value="${date.dateFormat }" ${varStatus.index == 0 ? 'checked' : '' }>
                 <p>${date.date }</p>
                 </label></li>
             </c:forEach>
@@ -108,41 +109,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="am-u-sm-12 forminfo-wrapper">
             <div class="am-input-group am-input-group-lg">
                 <span class="am-input-group-label">预计费用：</span>
-                <input type="text" class="am-form-field" placeholder="填写相关信息后核算" disabled="true">
+                <input data-unit="${unit.price }" value="1" type="text" name="price" class="am-form-field" placeholder="填写相关信息后核算" disabled="true">
             </div>
         </div>
     </div>
     <div style="position: fixed;bottom: 1rem;width: 100%;padding: 0 1rem">
-        <a id="submit_order" type="button" class="am-btn am-btn-warning am-btn-block am-btn-lg am-radius">提交订单</a>
+        <a id="submit_order" class="am-btn am-btn-warning am-btn-block am-btn-lg am-radius">提交订单</a>
     </div>
 </div>
-<div id="baojie_payment" class="am-container"style="padding: 0;display: none">
-    <div class="am-g forminfo-container">
-        <div class="am-u-sm-12 forminfo-wrapper">
-            <div class="am-input-group-lg">
-                <div>
-                    <label class="am-input-group-label am-text-center">本次服务金额：<span>69元</span></label>
-                </div>
-                <p class="am-text-center am-margin-0" style="font-size: 0.8rem;color: #d2d2d2">您可以在保洁人员上门服务时,在我的订单里面再次选择付款</p>
-            </div>
-        </div>
-        <div class="am-u-sm-12 forminfo-wrapper margin-top-1">
-            <div class="am-input-group am-input-group-lg">
-                <span class="am-input-group-label" style="text-align: left">请选择支付方式</span>
-            </div>
-            <div class="am-input-group am-input-group-lg">
-                <img src="static/img/weixin.png">
-            </div>
-            <div class="am-input-group am-input-group-lg">
-                <img src="static/img/weixin.png">
-            </div>
-        </div>
-    </div>
-    <div style="position: fixed;bottom: 1rem;width: 100%;padding: 0 1rem">
-        <a type="button" class="am-btn am-btn-warning am-btn-block am-btn-lg am-radius">确认支付</a>
-    </div>
-</div>
-<div id="address_container" class="am-container"style="padding: 0;display: none">
+</form>
+<div id="address_container" class="am-container am-container-page"style="padding: 0;display: none">
 	<iframe name="address_iframe" id="address_iframe" style="width: 0;height: 0;display: none;"></iframe>
 	<div id="address_list" style="padding: 0;">
 	    <ul class="am-list">

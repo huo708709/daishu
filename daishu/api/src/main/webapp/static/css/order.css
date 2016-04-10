@@ -48,4 +48,9 @@ ul.week li.day p:last-child {
 }
 .schedule-container a.schedule-time.active {
     border: 1px solid #f39910;
+    color: #f39910;
+}
+.schedule-container a.schedule-time.disable {
+    color: #d2d2d2;
+    border-color: #d2d2d2;
 }
