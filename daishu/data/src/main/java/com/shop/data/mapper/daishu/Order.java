@@ -25,7 +25,7 @@ public class Order extends IntEntity {
 	private int payStatus;//支付状态
 	private int auditStatus;//审核状态
 	private String serviceDate;//服务日期
-	private String serviceTimeType;//服务时间段类型
+	private int serviceTimeType;//服务时间段类型
 	
 	
 	private String name;//联系人姓名
@@ -164,11 +164,11 @@ public class Order extends IntEntity {
 		this.serviceDate = serviceDate;
 	}
 
-	public String getServiceTimeType() {
+	public int getServiceTimeType() {
 		return serviceTimeType;
 	}
 
-	public void setServiceTimeType(String serviceTimeType) {
+	public void setServiceTimeType(int serviceTimeType) {
 		this.serviceTimeType = serviceTimeType;
 	}
 
@@ -203,5 +203,12 @@ public class Order extends IntEntity {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-	
+	/** 生成订单号
+	 * @param timeStamp
+	 * @param customerId
+	 * @return
+	 */
+	public static String createOrderNo(int customerId){
+		return System.currentTimeMillis()+"C"+customerId;
+	}
 }

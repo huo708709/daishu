@@ -58,6 +58,7 @@ define('page/daishu/order', ['component/curd', 'component/form', 'component/form
 	                		var s = '<a class="btn btn-xs default purple choose_ayi" data-id="' + row.id + '" href="javascript:"> 指派阿姨 </a>';
 //	                		s += '<a class="btn btn-xs default blue skip_to_edit" href="daishu/order/update?id=' + row.id + '"> 修改 </a>';
 	                		s += '<a class="btn btn-xs default red order_delete" data-id="' + row.id + '" href="javascript:"> 删除 </a>';
+	                		s += '<a class="btn btn-xs default purple order_copy" href="daishu/order/copy?id=' + row.id + '"> 复制订单 </a>';
 	                		return s;
 	                	}
 	                }]

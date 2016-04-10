@@ -1,5 +1,7 @@
 package com.shop.manager.web.controller.daishu;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +33,24 @@ public class OrderController extends AbstractController<Order> {
 		ModelAndView mav = new ModelAndView("daishu/order/add");
 		return mav;
 	}
+	@RequestMapping(value = "copy", method = RequestMethod.GET)
+	public ModelAndView copyPage(int id) {
+		ModelAndView mav = new ModelAndView("daishu/order/copy");
+		Order order = this.getAbstractService().selectById(id);
+		mav.addObject("order", order);
+		return mav;
+	}
+	@RequestMapping(value = "copy", method = RequestMethod.POST)
+	public ResponseData copy(int id) {
+		Order order = this.getAbstractService().selectById(id);
+		order.setCreateTime(new Date());
+		order.setOrderNo(Order.createOrderNo(order.getCustomerId()));
+		order.setPayStatus(Order.PAY_STATUS_WAIT_PAY);
+		order.setPayType(Order.PAY_TYPE_CASH);
+		order.setAuditStatus(Order.AUDIT_STATUS_PASS);
+		this.getAbstractService().insert(order);
+		return this.response("修改单位成功", ResponseData.ACTION_TOAST);
+	}
 	@ResponseBody
 	@RequestMapping(value = "changePrice", method = RequestMethod.POST)
 	public String changePrice(int pk,String name,String value) {
@@ -44,9 +64,9 @@ public class OrderController extends AbstractController<Order> {
 	@ResponseBody
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public ResponseData add(Order order) {
-		order.setAuditStatus(1);
-		order.setPayStatus(1);
-		order.setOrderNo(System.currentTimeMillis() + order.getCustomerId() + "");
+		order.setAuditStatus(Order.AUDIT_STATUS_NOT_PASS);
+		order.setPayStatus(Order.PAY_STATUS_WAIT_PAY);
+		order.setOrderNo(Order.createOrderNo(order.getCustomerId()));
 		this.getAbstractService().insert(order);
 		return this.response("添加订单成功", ResponseData.ACTION_TOAST);
 	}
