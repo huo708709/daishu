@@ -21,6 +21,30 @@ define('component/formatter', [], function() {
 			} else {
 				return '未知';
 			}
+		},
+		orderAuditStatusFormatter: function(data) {
+			if (1 == data) {
+				return '待审核';
+			} else if (2 == data) {
+				return '审核通过';
+			} else if (3 == data) {
+				return '审核不通过';
+			}else{
+				return data;
+			}
+		},
+		orderPayStatusFormatter: function(data) {
+			if (1 == data) {
+				return '待支付';
+			} else if (2 == data) {
+				return '服务中';
+			} else if (3 == data) {
+				return '待评价';
+			} else if (4 == data) {
+				return '已评价';
+			} else{
+				return data;
+			}
 		}
 	};
 });

@@ -1,5 +1,8 @@
 package com.shop.service.daishu;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,5 +50,21 @@ public class ScheduleService extends AbstractService<Schedule> {
 			available = 0;
 		}
 		return available;
+	}
+	/**
+	 * @param baoJieType 保洁类型 
+	 * @param serviceDate 服务日期 "2014-01-01"
+	 */
+	public Map<Integer,Integer> getAvailableAyiCountMap(int baoJieType,String serviceDate){
+		Map<Integer,Integer> map = new HashMap<Integer, Integer>();
+		int c1 = this.availableAyiCount(baoJieType, serviceDate, 1);
+		int c2 = this.availableAyiCount(baoJieType, serviceDate, 2);
+		int c3 = this.availableAyiCount(baoJieType, serviceDate, 3);
+		int c4 = this.availableAyiCount(baoJieType, serviceDate, 4);
+		map.put(1, c1);
+		map.put(2, c2);
+		map.put(3, c3);
+		map.put(4, c4);
+		return map;
 	}
 }

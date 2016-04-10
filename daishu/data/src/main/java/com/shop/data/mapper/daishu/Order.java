@@ -22,10 +22,19 @@ public class Order extends IntEntity {
 	private double price;//订单价格
 	private int payStatus;//支付状态
 	private int auditStatus;//审核状态
-
 	private String serviceDate;//服务日期
 	private String serviceTime;//服务时间
 	private String serviceTimeType;//服务时间段类型
+	
+	private final static int AUDIT_STATUS_WAIT = 1; //待审核
+	private final static int AUDIT_STATUS_PASS = 2; //审核通过
+	private final static int AUDIT_STATUS_NOT_PASS =3; //审核不通过
+	
+	private final static int PAY_STATUS_WAIT_PAY = 1; //待支付
+	private final static int PAY_STATUS_SERVICE = 2; //服务中
+	private final static int PAY_STATUS_WAIT_COMMENT =3; //待评价
+	private final static int PAY_STATUS_COMMENTED =4; //已评价
+	
 	public String getOrderNo() {
 		return orderNo;
 	}

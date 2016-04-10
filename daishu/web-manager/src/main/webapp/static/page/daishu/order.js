@@ -34,9 +34,13 @@ define('page/daishu/order', ['component/curd', 'component/form', 'component/form
 	                },{
 	                	data: 'serviceTime'
 	                },{
-	                	data: 'auditStatus'
+	                	data: 'auditStatus', render: function(data) {
+	                		return Formatter.orderAuditStatusFormatter(data);
+	                	}
 	                },{
-	                	data: 'payStatus'
+	                	data: 'payStatus', render: function(data) {
+	                		return Formatter.orderPayStatusFormatter(data);
+	                	}
 	                },{
 	                	data: 'baojieType', render: function(data) {
 	                		return Formatter.baojieTypeFormatter(data);
