@@ -24,6 +24,10 @@ public class AddressService extends AbstractService<Address> {
 		return this.addressMapper.getAddressListByCustomerId(customerId);
 	}
 	
+	public int updateStatus(int id, int status) {
+		return this.addressMapper.updateStatus(id, status);
+	}
+	
 	@Override
 	public AbstractMapper getAbstractMapper() {
 		return this.addressMapper;

@@ -46,3 +46,6 @@ ul.week li.day p:last-child {
     color: #5d5d5d;
     padding: 0.8rem;
 }
+.schedule-container a.schedule-time.active {
+    border: 1px solid #f39910;
+}

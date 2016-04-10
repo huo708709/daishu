@@ -28,6 +28,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.shop.data.mapper.daishu.Schedule" alias="Schedule" />
 		<typeAlias type="com.shop.data.mapper.daishu.Consume" alias="Consume" />
 		<typeAlias type="com.shop.data.mapper.daishu.Recharge" alias="Recharge" />
+		<typeAlias type="com.shop.data.mapper.daishu.MemberCard" alias="MemberCard" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="com/shop/data/mapper/system/SystemMapper.xml" />
@@ -50,5 +51,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="com/shop/data/mapper/daishu/ScheduleMapper.xml" />
 		<mapper resource="com/shop/data/mapper/daishu/ConsumeMapper.xml" />
 		<mapper resource="com/shop/data/mapper/daishu/RechargeMapper.xml" />
+		<mapper resource="com/shop/data/mapper/daishu/MemberCardMapper.xml" />
 	</mappers>
 </configuration>

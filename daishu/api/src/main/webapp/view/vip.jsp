@@ -53,20 +53,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="am-u-sm-12 am-list-main">
 				<img src="static/img/baba.png"/>
 				<span>爸爸卡:充值1888元 赠送288元优惠</span>
-				<button data-viptype="1" type="button" class="am-btn am-btn-xs am-radius am-btn-default">立即充值</button>
+				<button data-viptype="2" type="button" class="am-btn am-btn-xs am-radius am-btn-default">立即充值</button>
             </div>
         </li>
         <li class="am-g am-list-item-dated">
             <div class="am-u-sm-12 am-list-main">
 				<img src="static/img/baobao.png"/>
 				<span>宝宝卡:充值2888元 赠送788元优惠</span>
-				<button data-viptype="1" type="button" class="am-btn am-btn-xs am-radius am-btn-default">立即充值</button>
+				<button data-viptype="3" type="button" class="am-btn am-btn-xs am-radius am-btn-default">立即充值</button>
             </div>
         </li>
     </ul>
 </div>
+<div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="my-modal-loading">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">正在载入...</div>
+    <div class="am-modal-bd">
+      <span class="am-icon-spinner am-icon-spin"></span>
+    </div>
+  </div>
+</div>
 <script src="static/js/jquery.min.js" type="text/javascript"></script>
 <script src="static/js/amazeui.min.js" type="text/javascript"></script>
+<script src="static/js/daishu.js" type="text/javascript"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
 <script src="static/js/vip.js" type="text/javascript"></script>
 <script type="text/javascript">

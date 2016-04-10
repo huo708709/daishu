@@ -25,6 +25,32 @@ public class AddressController extends AbstractController<Address> {
 
 	@Autowired
 	private AddressService addressService;
+
+	@RequestMapping(value = "addressList")
+	public ModelAndView addressList(HttpServletRequest request) {
+		Customer customer = this.getLoginCustomer(request);
+		List<Address> addressList = addressService.getAddressListByCustomerId(customer.getId());
+		ModelAndView mav = new ModelAndView("addressList");
+		mav.addObject("addressList", addressList);
+		return mav;
+	}
+
+	@RequestMapping(value = "addressEdit")
+	public ModelAndView addressEdit(int id) {
+		ModelAndView mav = new ModelAndView("addressEdit");
+		if (id > 0) {
+			Address address = this.addressService.selectById(id);
+			mav.addObject("address", address);
+		}
+		return mav;
+	}
+
+	@RequestMapping(value = "addressDel")
+	public ModelAndView addressDel(HttpServletRequest request, int id) {
+		this.addressService.updateStatus(id, Address.STATUS_HIDE);
+		ModelAndView mav = new ModelAndView("redirect:/address/addressList");
+		return mav;
+	}
 	
 	@RequestMapping
 	public ModelAndView page() {
@@ -33,10 +59,17 @@ public class AddressController extends AbstractController<Address> {
 		return mav;
 	}
 	
-	@RequestMapping(value = "add", method = RequestMethod.GET)
-	public ModelAndView add() {
-		ModelAndView mav = new ModelAndView("address");
-		mav.addObject("show", 1);
+	@RequestMapping(value = "editAddress", method = RequestMethod.POST)
+	public ModelAndView editAddress(HttpServletRequest request, Address address) {
+		Customer customer = this.getLoginCustomer(request);
+		address.setCustomerId(customer.getId());
+		if (0 < address.getId()) {
+			this.addressService.update(address);
+		} else {
+			address.setStatus(Address.STATUS_SHOW);
+			this.addressService.insert(address);
+		}
+		ModelAndView mav = new ModelAndView("redirect:/address/addressList");
 		return mav;
 	}
 	

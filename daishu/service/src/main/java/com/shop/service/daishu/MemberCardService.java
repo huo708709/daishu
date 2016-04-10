@@ -20,7 +20,7 @@ public class MemberCardService extends AbstractService<MemberCard> {
 	public void update(String type,String name, String value) {
 		this.memberCardMapper.update(type,name, value);
 	}
-	public MemberCard selectByType(String type){
+	public MemberCard selectByType(int type){
 		return this.memberCardMapper.selectByType(type);
 	}
 	@Override

@@ -4,21 +4,25 @@
 <mapper namespace="com.shop.data.mapper.daishu.AddressMapper">
 	<insert id="insert" parameterType="Address" useGeneratedKeys="true" keyProperty="id">
 		insert into t_address
-		(content,area,street)
+		(content,area,street,customer_id)
 		values
-		(#{content},#{area},#{street})
+		(#{content},#{area},#{street},#{customerId})
 	</insert>
 	
 	<update id="update" parameterType="Address">
 		update t_address set content=#{content},area=#{area},street=#{street} where id=#{id}
 	</update>
 	
+	<update id="updateStatus">
+		update t_address set status=#{status} where id=#{id}
+	</update>
+	
 	<select id="selectById" resultType="Address">
 		select * from t_address where id=#{id}
 	</select>
 	
-	<select id="getAddressListByUerId" resultType="Address">
-		select * from t_address where user_id=#{customerId}
+	<select id="getAddressListByCustomerId" resultType="Address">
+		select * from t_address where customer_id=#{customerId} and status = 0;
 	</select>
 	
 	<delete id="deleteByIds">

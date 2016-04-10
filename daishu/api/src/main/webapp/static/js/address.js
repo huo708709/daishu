@@ -11,10 +11,6 @@ var Address = function(e, options) {
 }
 Address.prototype.init = function() {
 	var the = this;
-	$('#address').on('click', function() {
-    	$('body > div.am-container').hide();
-    	$('#address_container').show();
-    });
 	$('#address_container').on('click', '.address_add', function() {
 		
 	}).on('click', '.address_list', function() {

@@ -6,10 +6,6 @@ import com.shop.data.mapper.IntEntity;
 
 public class Recharge extends IntEntity {
 
-	public final static int MAMA = 1;
-	public final static int BABA = 2;
-	public final static int BAOBAO = 3;
-	
 	public final static int STATUS_NOT_PAY = 0;
 	public final static int STATUS_PAY = 1;
 
@@ -36,6 +32,7 @@ public class Recharge extends IntEntity {
 	private String sign;
 	private String detail;
 	private String transactionId;
+	private double giveAmount;
 
 	public int getCustomerId() {
 		return customerId;
@@ -96,6 +93,12 @@ public class Recharge extends IntEntity {
 	}
 	public void setTransactionId(String transactionId) {
 		this.transactionId = transactionId;
+	}
+	public double getGiveAmount() {
+		return giveAmount;
+	}
+	public void setGiveAmount(double giveAmount) {
+		this.giveAmount = giveAmount;
 	}
 
 }

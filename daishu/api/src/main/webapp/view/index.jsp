@@ -106,11 +106,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<li><a href="vip" class=""> <span
 					class="am-icon-phone"></span> <span class="am-navbar-label">会员卡</span>
 			</a></li>
-			<li><a href="user_center.html" class=""> <span
+			<li><a href="userCenter" class=""> <span
 					class="am-icon-share-square-o"></span> <span
 					class="am-navbar-label">我的</span>
 			</a></li>
-			<li><a href="#" class=""> <span
+			<li><a> <span
 					class="am-icon-location-arrow"></span> <span
 					class="am-navbar-label">定位</span>
 			</a></li>

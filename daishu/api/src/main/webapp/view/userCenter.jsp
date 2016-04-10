@@ -1,3 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html>
 <html class="no-js">
 <head lang="en">
@@ -14,31 +20,31 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
-    <meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
+    <meta name="msapplication-TileImage" content="static/i/app-icon72x72@2x.png">
     <meta name="msapplication-TileColor" content="#0e90d2">
-    <link rel="stylesheet" href="assets/css/amazeui.min.css">
-    <link rel="stylesheet" href="assets/css/app.css">
-    <link rel="stylesheet" href="assets/css/usercenter.css">
+    <link rel="stylesheet" href="static/css/amazeui.min.css">
+    <link rel="stylesheet" href="static/css/app.css">
+    <link rel="stylesheet" href="static/css/usercenter.css">
 </head>
 <body>
 <div class="am-container" style="padding: 0">
     <div style="background-color: #f39910">
-        <div style="text-align: center;padding: 0.8rem 0;"><img src="assets/img/user_center_logo.png"></div>
+        <div style="text-align: center;padding: 0.8rem 0;"><img src="static/img/user_center_logo.png"></div>
     </div>
     <div class="user-center-opt">
         <ul class="am-navbar-nav am-cf am-avg-sm-2">
             <li>
-                <img src="assets/img/changyongdizhi.png">常用地址
+                <img src="static/img/changyongdizhi.png"><a style="display: initial;height: auto;color: #ffffff;" href="address/addressList">常用地址</a>
             </li>
             <li>
-                <img src="assets/img/kefurexian.png">客服热线
+                <img src="static/img/kefurexian.png">客服热线
             </li>
         </ul>
     </div>
     <div class="portlet light">
         <div class="portlet-title">
             <div class="caption">
-                <span class="caption-subject"><img src="assets/img/user_center_ganxi.png"></span>
+                <span class="caption-subject"><img src="static/img/user_center_ganxi.png"></span>
                 <span class="caption-subject">干洗</span>
             </div>
             <div class="actions">
@@ -59,7 +65,7 @@
     <div class="portlet light">
         <div class="portlet-title">
             <div class="caption">
-                <span class="caption-subject"><img src="assets/img/user_center_baojie.png"></span>
+                <span class="caption-subject"><img src="static/img/user_center_baojie.png"></span>
                 <span class="caption-subject">干洗</span>
             </div>
             <div class="actions">
@@ -78,7 +84,7 @@
         </div>
     </div>
 </div>
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/amazeui.min.js"></script>
+<script src="static/js/jquery.min.js"></script>
+<script src="static/js/amazeui.min.js"></script>
 </body>
 </html>

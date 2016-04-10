@@ -3,6 +3,11 @@ package com.shop.data.mapper.daishu;
 import com.shop.data.mapper.IntEntity;
 
 public class Address extends IntEntity {
+	public final static int DEFAULT_FALSE = 0;
+	public final static int DEFAULT_TRUE = 1;
+	
+	public final static int STATUS_SHOW = 0;
+	public final static int STATUS_HIDE = 1;
 
 	private int customerId;
 	/**
@@ -18,6 +23,9 @@ public class Address extends IntEntity {
 	 */
 	private String area;
 
+	private int isDefault;
+	private int status;
+	
 	public int getCustomerId() {
 		return customerId;
 	}
@@ -48,6 +56,22 @@ public class Address extends IntEntity {
 
 	public void setArea(String area) {
 		this.area = area;
+	}
+
+	public int getIsDefault() {
+		return isDefault;
+	}
+
+	public void setIsDefault(int isDefault) {
+		this.isDefault = isDefault;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 }

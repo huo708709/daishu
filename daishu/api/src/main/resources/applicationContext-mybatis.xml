@@ -73,14 +73,23 @@
 	</bean>
 
 	<!-- 对数据源进行事务管理 -->
-	<!-- <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" 
-		p:dataSource-ref="dataSource" /> <tx:advice id="txAdvice" transaction-manager="transactionManager"> 
-		<tx:attributes> <tx:method name="insert*" propagation="REQUIRED"/> <tx:method 
-		name="update*" propagation="REQUIRED"/> <tx:method name="del*" propagation="REQUIRED"/> 
-		<tx:method name="remove*" propagation="REQUIRED"/> <tx:method name="set*" 
-		propagation="REQUIRED"/> <tx:method name="persist*" propagation="REQUIRED"/> 
-		<tx:method name="merge*" propagation="REQUIRED"/> <tx:method name="*" read-only="true"/> 
-		</tx:attributes> </tx:advice> <aop:config> <aop:pointcut expression="execution(* 
-		com.jumei..*.*(..))" id="allServiceMethod"/> <aop:advisor advice-ref="txAdvice" 
-		pointcut-ref="allServiceMethod"/> </aop:config> -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		p:dataSource-ref="dataSource" />
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="insert*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="del*" propagation="REQUIRED" />
+			<tx:method name="remove*" propagation="REQUIRED" />
+			<tx:method name="set*" propagation="REQUIRED" />
+			<tx:method name="persist*" propagation="REQUIRED" />
+			<tx:method name="merge*" propagation="REQUIRED" />
+			<tx:method name="*" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+	<aop:config>
+		<aop:pointcut expression="execution(* com.shop..*.*(..))" id="allServiceMethod" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="allServiceMethod" />
+	</aop:config>
 </beans>

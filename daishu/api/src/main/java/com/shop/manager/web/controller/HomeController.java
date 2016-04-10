@@ -1,7 +1,12 @@
 package com.shop.manager.web.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,10 +27,11 @@ import com.shop.manager.util.ConfigUtil;
 import com.shop.manager.util.PayCommonUtil;
 import com.shop.manager.util.weixin.SignatureUtil;
 import com.shop.manager.web.filter.AclFilter;
+import com.shop.service.AbstractService;
 import com.shop.service.daishu.CustomerService;
 
 @Controller
-public class HomeController {
+public class HomeController extends AbstractController<Object> {
 	
 	@Autowired
 	private CustomerService customerService;
@@ -38,41 +44,49 @@ public class HomeController {
 
 	@RequestMapping(value = "auth")
 	public ModelAndView auth(HttpServletRequest request, String code, String state) {
-		String requestUrl = ConfigUtil.OAUTH2_URL.replace("APPID", ConfigUtil.APPID).replace("SECRET", ConfigUtil.APP_SECRECT).replace("CODE", code);
-		String result = CommonUtil.httpsRequest(requestUrl, "GET", null);
-		JSONObject jsonObject = JSON.parseObject(result);
-		String errcode = jsonObject.getString("errcode");
-		
-		if (StringUtils.isBlank(errcode)) {
-			String accessToken = jsonObject.getString("access_token");
-			String openid = jsonObject.getString("openid");
+		Customer loginCustomer = this.getLoginCustomer(request);
+		if (null == loginCustomer) {
+			String requestUrl = ConfigUtil.OAUTH2_URL.replace("APPID", ConfigUtil.APPID).replace("SECRET", ConfigUtil.APP_SECRECT).replace("CODE", code);
+			String result = CommonUtil.httpsRequest(requestUrl, "GET", null);
+			JSONObject jsonObject = JSON.parseObject(result);
+			String errcode = jsonObject.getString("errcode");
 			
-			requestUrl = ConfigUtil.USERINFO_URL.replace("ACCESS_TOKEN", accessToken).replace("OPENID", openid);
-			String detailresult = CommonUtil.httpsRequest(requestUrl, "GET", null);
-			JSONObject detail = JSON.parseObject(detailresult);
-			
-			Customer customer = this.customerService.selectByOpenid(openid);
-			if (null == customer) {
-				// 第一次进入
-				customer = new Customer();
-				customer.setWeixinName(detail.getString("nickname"));
-				customer.setFirstTime(new Date());
-				customer.setLastTime(new Date());
-				customer.setStatus(Customer.STATUS_NORMAL);
-				customer.setName(detail.getString("nickname"));
-				customer.setAddress(detail.getString("country") + detail.getString("province") + detail.getString("city"));
-				customer.setDetail(detailresult);
-				customer.setOpenid(openid);
-				this.customerService.insert(customer);
+			if (StringUtils.isBlank(errcode)) {
+				String accessToken = jsonObject.getString("access_token");
+				String openid = jsonObject.getString("openid");
+				
+				requestUrl = ConfigUtil.USERINFO_URL.replace("ACCESS_TOKEN", accessToken).replace("OPENID", openid);
+				String detailresult = CommonUtil.httpsRequest(requestUrl, "GET", null);
+				JSONObject detail = JSON.parseObject(detailresult);
+				
+				Customer customer = this.customerService.selectByOpenid(openid);
+				if (null == customer) {
+					// 第一次进入
+					customer = new Customer();
+					customer.setWeixinName(detail.getString("nickname"));
+					customer.setFirstTime(new Date());
+					customer.setLastTime(new Date());
+					customer.setStatus(Customer.STATUS_NORMAL);
+					customer.setName(detail.getString("nickname"));
+					customer.setAddress(detail.getString("country") + detail.getString("province") + detail.getString("city"));
+					customer.setDetail(detailresult);
+					customer.setOpenid(openid);
+					this.customerService.insert(customer);
+				}
+				HttpSession session = request.getSession();
+				session.setAttribute(AclFilter.loginCustomer, customer);
+				session.setAttribute(AclFilter.CODE, code);
+				session.setAttribute(AclFilter.OPENID, openid);
+				ModelAndView mav = new ModelAndView("index");
+				return mav;
+			} else {
+				ModelAndView mav = new ModelAndView("redirect:");
+				return mav;
 			}
-			HttpSession session = request.getSession();
-			session.setAttribute(AclFilter.loginCustomer, customer);
-			session.setAttribute(AclFilter.CODE, code);
-			session.setAttribute(AclFilter.OPENID, openid);
+		} else {
+			ModelAndView mav = new ModelAndView("index");
+			return mav;
 		}
-		
-		ModelAndView mav = new ModelAndView("index");
-		return mav;
 	}
 
 	@RequestMapping(value = "unauthorized", method = RequestMethod.GET)
@@ -92,9 +106,31 @@ public class HomeController {
 		return "login";
 	}
 
+	String[] weekDays = {"周日", "周一", "周二", "周三", "周四", "周五", "周六"};
 	@RequestMapping(value = "baojie")
 	public ModelAndView baojie(int type) {
 		ModelAndView mav = new ModelAndView("baojie");
+		List<Map<String, String>> dates = new ArrayList<Map<String, String>>();
+		long time = System.currentTimeMillis();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("M-d");
+		for (int i = 0; i < 7; i++) {
+			Date date = new Date(time + i * 1000 * 60 * 60 * 24);
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("date", dateFormat.format(date));
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(date);
+			if (0 == i) {
+				map.put("week", "今天");
+			} else if (1 == i) {
+				map.put("week", "明天");
+			} else if (2 == i) {
+				map.put("week", "后天");
+			} else {
+				map.put("week", weekDays[cal.get(Calendar.DAY_OF_WEEK) - 1]);
+			}
+			dates.add(map);
+		}
+		mav.addObject("dates", dates);
 		return mav;
 	}
 
@@ -114,5 +150,16 @@ public class HomeController {
 	public ModelAndView consumeDetail() {
 		ModelAndView mav = new ModelAndView("consumeDetail");
 		return mav;
+	}
+	
+	@RequestMapping(value = "userCenter")
+	public ModelAndView userCenter() {
+		ModelAndView mav = new ModelAndView("userCenter");
+		return mav;
+	}
+
+	@Override
+	public AbstractService<Object> getAbstractService() {
+		return null;
 	}
 }

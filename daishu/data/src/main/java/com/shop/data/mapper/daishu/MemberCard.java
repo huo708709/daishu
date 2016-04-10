@@ -3,6 +3,10 @@ package com.shop.data.mapper.daishu;
 import com.shop.data.mapper.IntEntity;
 
 public class MemberCard extends IntEntity {
+	
+	public final static int MAMA = 1;
+	public final static int BABA = 2;
+	public final static int BAOBAO = 3;
 
 	private String name;
 	private double rechargeAmount;//充值金额

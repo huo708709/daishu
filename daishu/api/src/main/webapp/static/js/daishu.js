@@ -158,7 +158,21 @@ var daishu = {
             data: params,
             async: true
         });
-        if(success) req.success(success);
-        if(error) req.error(error);
+        if(success) {
+        	req.success(function(data) {
+        		if (0 == data.code) {
+        			success.apply(this, [data.data]);
+        		} else {
+        			if (data.action == 'alert') {
+        				alert(data.message);
+        			}
+        		}
+        	});
+        }
+        if(error) {
+        	req.error(function() {
+        		error.apply(this, arguments);
+        	});
+        }
     }
 })(daishu);
