@@ -58,7 +58,7 @@ define('page/daishu/order', ['component/curd', 'component/form', 'component/form
 	                		var s = '<a class="btn btn-xs default purple choose_ayi" data-id="' + row.id + '" href="javascript:"> 指派阿姨 </a>';
 //	                		s += '<a class="btn btn-xs default blue skip_to_edit" href="daishu/order/update?id=' + row.id + '"> 修改 </a>';
 	                		s += '<a class="btn btn-xs default red order_delete" data-id="' + row.id + '" href="javascript:"> 删除 </a>';
-	                		s += '<a class="btn btn-xs default purple order_copy" href="daishu/order/copy?id=' + row.id + '"> 复制订单 </a>';
+	                		s += '<a class="btn btn-xs default blue skip_to_edit" href="daishu/order/copy?id=' + row.id + '"> 复制订单 </a>';
 	                		return s;
 	                	}
 	                }]
@@ -68,29 +68,26 @@ define('page/daishu/order', ['component/curd', 'component/form', 'component/form
 		},
 		initEdit: function() {
 			var the = this;
-			$('#order_birthday').datetimepicker({
+			$('#serviceDate').datetimepicker({
 				format: 'yyyy-mm-dd',
 				language: 'zh-CN',
 				minView: 1
 			});
-			FORM.initFormValidate($('#order_form'), {
+			FORM.initFormValidate($('#order_copy_form'), {
 				rules: {
-					name: {
+					area: {
 						required: true,
 					},
-					phone: {
+					price: {
 						required: true,
 					},
-					cardNo: {
+					serviceTimeType: {
 						required: true
 					},
-					cardPlace: {
+					serviceDate: {
 						required: true
 					},
-					address: {
-						required: true
-					},
-					birthday: {
+					baojieType: {
 						required: true
 					}
 				}
@@ -104,9 +101,9 @@ define('page/daishu/order', ['component/curd', 'component/form', 'component/form
 			var the = this;
 			$('#order_container').on('click', '.order_delete', function() {
 				var orderId = $(this).data('id');
-				the.deleteAyi([orderId]);
+				the.deleteOrder([orderId]);
 			}).on('click', '.orders_delete', function() {
-				the.deleteAyi(grid.getSelectedRows());
+				the.deleteOrder(grid.getSelectedRows());
 			});
 			$(document).on('click', '.choose_ayi', function() {
 				var userId = $(this).data('id');
@@ -117,7 +114,7 @@ define('page/daishu/order', ['component/curd', 'component/form', 'component/form
 			$('#order_container').off();
 			$(document).off('click', '.choose_ayi');
 		},
-		deleteAyi: function(orderIds) {
+		deleteOrder: function(orderIds) {
 			var the = this;
 			CURD.deleteByIds({
 				url: 'daishu/order/delete',

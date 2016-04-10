@@ -1,6 +1,7 @@
 package com.shop.manager.web.controller.daishu;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,10 +11,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.shop.data.mapper.daishu.Order;
+import com.shop.data.mapper.website.Business;
 import com.shop.manager.web.controller.AbstractController;
 import com.shop.manager.web.model.ResponseData;
 import com.shop.service.AbstractService;
 import com.shop.service.daishu.OrderService;
+import com.shop.service.website.BusinessService;
 
 @Controller
 @RequestMapping("daishu/order")
@@ -21,6 +24,8 @@ public class OrderController extends AbstractController<Order> {
 
 	@Autowired
 	private OrderService orderService;
+	@Autowired
+	private BusinessService businessService;
 	
 	@RequestMapping
 	public ModelAndView page() {
@@ -37,19 +42,29 @@ public class OrderController extends AbstractController<Order> {
 	public ModelAndView copyPage(int id) {
 		ModelAndView mav = new ModelAndView("daishu/order/copy");
 		Order order = this.getAbstractService().selectById(id);
+		List<Business> business = businessService.listAll();
 		mav.addObject("order", order);
+		mav.addObject("businessList", business);
 		return mav;
 	}
+	@ResponseBody
 	@RequestMapping(value = "copy", method = RequestMethod.POST)
-	public ResponseData copy(int id) {
-		Order order = this.getAbstractService().selectById(id);
+	public ResponseData copy(Order o) {
+		Order order = this.getAbstractService().selectById(o.getId());//拿到被复制的订单信息
 		order.setCreateTime(new Date());
 		order.setOrderNo(Order.createOrderNo(order.getCustomerId()));
 		order.setPayStatus(Order.PAY_STATUS_WAIT_PAY);
 		order.setPayType(Order.PAY_TYPE_CASH);
 		order.setAuditStatus(Order.AUDIT_STATUS_PASS);
+		
+		//赋上新的值
+		order.setArea(o.getArea());
+		order.setPrice(o.getPrice());
+		order.setServiceDate(o.getServiceDate());
+		order.setBaojieType(o.getBaojieType());
+		order.setServiceTimeType(o.getServiceTimeType());
 		this.getAbstractService().insert(order);
-		return this.response("修改单位成功", ResponseData.ACTION_TOAST);
+		return this.response("复制订单成功", ResponseData.ACTION_TOAST);
 	}
 	@ResponseBody
 	@RequestMapping(value = "changePrice", method = RequestMethod.POST)
