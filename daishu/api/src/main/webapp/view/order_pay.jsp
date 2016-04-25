@@ -10,6 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html>
 <html class="no-js">
 <head lang="en">
+<base href="<%=basePath %>" />
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
@@ -28,10 +29,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" href="static/css/amazeui.min.css">
     <link rel="stylesheet" href="static/css/app.css">
     <link rel="stylesheet" href="static/css/order.css">
-    <link rel="stylesheet" href="static/css/address.css">
 </head>
 <body>
-<div id="baojie_payment" class="am-container"style="padding: 0;display: none">
+<div id="baojie_payment" class="am-container"style="padding: 0;">
     <div class="am-g forminfo-container">
         <div class="am-u-sm-12 forminfo-wrapper">
             <div class="am-input-group-lg">
@@ -45,20 +45,87 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="am-input-group am-input-group-lg">
                 <span class="am-input-group-label" style="text-align: left">请选择支付方式</span>
             </div>
-            <div class="am-input-group am-input-group-lg">
-                <img src="static/img/weixin.png">
+            <div data-paytype="1" class="pay_type" style="border-bottom: 1px solid #cccccc;margin: 0rem 1.5rem;">
+            	<div style="margin: 1rem 0rem;">
+                <img src="static/img/weixin.png" style="width: 30px;margin-right: 0.8rem"><span>微信支付</span>
+                <img class="select_img" src="static/img/selected.png" style="float: right;width: 20px;margin-right: 1rem">
+                <img class="unselect_img" src="static/img/unselected.png" style="float: right;width: 20px;margin-right: 1rem;display: none;">
+            	</div>
             </div>
-            <div class="am-input-group am-input-group-lg">
-                <img src="static/img/weixin.png">
+            <div data-paytype="2" class="pay_type" style="border-bottom: 1px solid #cccccc;margin: 0rem 1.5rem;">
+            	<div style="margin: 1rem 0rem;">
+                <img src="static/img/huiyuankazhifu.png" style="width: 30px;margin-right: 0.8rem"><span>会员卡支付</span>
+                <img class="select_img" src="static/img/selected.png" style="float: right;width: 20px;margin-right: 1rem;display: none;">
+                <img class="unselect_img" src="static/img/unselected.png" style="float: right;width: 20px;margin-right: 1rem">
+            	</div>
+            </div>
+            <div data-paytype="3" class="pay_type" style="margin: 0rem 1.5rem;">
+            	<div style="margin: 1rem 0rem;">
+                <img src="static/img/xianchangzhifu.png" style="width: 30px;margin-right: 0.8rem"><span>现场支付</span>
+                <img class="select_img" src="static/img/selected.png" style="float: right;width: 20px;margin-right: 1rem;display: none;">
+                <img class="unselect_img" src="static/img/unselected.png" style="float: right;width: 20px;margin-right: 1rem">
+            	</div>
             </div>
         </div>
     </div>
     <div style="position: fixed;bottom: 1rem;width: 100%;padding: 0 1rem">
-        <a type="button" class="am-btn am-btn-warning am-btn-block am-btn-lg am-radius">确认支付</a>
+        <a id="payButton" type="button" class="am-btn am-btn-warning am-btn-block am-btn-lg am-radius">确认支付</a>
     </div>
 </div>
 <script src="static/js/jquery.min.js"></script>
 <script src="static/js/amazeui.min.js"></script>
 <script src="static/js/daishu.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+<script type="text/javascript">
+wx.config({
+	debug: false,
+	appId: "${appId}",
+	timestamp: ${sign.timestamp} + "",
+	nonceStr: "${sign.nonceStr}",
+	signature: "${sign.signature}",
+	jsApiList: ["chooseWXPay"]
+});
+wx.error(function(res) {
+	alert(JSON.stringify(res));
+});
+var pay_type = 1;
+wx.ready(function() {
+	$('.pay_type').on('click', function() {
+		$('.pay_type').find('img.select_img').hide();
+		$('.pay_type').find('img.unselect_img').show();
+		$(this).find('img.unselect_img').hide();
+		$(this).find('img.select_img').show();
+		pay_type = $(this).data('pay_type');
+	});
+	$('#payButton').on('click', function() {
+		if (pay_type == 1) {
+			$('#my-modal-loading').modal();
+	    	daishu.io.httppost('order/pay', {orderId: 1}, '', function(data) {
+	    		$('#my-modal-loading').modal('close');
+	    		wx.chooseWXPay({
+					appId: data.appId,
+					timestamp: data.timeStamp + "",
+					nonceStr: data.nonceStr,
+					package: data.package,
+					signType: "MD5",
+					paySign: data.paySign,
+					success: function(data) {
+						alert("支付成功");
+						window.location.href = 'userCenter';
+					},
+					fail: function() {
+						alert("支付失败");
+					},
+					cancel: function() {
+						alert("支付取消");
+					}
+				});
+	    	});
+		} else if (pay_type == 2) {
+			alert('余额不足');
+		}
+    });
+});
+</script>
 </body>
 </html>

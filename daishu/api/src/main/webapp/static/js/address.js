@@ -11,8 +11,13 @@ var Address = function(e, options) {
 }
 Address.prototype.init = function() {
 	var the = this;
-	$('#address_container').on('click', '.address_add', function() {
-		
+	$('#address_list').load('address/getAddressListByCustomerId');
+	$('#address_container').on('click', '.list-item-address', function() {
+		var addressid = $(this).data('addressid');
+		var content = $(this).data('content');
+		$('#addressId').val(addressid);
+		$('#address_show').text(content);
+		location.hash = '';
 	}).on('click', '.address_list', function() {
 		
 	}).on('click', 'button.add', function() {

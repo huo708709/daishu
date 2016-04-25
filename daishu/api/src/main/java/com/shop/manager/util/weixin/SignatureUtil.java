@@ -1,7 +1,6 @@
 package com.shop.manager.util.weixin;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Formatter;
@@ -94,17 +93,15 @@ public class SignatureUtil {
 		return ret;
 	}
 
-	public synchronized static Map<String, String> getSignMap(String nonce_str) {
+	public synchronized static Map<String, String> getSignMap(String nonce_str, String url) {
 		if (map == null || map.isEmpty()) {
 			String ticket = getTicket(getAccessToken("", ""));
-			map = sign(ticket,
-					"http://daishuguanjia.cn/api/vip", nonce_str);
+			map = sign(ticket, url, nonce_str);
 		}
 		long time = Long.valueOf(map.get("timestamp")) * 1000;
 		if ((System.currentTimeMillis() - time) > (1000 * 60 * 60 * 1.5)) {
 			String ticket = getTicket(getAccessToken("", ""));
-			map = sign(ticket,
-					"http://daishuguanjia.cn/api/vip", nonce_str);
+			map = sign(ticket, url, nonce_str);
 		}
 		return map;
 	}
@@ -134,62 +131,5 @@ public class SignatureUtil {
 			e.printStackTrace();
 			return null;
 		}
-	}
-	
-	public static String paySign(String openid, String nonce_str) {
-		StringBuilder builder = new StringBuilder();
-		builder.append("appid=wxb85fe410c80bd960&mch_id=1316745301&nonce_str=")
-				.append(nonce_str).append("&openid=").append(openid)
-				.append("body=test&out_trade_no=123456789&total_fee=0.1&spbill_create_ip=192.168.0.102")
-				.append("&notify_url=http://daishuguanjia.cn/api/vip&openid=02132ea346ef1a701601f834b9f05d8Y&trade_type=JSAPI");
-		String sign = MD5(builder.toString());
-		
-		return sign.toUpperCase();
-	}
-	
-	public static String unifiedorder(String paySign, String openid, String nonce_str) throws Exception {
-		String param = "<xml>"
-				+ "<appid>wxb85fe410c80bd960</appid>"
-				+ "<body><![CDATA[test]]</body>"
-				+ "<mch_id>1316745301</mch_id>"
-				+ "<nonce_str>" + nonce_str + "</nonce_str>"
-				+ "<notify_url>http://www.qjboss.com/order/business_activity/order/add</notify_url>"
-				+ "<openid>" + openid + "</openid>"
-				+ "<out_trade_no>123456789</out_trade_no>"
-				+ "<spbill_create_ip>192.168.0.102</spbill_create_ip>"
-				+ "<total_fee>0.1</total_fee>"
-				+ "<trade_type>JSAPI</trade_type>"
-				+ "<sign><![CDATA[" + paySign + "]]</sign>"
-				+ "</xml>";
-		return HttpUtil.httpPost("https://api.mch.weixin.qq.com/pay/unifiedorder", param);
-	}
-	
-	public static void main(String[] args) throws Exception {
-		// https://api.mch.weixin.qq.com/pay/unifiedorder
-		StringBuilder builder = new StringBuilder();
-		String nonce_str = create_nonce_str();
-		builder.append("appid=wxb85fe410c80bd960&mch_id=1316745301&nonce_str=")
-				.append(nonce_str)
-				.append("body=test&out_trade_no=123456789&total_fee=0.1&spbill_create_ip=192.168.0.102")
-				.append("&notify_url=http://www.qjboss.com/order/business_activity/order/add&openid=02132ea346ef1a701601f834b9f05d8Y&trade_type=JSAPI");
-		String param = "<xml>"
-				+ "<appid>wxb85fe410c80bd960</appid>"
-				+ "<body>test</body>"
-				+ "<mch_id>1316745301</mch_id>"
-				+ "<nonce_str>" + nonce_str + "</nonce_str>"
-				+ "<notify_url>http://www.qjboss.com/order/business_activity/order/add</notify_url>"
-				+ "<out_trade_no>123456789</out_trade_no>"
-				+ "<total_fee>0.1</total_fee>"
-				+ "<spbill_create_ip>192.168.0.102</spbill_create_ip>"
-				+ "<trade_type>JSAPI</trade_type>"
-				+ "<openid>02132ea346ef1a701601f834b9f05d8Y</openid>"
-				+ "</xml>";
-		String sign = MD5(builder.toString());
-		System.out.println(sign);
-		builder.append("&sign=").append(sign.toUpperCase());
-		System.out.println(new String(HttpUtil.httpGet("https://api.mch.weixin.qq.com/pay/unifiedorder?" + builder.toString())
-				.getBytes(), "iso8859-1"));
-		System.out.println(URLEncoder.encode("http://www.qjboss.com/shop-manager/business_activity/order/add/"));
-		//https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxb85fe410c80bd960&redirect_uri=http%3A%2F%2Fwww.qjboss.com%2Fshop-manager%2Fbusiness_activity%2Forder%2Fadd%2F&response_type=code&scope=snsapi_base#wechat_redirect
 	}
 }

@@ -101,12 +101,13 @@ public class AddressController extends AbstractController<Address> {
 		return this.response("删除成功", ResponseData.ACTION_TOAST);
 	}
 
-	@ResponseBody
-	@RequestMapping(value = "getAddressListByCustomerId", method = RequestMethod.POST)
-	public ResponseData getAddressListByCustomerId(HttpServletRequest request) {
+	@RequestMapping(value = "getAddressListByCustomerId")
+	public ModelAndView getAddressListByCustomerId(HttpServletRequest request) {
 		Customer customer = this.getLoginCustomer(request);
 		List<Address> list = this.addressService.getAddressListByCustomerId(customer.getId());
-		return this.response("", list);
+		ModelAndView mav = new ModelAndView("addressListByCustomer");
+		mav.addObject("list", list);
+		return mav;
 	}
 	
 	@Override

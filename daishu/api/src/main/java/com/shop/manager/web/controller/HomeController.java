@@ -148,7 +148,7 @@ public class HomeController extends AbstractController<Object> {
 		ModelAndView mav = new ModelAndView("vip");
 		String code = (String) session.getAttribute(AclFilter.CODE);
 		String nonceStr = PayCommonUtil.CreateNoncestr();
-		Map<String, String> sign = SignatureUtil.getSignMap(nonceStr);
+		Map<String, String> sign = SignatureUtil.getSignMap(nonceStr, "http://daishuguanjia.cn/api/vip");
 		mav.addObject("appId", ConfigUtil.APPID);
 		mav.addObject("sign", sign);
 		mav.addObject("code", code);
