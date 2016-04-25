@@ -24,8 +24,9 @@
 		<thead>
 			<tr role="row" class="heading">
 				<th width="2%"><input type="checkbox" class="group-checkable"></th>
-				<th width="30%">名称</th>
-				<th width="30%">code</th>
+				<th width="20%">名称</th>
+				<th width="20%">code</th>
+				<th width="38%">简介</th>
 				<th width="20%">单位</th>
 				<!-- <th width="18%">操作</th> -->
 			</tr>

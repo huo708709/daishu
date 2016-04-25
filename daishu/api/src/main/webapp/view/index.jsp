@@ -48,11 +48,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div id="changguibaojie" class="changguibaojie">
 						<img class="img-logo" src="static/img/changguibaojie_logo.png">
 						<img class="img-title" src="static/img/changguibaojie_title.png">
+						<span class="intro">${businessMap.changgui.intro }</span>
+						<span class="unit">${businessMap.changgui.price }${businessMap.changgui.name }</span>
 					</div>
 				</a> <a href="baojie?type=2">
 					<div id="jingxibaojie" class="margin-top-05 jingxibaojie">
 						<img class="img-logo" src="static/img/jingxibaojie_logo.png">
 						<img class="img-title" src="static/img/jingxibaojie_title.png">
+						<span class="intro">${businessMap.jingxibaojie.intro }</span>
+						<span class="unit">${businessMap.jingxibaojie.price }${businessMap.jingxibaojie.name }</span>
 					</div>
 				</a>
 			</div>
@@ -60,9 +64,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<a href="baojie?type=4"><div id="caboli" class="caboli">
 						<img class="img-logo" src="static/img/caboli_logo.png"> <img
 							class="img-title" src="static/img/caboli_title.png">
+						<span class="intro">${businessMap.caboli.intro }</span>
+						<span class="unit">${businessMap.caboli.price }${businessMap.caboli.name }</span>
 					</div></a> <a href="baojie?type=8"><div id="ganxi" class="ganxi margin-top-05">
 						<img class="img-logo" src="static/img/ganxi_logo.png"> <img
 							class="img-title" src="static/img/ganxi_title.png">
+						<span class="intro">${businessMap.ganxi.intro }</span>
+						<span class="unit">${businessMap.ganxi.price }${businessMap.ganxi.name }</span>
 					</div></a>
 			</div>
 		</div>
@@ -73,21 +81,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								id="shendubaojie" class="shendubaojie">
 								<img class="img-logo" src="static/img/shendubaojie_logo.png">
 								<img class="img-title" src="static/img/shendubaojie_title.png">
+								<span class="intro">${businessMap.shendubaojie.intro }</span>
+								<span class="unit">${businessMap.shendubaojie.price }${businessMap.shendubaojie.name }</span>
 							</div></a></li>
 					<li class="padding-left-025 margin-top-05"><a href="baojie?type=5"><div
 								id="xinjukaihuang" class="xinjukaihuang">
 								<img class="img-logo" src="static/img/xinjukaihuang_logo.png">
 								<img class="img-title" src="static/img/xinjukaihuang_title.png">
+								<span class="intro">${businessMap.xinjukaihuang.intro }</span>
+								<span class="unit">${businessMap.xinjukaihuang.price }${businessMap.xinjukaihuang.name }</span>
 							</div></a></li>
 					<li class="padding-right-025 margin-top-05"><a href="baojie?type=7"><div
 								id="jiajuhuli" class="jiajuhuli">
 								<img class="img-logo" src="static/img/jiajuhuli_logo.png">
 								<img class="img-title" src="static/img/jiajuhuli_title.png">
+								<span class="intro">${businessMap.jiajuhuli.intro }</span>
+								<span class="unit">${businessMap.jiajuhuli.price }${businessMap.jiajuhuli.name }</span>
 							</div></a></li>
 					<li class="padding-left-025 margin-top-05"><a href="baojie?type=6"><div
 								id="jiadianqingxi" class="jiadianqingxi">
 								<img class="img-logo" src="static/img/jiadianqingxi_logo.png">
 								<img class="img-title" src="static/img/jiadianqingxi_title.png">
+								<span class="intro">${businessMap.jiadianqingxi.intro }</span>
+								<span class="unit">${businessMap.jiadianqingxi.price }${businessMap.jiadianqingxi.name }</span>
 							</div></a></li>
 				</ul>
 			</div>

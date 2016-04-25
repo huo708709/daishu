@@ -21,7 +21,9 @@ define('page/website/business', ['component/curd', 'component/form'], function(C
 	                	data: 'name'
 	                }, {
 	                	data: 'code'
-	                },{
+	                }, {
+	                	data: 'intro'
+	                }, {
 	                	data: 'unitName'
 	                }/*, {
 	                	orderabel: false, render: function(data, type, row, meta) {

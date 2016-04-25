@@ -4,13 +4,13 @@
 <mapper namespace="com.shop.data.mapper.website.BusinessMapper">
 	<insert id="insert" parameterType="Business" useGeneratedKeys="true" keyProperty="id">
 		insert into t_business
-		(name,code,description,unit_id)
+		(name,code,description,unit_id,intro)
 		values
-		(#{name},#{code},#{description},#{unitId})
+		(#{name},#{code},#{description},#{unitId},#{intro})
 	</insert>
 	
 	<update id="update" parameterType="Business">
-		update t_business set name=#{name},code=#{code},description=#{description} where id=#{id}
+		update t_business set name=#{name},code=#{code},description=#{description},intro=#{intro} where id=#{id}
 	</update>
 	
 	<select id="selectById" resultType="Business">
@@ -19,6 +19,10 @@
 	
 	<select id="listAll" resultType="Business">
 		select * from t_business;
+	</select>
+	
+	<select id="listMap" resultType="map">
+		select a.id,a.type,a.code,a.intro,a.unit_id,b.name,b.price from t_business a left join t_unit b on a.unit_id=b.id;
 	</select>
 	
 	<delete id="deleteByIds">

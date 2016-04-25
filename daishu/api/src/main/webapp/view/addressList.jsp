@@ -54,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    </c:forEach>
 	    </ul>
 	    <a href="address/addressEdit?id=0" class="am-btn am-btn-default am-btn-block">添加新地址</a>
-	    <a href="userCenter" class="am-btn am-btn-default am-btn-block">个人中心</a>
+	    <!-- <a href="userCenter" class="am-btn am-btn-default am-btn-block">个人中心</a> -->
 	</div>
 </div>
 <script src="static/js/jquery.min.js"></script>

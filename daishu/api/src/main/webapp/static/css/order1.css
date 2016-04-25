@@ -1,0 +1,60 @@
+ul.week,li.day {
+    padding: 0;
+}
+.week-container {
+    background-color: #ffffff;
+}
+.week-wrapper {
+    border-bottom: 1px solid #fef3f2;
+}
+ul.week {
+    margin: 30px 0 10px 0;
+    text-decoration: none;
+    padding-left: 30%;
+}
+ul.week li.day {
+    float: left;
+    width: 20%;
+    list-style: none;
+    text-align: center;
+}
+ul.week li.day.active {
+    color: #f39910;
+}
+ul.week li.day p:first-child {
+    margin: 0;
+}
+ul.week li.day p:last-child {
+    margin: 0;
+}
+.schedule-container {
+    background-color: #ffffff;
+    text-align: center;
+    padding: 1rem 0;
+}
+.schedule-container .schedule-wrapper {
+    padding: 0.6rem;
+}
+.schedule-container .schedule-wrapper:FIRST-CHILD {
+    padding: 0.6rem 0.3rem 0.6rem 2rem;
+}
+.schedule-container .schedule-wrapper:last-child {
+    padding: 0.6rem 2rem 0.6rem 0.3rem;
+}
+.schedule-container a.schedule-time {
+    border: 1px solid #5d5d5d;
+    border-radius: 5px;
+    width: 100%;
+    display: block;
+    font-size: 1.5rem;
+    color: #5d5d5d;
+    padding: 0.8rem 0.5rem;
+}
+.schedule-container a.schedule-time.active {
+    border: 1px solid #f39910;
+    color: #f39910;
+}
+.schedule-container a.schedule-time.disable {
+    color: #d2d2d2;
+    border-color: #d2d2d2;
+}

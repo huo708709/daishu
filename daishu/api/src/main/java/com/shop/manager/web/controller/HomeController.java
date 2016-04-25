@@ -31,6 +31,7 @@ import com.shop.manager.web.filter.AclFilter;
 import com.shop.service.AbstractService;
 import com.shop.service.daishu.CustomerService;
 import com.shop.service.daishu.UnitService;
+import com.shop.service.website.BusinessService;
 
 @Controller
 public class HomeController extends AbstractController<Object> {
@@ -39,10 +40,14 @@ public class HomeController extends AbstractController<Object> {
 	private CustomerService customerService;
 	@Autowired
 	private UnitService unitService;
+	@Autowired
+	private BusinessService businessService;
 
 	@RequestMapping(value = "")
 	public ModelAndView index(HttpSession session) {
 		ModelAndView mav = new ModelAndView("index");
+		Map<Object, Map<String, Object>> businessMap = this.businessService.getBusinessMap();
+		mav.addObject("businessMap", businessMap);
 		return mav;
 	}
 
@@ -81,14 +86,14 @@ public class HomeController extends AbstractController<Object> {
 				session.setAttribute(AclFilter.loginCustomer, customer);
 				session.setAttribute(AclFilter.CODE, code);
 				session.setAttribute(AclFilter.OPENID, openid);
-				ModelAndView mav = new ModelAndView("index");
+				ModelAndView mav = new ModelAndView("redirect:");
 				return mav;
 			} else {
 				ModelAndView mav = new ModelAndView("redirect:");
 				return mav;
 			}
 		} else {
-			ModelAndView mav = new ModelAndView("index");
+			ModelAndView mav = new ModelAndView("redirect:");
 			return mav;
 		}
 	}
@@ -113,12 +118,21 @@ public class HomeController extends AbstractController<Object> {
 	String[] weekDays = {"周日", "周一", "周二", "周三", "周四", "周五", "周六"};
 	@RequestMapping(value = "baojie")
 	public ModelAndView baojie(int type) {
-		ModelAndView mav = new ModelAndView("baojie");
+		ModelAndView mav = null;
+		if (3 == type || 7 == type || 8 == type) {
+			mav = new ModelAndView("baojie1");
+		} else {
+			mav = new ModelAndView("baojie");
+		}
 		List<Map<String, String>> dates = new ArrayList<Map<String, String>>();
 		long time = System.currentTimeMillis();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("M-d");
 		SimpleDateFormat dateFormat1 = new SimpleDateFormat("YYYY-MM-dd");
-		for (int i = 0; i < 7; i++) {
+		int days = 7;
+		if (3 == type || 7 == type || 8 == type) {
+			days = 3;
+		}
+		for (int i = 0; i < days; i++) {
 			Date date = new Date(time + i * 1000 * 60 * 60 * 24);
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("date", dateFormat.format(date));

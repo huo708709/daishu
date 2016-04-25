@@ -19,6 +19,12 @@
 		            </div>
 		        </div>
 		        <div class="form-group">
+		            <label class="control-label col-md-2">简介</label>
+		            <div class="col-md-10">
+		                <input name="intro" type="text" placeholder="名称" class="form-control">
+		            </div>
+		        </div>
+		        <div class="form-group">
 		            <label class="control-label col-md-2">单位</label>
 		            <div class="col-md-10">
 		            	<select name="unitId" class="form-control">
