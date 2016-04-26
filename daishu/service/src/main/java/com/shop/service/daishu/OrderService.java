@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.shop.data.mapper.AbstractMapper;
 import com.shop.data.mapper.daishu.Order;
 import com.shop.data.mapper.daishu.OrderMapper;
+import com.shop.data.model.TableData;
+import com.shop.data.model.TableParameter;
 import com.shop.service.AbstractService;
 
 @Service
@@ -30,5 +32,13 @@ public class OrderService extends AbstractService<Order> {
 	}
 	public List<Order> listOrdersByCustomerId(int customerId){
 		return this.orderMapper.listOrdersByCustomerId(customerId);
+	}
+
+	public TableData listPagedOrderData(TableParameter parameter, String startTime,String endTime) {
+		TableData tableData = new TableData();
+		tableData.data = orderMapper.listPagedOrderData(parameter, startTime,endTime);
+		tableData.recordsFiltered = orderMapper.countOrderData(startTime,endTime);
+		tableData.recordsTotal = tableData.recordsFiltered;
+		return tableData;
 	}
 }

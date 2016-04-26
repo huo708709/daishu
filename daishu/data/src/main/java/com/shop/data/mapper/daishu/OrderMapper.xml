@@ -84,4 +84,55 @@
 		select count(*)
 		<include refid="gridWhere"/>
 	</select>
+	
+	<sql id="orderDataWhere">
+		<where>
+		    <if test="null != startTime and '' != startTime">
+		    and create_time &gt;= #{startTime}
+		    </if>
+		    <if test="null != endTime and '' != endTime">
+		    and create_time &lt;= #{endTime}
+		    </if>
+	    </where>
+	</sql>
+	<select id="listPagedOrderData" resultType="hashmap">
+		SELECT
+				orderDate,
+			    sum(orderCount) orderCount,
+			    sum(orderGmv) orderGmv,
+			    sum(payTypeWeiXin) payTypeWeiXin,
+			    sum(payTypeCash) payTypeCash,
+			    sum(payTypeMember) payTypeMember
+			FROM
+			(
+			    SELECT 
+			    sum(1) orderCount,
+			    date_format(create_time, '%Y-%m-%d') orderDate,
+			    sum(price) orderGmv,
+				case 
+					when pay_type = 1 then sum(1)
+					else sum(0)
+				end as payTypeWeiXin,
+				case 
+					when pay_type = 2 then sum(1)
+					else sum(0)
+				end as payTypeCash,
+				case 
+					when pay_type = 3 then sum(1)
+					else sum(0)
+				end as payTypeMember
+			FROM
+			    t_order
+			    <include refid="orderDataWhere"></include>
+				group by date_format(create_time, '%Y-%m-%d'), pay_type
+			) T
+			group by orderDate
+			order by orderDate desc
+		<if test="tableParam.length > -1">
+		limit #{tableParam.start},#{tableParam.length}
+		</if>
+	</select>
+	<select id="countOrderData" resultType="int">
+		select count(*) from  ( select 1 from t_order  <include refid="orderDataWhere"></include> group by  date_format(create_time, '%Y-%m-%d') ) A
+	</select>
 </mapper>
