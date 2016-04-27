@@ -30,7 +30,7 @@ define('page/website/business', ['component/curd', 'component/form'], function(C
 	                }, {
 	                	orderabel: false, render: function(data, type, row, meta) {
 	                		var s = '<a class="btn btn-xs default blue skip_to_edit" href="website/business/update?id=' + row.id + '"> 修改 </a>';
-	                		s += '<a class="btn btn-xs default red business_delete" data-id="' + row.id + '" href="javascript:"> 删除 </a>';
+	                	//	s += '<a class="btn btn-xs default red business_delete" data-id="' + row.id + '" href="javascript:"> 删除 </a>';
 	                		return s;
 	                	}
 	                }]
