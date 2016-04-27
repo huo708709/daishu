@@ -50,8 +50,10 @@ public class BusinessController extends AbstractController<Business> {
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public ModelAndView update(int id) {
 		Business business = this.getAbstractService().selectById(id);
-		ModelAndView mav = new ModelAndView("system/role/update");
-		mav.addObject("business	", business);
+		ModelAndView mav = new ModelAndView("website/business/update");
+		mav.addObject("business", business);
+		List<Unit> units = unitService.listAll();
+		mav.addObject("units", units);
 		return mav;
 	}
 	

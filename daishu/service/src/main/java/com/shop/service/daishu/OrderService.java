@@ -46,4 +46,8 @@ public class OrderService extends AbstractService<Order> {
 		tableData.recordsTotal = tableData.recordsFiltered;
 		return tableData;
 	}
+
+	public void updatePayStatusByIds(int[] ids) {
+		this.orderMapper.updatePayStatusByIds(ids);
+	}
 }

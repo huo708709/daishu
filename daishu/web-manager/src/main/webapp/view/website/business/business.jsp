@@ -14,21 +14,22 @@
              </div>
 		</div>
 	</div>
-	<div class="btn-group">
+	<!-- <div class="btn-group">
         <button class="btn green skip_to_edit" type="button" url="website/business/add">
             <i class="fa fa-plus"></i> 添加</button>
-		<!-- <button class="btn red business_batch_delete" type="button">
-            <i class="fa fa-plus"></i> 删除</button> -->
-    </div>
+		<button class="btn red business_batch_delete" type="button">
+            <i class="fa fa-plus"></i> 删除</button>
+    </div> -->
 	<table id="datatable_business" class="table table-striped table-bordered table-hover table-checkable">
 		<thead>
 			<tr role="row" class="heading">
 				<th width="2%"><input type="checkbox" class="group-checkable"></th>
-				<th width="20%">名称</th>
-				<th width="20%">code</th>
-				<th width="38%">简介</th>
-				<th width="20%">单位</th>
-				<!-- <th width="18%">操作</th> -->
+				<th width="10%">名称</th>
+				<th width="10%">code</th>
+				<th width="10%">单位</th>
+				<th width="20%">简介</th>
+				<th width="20%">描述</th>
+				<th width="18%">操作</th>
 			</tr>
 		</thead>
 	</table>

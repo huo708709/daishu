@@ -10,7 +10,13 @@
 	</insert>
 	
 	<update id="update" parameterType="Business">
-		update t_business set name=#{name},code=#{code},description=#{description},intro=#{intro} where id=#{id}
+		update t_business set 
+		<if test="null != name">name=#{name},</if>
+		<if test="null != code">code=#{code},</if>
+		<if test="null != description">description=#{description},</if>
+		<if test="null != intro">intro=#{intro},</if>
+		<if test="null != unitId">unit_id=#{unitId}</if>
+		where id=#{id}
 	</update>
 	
 	<select id="selectById" resultType="Business">

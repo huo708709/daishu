@@ -19,4 +19,6 @@ public interface OrderMapper extends AbstractMapper {
 	public int countOrderData(@Param("startTime") String startTime,@Param("endTime") String endTime);
 	
 	public Order selectByIdAndNo(@Param("id") int id, @Param("orderNo") String orderNo);
+
+	void updatePayStatusByIds(@Param("ids")int[] ids);
 }

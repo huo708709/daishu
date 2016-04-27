@@ -18,6 +18,8 @@ define('page/daishu/unit', ['component/curd', 'component/form'], function(CURD, 
 	                		return '<input type="checkbox" title="' + data + '" class="checkboxes" value="' + data + '" />';
 	                	}
 	                }, {
+	                	data: 'id'
+	                },{
 	                	data: 'name'
 	                }, {
 	                	data: 'price'
