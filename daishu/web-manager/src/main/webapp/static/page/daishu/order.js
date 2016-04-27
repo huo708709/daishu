@@ -57,8 +57,11 @@ define('page/daishu/order', ['component/curd', 'component/form', 'component/form
 	                	orderabel: false, render: function(data, type, row, meta) {
 	                		var s = '<a class="btn btn-xs default purple choose_ayi" data-id="' + row.id + '" href="javascript:"> 指派阿姨 </a>';
 //	                		s += '<a class="btn btn-xs default blue skip_to_edit" href="daishu/order/update?id=' + row.id + '"> 修改 </a>';
-	                		s += '<a class="btn btn-xs default red order_delete" data-id="' + row.id + '" href="javascript:"> 删除 </a>';
-	                		s += '<a class="btn btn-xs default blue skip_to_edit" href="daishu/order/copy?id=' + row.id + '"> 复制订单 </a>';
+	                		if(row.payStatus == 1){
+	                			s += '<a class="btn btn-xs default purple order_update_pay_status" data-id="' + row.id + '" href="javascript:"> 修改支付状态为"服务中" </a>';
+	                		}
+	                		s += '<a class="btn btn-xs default red order_delete" data-id="' + row.id + '" href="javascript:"> 删除 </a><br>';
+	                		s += '<a class="btn btn-xs default blue skip_to_edit" href="daishu/order/copy?id=' + row.id + '"> 复制订单 </a><br>';
 	                		return s;
 	                	}
 	                }]
@@ -102,6 +105,9 @@ define('page/daishu/order', ['component/curd', 'component/form', 'component/form
 			$('#order_container').on('click', '.order_delete', function() {
 				var orderId = $(this).data('id');
 				the.deleteOrder([orderId]);
+			}).on('click', '.order_update_pay_status', function() {
+				var orderId = $(this).data('id');
+				the.updatePayStatusByIds([orderId]);
 			}).on('click', '.orders_delete', function() {
 				the.deleteOrder(grid.getSelectedRows());
 			});
@@ -118,6 +124,21 @@ define('page/daishu/order', ['component/curd', 'component/form', 'component/form
 			var the = this;
 			CURD.deleteByIds({
 				url: 'daishu/order/delete',
+				data: {
+					ids: orderIds
+				}
+			}, function() {
+				the.gridReload();
+			}, function() {
+				the.gridReload();
+			});
+		},
+		updatePayStatusByIds: function(orderIds) {
+			var the = this;
+			CURD.operateByIds(
+				'确认修改支付状态？',
+				{
+				url: 'daishu/order/updatePayStatusByIds',
 				data: {
 					ids: orderIds
 				}

@@ -24,6 +24,7 @@
 		<thead>
 			<tr role="row" class="heading">
 				<th width="2%"><input type="checkbox" class="group-checkable"></th>
+				<th width="10%">ID</th>
 				<th width="33%">名称</th>
 				<th width="33%">单价</th>
 				<th width="32%">操作</th>

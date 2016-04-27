@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -32,7 +33,12 @@ public class OrderController extends AbstractController<Order> {
 		ModelAndView mav = new ModelAndView("daishu/order/order");
 		return mav;
 	}
-	
+	@ResponseBody
+	@RequestMapping(value = "updatePayStatusByIds", method = RequestMethod.POST)
+	public ResponseData delete(@RequestParam("ids[]") int[] ids) {
+		orderService.updatePayStatusByIds(ids);
+		return this.response("修改支付状态成功", ResponseData.ACTION_TOAST);
+	}
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public ModelAndView add() {
 		ModelAndView mav = new ModelAndView("daishu/order/add");

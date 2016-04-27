@@ -16,4 +16,6 @@ public interface OrderMapper extends AbstractMapper {
 
 	List<Map<String,Object>> listPagedOrderData(@Param("tableParam") TableParameter parameter,@Param("startTime") String startTime,@Param("endTime") String endTime);
 	public int countOrderData(@Param("startTime") String startTime,@Param("endTime") String endTime);
+
+	void updatePayStatusByIds(@Param("ids")int[] ids);
 }
