@@ -54,7 +54,7 @@ public class OrderController extends AbstractController<Order> {
 	}
 	
 	@RequestMapping(value = "order_pay", method = RequestMethod.GET)
-	public ModelAndView orderPay(HttpSession session) {
+	public ModelAndView orderPay(HttpSession session, String orderId, String orderNo) {
 		ModelAndView mav = new ModelAndView("order_pay");
 		String code = (String) session.getAttribute(AclFilter.CODE);
 		String nonceStr = PayCommonUtil.CreateNoncestr();
@@ -62,6 +62,8 @@ public class OrderController extends AbstractController<Order> {
 		mav.addObject("appId", ConfigUtil.APPID);
 		mav.addObject("sign", sign);
 		mav.addObject("code", code);
+		mav.addObject("orderId", orderId);
+		mav.addObject("orderNo", orderNo);
 		return mav;
 	}
 	
@@ -116,24 +118,44 @@ public class OrderController extends AbstractController<Order> {
 			return this.response(ResponseData.CODE_ERROR, e.getMessage(), ResponseData.ACTION_ALERT);
 		}
 	}
+
+	@RequestMapping(value = "order_ok")
+	public ModelAndView orderOk() {
+		ModelAndView mav = new ModelAndView("order_ok");
+		return mav;
+	}
 	
 //	@ResponseBody
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public String add(HttpServletRequest request, Order order) {
-		// TODO 判断排期是否已满
-		int count = scheduleService.availableAyiCount(order.getBaojieType(), order.getServiceDate(), order.getServiceTimeType());
-		if (count > 0) {
-			Customer customer = this.getLoginCustomer(request);
+		int type = order.getBaojieType();
+		Customer customer = this.getLoginCustomer(request);
+		String orderNo = System.currentTimeMillis() + "" + customer.getId();
+		if (3 == type || 7 == type || 8 == type || 9 == type) {
 			// TODO 新增订单
-			order.setOrderNo(System.currentTimeMillis() + "" + customer.getId());
+			order.setOrderNo(orderNo);
 			order.setAuditStatus(Order.AUDIT_STATUS_WAIT);
 			order.setPayStatus(Order.PAY_STATUS_WAIT_PAY);
 			order.setCreateTime(new Date());
 			order.setPayType(Order.PAY_TYPE_CASH);
 			order.setCustomerId(customer.getId());
 			this.getAbstractService().insert(order);
+			return "redirect:/order/order_ok?orderNo=" + orderNo + "&orderId=" + order.getId();
+		} else {
+			// TODO 判断排期是否已满
+			int count = scheduleService.availableAyiCount(order.getBaojieType(), order.getServiceDate(), order.getServiceTimeType());
+			if (count > 0) {
+				// TODO 新增订单
+				order.setOrderNo(orderNo);
+				order.setAuditStatus(Order.AUDIT_STATUS_WAIT);
+				order.setPayStatus(Order.PAY_STATUS_WAIT_PAY);
+				order.setCreateTime(new Date());
+				order.setPayType(Order.PAY_TYPE_CASH);
+				order.setCustomerId(customer.getId());
+				this.getAbstractService().insert(order);
+			}
+			return "redirect:/order/order_pay?orderNo=" + orderNo + "&orderId=" + order.getId();
 		}
-		return "redirect:/order/order_pay";
 //		return this.response("添加订单成功", ResponseData.ACTION_TOAST);
 	}
 	

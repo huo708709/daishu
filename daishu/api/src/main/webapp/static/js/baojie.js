@@ -48,7 +48,7 @@ $(function() {
     $('#next').on('click', function(event) {
     	validateFirst();
     });
-    $('#baojie_second').on('touchend', 'li.day', function() {
+    $('#baojie_second').on('click', 'li.day', function() {
     	$('#baojie_second').find('li.day').removeClass('active');
     	$(this).addClass('active');
     	$('#my-modal-loading').modal();
@@ -87,7 +87,7 @@ $(function() {
     		
     	});
     });
-    $('#baojie_second').on('touchend', 'a.schedule-time', function(event) {
+    $('#baojie_second').on('click', 'a.schedule-time', function(event) {
     	$('#baojie_second').find('a.schedule-time').removeClass('active');
     	$(this).addClass('active');
     });
@@ -97,7 +97,7 @@ $(function() {
     	$('#priceShow').val(area * unit);
     	$('#price').val(area * unit);
     });
-    $('#submit_order').on('touchend', function(event) {
+    $('#submit_order').on('click', function(event) {
     	var serviceDate = $('#baojie_second input[name="serviceDate"]:checked').val();
     	if (!serviceDate) {
     		event.preventDefault();

@@ -22,6 +22,9 @@
 	<select id="selectById" resultType="Order">
 		select * from t_order where id=#{id}
 	</select>
+	<select id="selectByIdAndNo" resultType="Order">
+		select id,order_no,customer_id,price from t_order where id=#{id} and order_no=#{orderNo}
+	</select>
 	
 	<select id="listOrdersByCustomerId" resultType="Order">
 		select a.*,b.content addressContent

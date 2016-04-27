@@ -59,55 +59,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <a href="#second" id="next" class="am-btn am-btn-warning am-btn-block am-btn-lg am-radius">下一步</a>
     </div>
 </div>
-<div id="baojie_second" class="am-container am-container-page" style="padding: 0;display: none;">
-    <div class="am-g week-container">
-        <div class="am-u-sm-12 week-wrapper">
-            <ul class="week">
-            <c:forEach items="${dates }" var="date" varStatus="varStatus">
-                <li data-baojieType="${baojieType }" data-date="${date.dateFormat }" class="day ${varStatus.index == 0 ? 'active' : '' }">
-                <label style="font-weight: normal;"><p>${date.week }</p>
-                <input style="display: none;" type="radio" name="serviceDate" value="${date.dateFormat }" ${varStatus.index == 0 ? 'checked' : '' }>
-                <p>${date.date }</p>
-                </label></li>
-            </c:forEach>
-        </div>
-    </div>
-    <div class="am-g schedule-container">
-        <div class="am-u-sm-4 schedule-wrapper">
-            <a class="schedule-time" data-servicetimetype="5"><label style="font-weight: normal;margin: 0">08:00-12:00
-            <input style="display: none;" type="radio" name="serviceTimeType" value="5">
-            </label></a>
-        </div>
-        <div class="am-u-sm-4 schedule-wrapper" style="padding-left: 1rem;padding-right: 1rem">
-            <a class="schedule-time" data-servicetimetype="6"><label style="font-weight: normal;margin: 0">12:00-17:00
-            <input style="display: none;" type="radio" name="serviceTimeType" value="6">
-            </label></a>
-        </div>
-        <div class="am-u-sm-4 schedule-wrapper">
-            <a class="schedule-time" data-servicetimetype="7"><label style="font-weight: normal;margin: 0">17:00-20:00
-            <input style="display: none;" type="radio" name="serviceTimeType" value="7">
-            </label></a>
-        </div>
-    </div>
-    <div class="am-g forminfo-container">
-        <div class="am-u-sm-12 forminfo-wrapper">
-            <div class="am-input-group am-input-group-lg">
-                <span class="am-input-group-label">服务件数：</span>
-                <input id="area" name="area" type="text" class="am-form-field" placeholder="服务件数（单位：件）">
-            </div>
-            <div class="am-input-group am-input-group-lg">
-                <span class="am-input-group-label">备注详情：</span>
-                <input name="remark" type="text" class="am-form-field" placeholder="请填写您的特殊要求">
-            </div>
-        </div>
-        <div class="am-u-sm-12" style="margin: 0.5rem 0;padding: 0 1.5rem">
-            <label><input id="agreeProtocol" type="checkbox"> 已阅读并同意<span>《袋鼠管家服务协议》</span></label>
-        </div>
-    </div>
-    <div style="position: fixed;bottom: 1rem;width: 100%;padding: 0 1rem">
-        <a id="submit_order" class="am-btn am-btn-warning am-btn-block am-btn-lg am-radius">提交订单</a>
-    </div>
-</div>
 </form>
 <div id="address_container" class="am-container am-container-page"style="padding: 0;display: none">
 	<iframe name="address_iframe" id="address_iframe" style="width: 0;height: 0;display: none;"></iframe>

@@ -108,7 +108,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</ul>
 			</div>
 			<div class="am-u-sm-3 index-panel padding-left-025 margin-top-05">
-				<a><div id="guanjiayuyue" class="guanjiayuyue"
+				<a href="baojie?type=9"><div id="guanjiayuyue" class="guanjiayuyue"
 						style="background-color: #f39910; border-radius: 8px;">
 						<img class="img-yue" src="static/img/guanjiayuyue_yue.png">
 						<img class="img-title" src="static/img/guanjiayuyue_title.png">

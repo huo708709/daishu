@@ -85,6 +85,8 @@ wx.config({
 	signature: "${sign.signature}",
 	jsApiList: ["chooseWXPay"]
 });
+var orderId = ${orderId};
+var orderNo = ${orderNo};
 wx.error(function(res) {
 	alert(JSON.stringify(res));
 });
@@ -95,12 +97,13 @@ wx.ready(function() {
 		$('.pay_type').find('img.unselect_img').show();
 		$(this).find('img.unselect_img').hide();
 		$(this).find('img.select_img').show();
-		pay_type = $(this).data('pay_type');
+		pay_type = $(this).data('paytype');
 	});
 	$('#payButton').on('click', function() {
+		alert(pay_type);
 		if (pay_type == 1) {
 			$('#my-modal-loading').modal();
-	    	daishu.io.httppost('order/pay', {orderId: 1}, '', function(data) {
+	    	daishu.io.httppost('order/pay', {orderId: orderId,orderNo:orderNo}, '', function(data) {
 	    		$('#my-modal-loading').modal('close');
 	    		wx.chooseWXPay({
 					appId: data.appId,
@@ -122,7 +125,10 @@ wx.ready(function() {
 				});
 	    	});
 		} else if (pay_type == 2) {
-			alert('余额不足');
+			daishu.io.httppost('consume/add', {orderId: orderId,orderNo:orderNo}, '', function(data) {
+	    		$('#my-modal-loading').modal('close');
+	    		window.location.href = 'userCenter';
+	    	});
 		}
     });
 });

@@ -6,7 +6,7 @@
 		insert into t_customer
 		(weixin_name,address,phone,name,status,openid,detail,first_time,last_time)
 		values
-		(#{weixinName},#{address},#{phone},#{name},#{status},#{openid},#{detail},#{first_time},#{last_time})
+		(#{weixinName},#{address},#{phone},#{name},#{status},#{openid},#{detail},#{firstTime},#{lastTime})
 	</insert>
 	
 	<update id="update" parameterType="Customer">
@@ -15,8 +15,12 @@
 	</update>
 	
 	<update id="updateBalance">
-		update t_customer set balance=balance + ${balance} where openid=#{openId}
+		update t_customer set balance=balance + #{balance} where id=#{customerId}
 	</update>
+	
+	<select id="getBalance" resultType="double">
+		select balance from t_customer where id=#{id}
+	</select>
 	
 	<select id="selectById" resultType="Customer">
 		select * from t_customer where id=#{id}

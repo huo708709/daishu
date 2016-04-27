@@ -27,7 +27,7 @@ public class RechargeService extends AbstractService<Recharge> {
 	
 	public int paySuccess(Recharge recharge) {
 		MemberCard memberCard = memberCardMapper.selectByType(recharge.getType());
-		customerMapper.updateBalance(recharge.getOpenId(), recharge.getMoney() + memberCard.getGiveAmount());
+		customerMapper.updateBalance(recharge.getCustomerId(), recharge.getMoney() + memberCard.getGiveAmount());
 		return this.rechargeMapper.paySuccess(recharge);
 	}
 	

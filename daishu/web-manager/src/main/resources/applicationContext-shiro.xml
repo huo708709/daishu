@@ -35,6 +35,7 @@
 				/Captcha.jpg = anon
 				/static/** = anon
 				/pc/** = anon
+				/api/** = anon
 				/manager/login = authc
 				/manager/logout = logout
 		    	/** = user

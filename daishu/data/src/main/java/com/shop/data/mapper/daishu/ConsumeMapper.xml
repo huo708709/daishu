@@ -6,7 +6,7 @@
 		insert into t_consume
 		(customer_id,order_id,money,time)
 		values
-		(#{customer_id},#{order_id},#{money},#{time})
+		(#{customerId},#{orderId},#{money},#{time})
 	</insert>
 	
 	<select id="selectById" resultType="Consume">

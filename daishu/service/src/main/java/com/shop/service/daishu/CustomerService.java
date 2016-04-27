@@ -22,6 +22,14 @@ public class CustomerService extends AbstractService<Customer> {
 		return this.customerMapper.selectByOpenid(openid);
 	}
 	
+	public int updateBalance(int customerId, double balance) {
+		return this.customerMapper.updateBalance(customerId, balance);
+	}
+	
+	public double getBalance(int id) {
+		return this.customerMapper.getBalance(id);
+	}
+	
 	@Override
 	public AbstractMapper getAbstractMapper() {
 		return this.customerMapper;

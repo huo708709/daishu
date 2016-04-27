@@ -26,11 +26,11 @@
 	</appender>
 
 	-->
-	<logger name="com.shop" level="info" />
-	<logger name="org.springframework.aop" level="info" />
-	<logger name="org.springframework.web.servlet" level="info" />
+	<logger name="com.shop" level="debug" />
+	<logger name="org.springframework.aop" level="debug" />
+	<logger name="org.springframework.web.servlet" level="debug" />
 	
-	<root level="info">
+	<root level="debug">
 		<appender-ref ref="STDOUT" />
 	</root>
 </configuration>

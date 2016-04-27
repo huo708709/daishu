@@ -43,7 +43,7 @@ public class HomeController extends AbstractController<Object> {
 	@Autowired
 	private BusinessService businessService;
 
-	@RequestMapping(value = "")
+	@RequestMapping(value = "index")
 	public ModelAndView index(HttpSession session) {
 		ModelAndView mav = new ModelAndView("index");
 		Map<Object, Map<String, Object>> businessMap = this.businessService.getBusinessMap();
@@ -86,14 +86,14 @@ public class HomeController extends AbstractController<Object> {
 				session.setAttribute(AclFilter.loginCustomer, customer);
 				session.setAttribute(AclFilter.CODE, code);
 				session.setAttribute(AclFilter.OPENID, openid);
-				ModelAndView mav = new ModelAndView("redirect:");
+				ModelAndView mav = new ModelAndView("redirect:/index");
 				return mav;
 			} else {
-				ModelAndView mav = new ModelAndView("redirect:");
+				ModelAndView mav = new ModelAndView("redirect:/index");
 				return mav;
 			}
 		} else {
-			ModelAndView mav = new ModelAndView("redirect:");
+			ModelAndView mav = new ModelAndView("redirect:/index");
 			return mav;
 		}
 	}

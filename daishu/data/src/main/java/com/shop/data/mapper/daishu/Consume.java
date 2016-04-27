@@ -18,7 +18,8 @@ public class Consume extends IntEntity {
 	/**
 	 * 订单
 	 */
-	private int order_id;
+	private int orderId;
+	
 	public int getCustomerId() {
 		return customerId;
 	}
@@ -37,11 +38,11 @@ public class Consume extends IntEntity {
 	public void setTime(Date time) {
 		this.time = time;
 	}
-	public int getOrder_id() {
-		return order_id;
+	public int getOrderId() {
+		return orderId;
 	}
-	public void setOrder_id(int order_id) {
-		this.order_id = order_id;
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
 	}
 
 }

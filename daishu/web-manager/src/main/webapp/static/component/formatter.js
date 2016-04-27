@@ -18,6 +18,8 @@ define('component/formatter', [], function() {
 				return '家具护理';
 			} else if (8 == data) {
 				return '干洗';
+			} else if (9 == data) {
+				return '包月订单';
 			} else {
 				return '未知';
 			}

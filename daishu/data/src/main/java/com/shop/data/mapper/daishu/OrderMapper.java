@@ -10,10 +10,13 @@ import com.shop.data.model.TableParameter;
 
 public interface OrderMapper extends AbstractMapper {
 
-	void changeProperty(@Param("orderId") int orderId,@Param("name") String name, @Param("value") double value);
+	public void changeProperty(@Param("orderId") int orderId,@Param("name") String name, @Param("value") double value);
 
-	List<Order> listOrdersByCustomerId(@Param("customerId") int customerId);
+	public List<Order> listOrdersByCustomerId(@Param("customerId") int customerId);
 
-	List<Map<String,Object>> listPagedOrderData(@Param("tableParam") TableParameter parameter,@Param("startTime") String startTime,@Param("endTime") String endTime);
+	public List<Map<String,Object>> listPagedOrderData(@Param("tableParam") TableParameter parameter,@Param("startTime") String startTime,@Param("endTime") String endTime);
+	
 	public int countOrderData(@Param("startTime") String startTime,@Param("endTime") String endTime);
+	
+	public Order selectByIdAndNo(@Param("id") int id, @Param("orderNo") String orderNo);
 }

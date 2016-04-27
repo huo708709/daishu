@@ -30,8 +30,13 @@ public class OrderService extends AbstractService<Order> {
 	public void changeProperty(int orderId,String name, double value) {
 		this.orderMapper.changeProperty(orderId,name, value);
 	}
+	
 	public List<Order> listOrdersByCustomerId(int customerId){
 		return this.orderMapper.listOrdersByCustomerId(customerId);
+	}
+	
+	public Order selectByIdAndNo(int id, String orderNo) {
+		return this.orderMapper.selectByIdAndNo(id, orderNo);
 	}
 
 	public TableData listPagedOrderData(TableParameter parameter, String startTime,String endTime) {
