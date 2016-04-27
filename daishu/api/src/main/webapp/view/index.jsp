@@ -44,14 +44,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="am-container margin-top-10" style="height: 71.4%;">
 		<div class="am-g">
 			<div class="am-u-sm-6 index-panel margin-top-05 padding-right-025">
-				<a href="baojie?type=1">
+				<a href="baojie?type=1&title=${businessMap.changgui.title }">
 					<div id="changguibaojie" class="changguibaojie">
 						<img class="img-logo" src="static/img/changguibaojie_logo.png">
 						<img class="img-title" src="static/img/changguibaojie_title.png">
 						<span class="intro">${businessMap.changgui.intro }</span>
 						<span class="unit">${businessMap.changgui.price }${businessMap.changgui.name }</span>
 					</div>
-				</a> <a href="baojie?type=2">
+				</a> <a href="baojie?type=2&title=${businessMap.jingxibaojie.title }">
 					<div id="jingxibaojie" class="margin-top-05 jingxibaojie">
 						<img class="img-logo" src="static/img/jingxibaojie_logo.png">
 						<img class="img-title" src="static/img/jingxibaojie_title.png">
@@ -61,12 +61,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</a>
 			</div>
 			<div class="am-u-sm-6 index-panel margin-top-05 padding-left-025">
-				<a href="baojie?type=4"><div id="caboli" class="caboli">
+				<a href="baojie?type=4&title=${businessMap.caboli.title }"><div id="caboli" class="caboli">
 						<img class="img-logo" src="static/img/caboli_logo.png"> <img
 							class="img-title" src="static/img/caboli_title.png">
 						<span class="intro">${businessMap.caboli.intro }</span>
 						<span class="unit">${businessMap.caboli.price }${businessMap.caboli.name }</span>
-					</div></a> <a href="baojie?type=8"><div id="ganxi" class="ganxi margin-top-05">
+					</div></a> <a href="baojie?type=8&title=${businessMap.ganxi.title }"><div id="ganxi" class="ganxi margin-top-05">
 						<img class="img-logo" src="static/img/ganxi_logo.png"> <img
 							class="img-title" src="static/img/ganxi_title.png">
 						<span class="intro">${businessMap.ganxi.intro }</span>
@@ -77,28 +77,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="am-g">
 			<div class="am-u-sm-9 index-panel padding-right-025">
 				<ul class="am-avg-sm-2">
-					<li class="padding-right-025 margin-top-05"><a href="baojie?type=3"><div
+					<li class="padding-right-025 margin-top-05"><a href="baojie?type=3&title=${businessMap.shendubaojie.title }"><div
 								id="shendubaojie" class="shendubaojie">
 								<img class="img-logo" src="static/img/shendubaojie_logo.png">
 								<img class="img-title" src="static/img/shendubaojie_title.png">
 								<span class="intro">${businessMap.shendubaojie.intro }</span>
 								<span class="unit">${businessMap.shendubaojie.price }${businessMap.shendubaojie.name }</span>
 							</div></a></li>
-					<li class="padding-left-025 margin-top-05"><a href="baojie?type=5"><div
+					<li class="padding-left-025 margin-top-05"><a href="baojie?type=5&title=${businessMap.xinjukaihuang.title }"><div
 								id="xinjukaihuang" class="xinjukaihuang">
 								<img class="img-logo" src="static/img/xinjukaihuang_logo.png">
 								<img class="img-title" src="static/img/xinjukaihuang_title.png">
 								<span class="intro">${businessMap.xinjukaihuang.intro }</span>
 								<span class="unit">${businessMap.xinjukaihuang.price }${businessMap.xinjukaihuang.name }</span>
 							</div></a></li>
-					<li class="padding-right-025 margin-top-05"><a href="baojie?type=7"><div
+					<li class="padding-right-025 margin-top-05"><a href="baojie?type=7&title=${businessMap.jiajuhuli.title }"><div
 								id="jiajuhuli" class="jiajuhuli">
 								<img class="img-logo" src="static/img/jiajuhuli_logo.png">
 								<img class="img-title" src="static/img/jiajuhuli_title.png">
 								<span class="intro">${businessMap.jiajuhuli.intro }</span>
 								<span class="unit">${businessMap.jiajuhuli.price }${businessMap.jiajuhuli.name }</span>
 							</div></a></li>
-					<li class="padding-left-025 margin-top-05"><a href="baojie?type=6"><div
+					<li class="padding-left-025 margin-top-05"><a href="baojie?type=6&title=${businessMap.jiadianqingxi.title }"><div
 								id="jiadianqingxi" class="jiadianqingxi">
 								<img class="img-logo" src="static/img/jiadianqingxi_logo.png">
 								<img class="img-title" src="static/img/jiadianqingxi_title.png">
@@ -108,7 +108,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</ul>
 			</div>
 			<div class="am-u-sm-3 index-panel padding-left-025 margin-top-05">
-				<a href="baojie?type=9"><div id="guanjiayuyue" class="guanjiayuyue"
+				<a href="baojie?type=9&title=包月"><div id="guanjiayuyue" class="guanjiayuyue"
 						style="background-color: #f39910; border-radius: 8px;">
 						<img class="img-yue" src="static/img/guanjiayuyue_yue.png">
 						<img class="img-title" src="static/img/guanjiayuyue_title.png">

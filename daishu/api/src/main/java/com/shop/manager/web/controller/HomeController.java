@@ -117,7 +117,7 @@ public class HomeController extends AbstractController<Object> {
 
 	String[] weekDays = {"周日", "周一", "周二", "周三", "周四", "周五", "周六"};
 	@RequestMapping(value = "baojie")
-	public ModelAndView baojie(int type) {
+	public ModelAndView baojie(int type, String title) {
 		ModelAndView mav = null;
 		if (3 == type || 7 == type || 8 == type) {
 			mav = new ModelAndView("baojie1");
@@ -154,6 +154,7 @@ public class HomeController extends AbstractController<Object> {
 		mav.addObject("baojieType", type);
 		Unit unit = unitService.selectByBaojieType(type);
 		mav.addObject("unit", unit);
+		mav.addObject("title", title);
 		return mav;
 	}
 

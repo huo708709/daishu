@@ -28,7 +28,7 @@
 	</select>
 	
 	<select id="listMap" resultType="map">
-		select a.id,a.type,a.code,a.intro,a.unit_id,b.name,b.price from t_business a left join t_unit b on a.unit_id=b.id;
+		select a.id,a.name title,a.type,a.code,a.intro,a.unit_id,b.name,b.price from t_business a left join t_unit b on a.unit_id=b.id;
 	</select>
 	
 	<delete id="deleteByIds">
