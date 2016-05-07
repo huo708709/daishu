@@ -1,14 +1,14 @@
-define('page/daishu/unit', ['component/curd', 'component/form'], function(CURD, FORM) {
+define('page/ds/ayi', ['component/curd', 'component/form'], function(CURD, FORM) {
 	
 	var grid = null;
 	return {
 		init: function() {
 			grid = new Datatable();
 			grid.init({
-	            src: $('#datatable_unit'),
+	            src: $('#datatable_ayi'),
 	            dataTable: { 
 	                ajax: {
-	                    url: 'daishu/unit/list_paged',
+	                    url: 'ds/ayi/list_paged',
 	                },
 	                order: [
 	                    [1, 'asc']
@@ -18,15 +18,23 @@ define('page/daishu/unit', ['component/curd', 'component/form'], function(CURD, 
 	                		return '<input type="checkbox" title="' + data + '" class="checkboxes" value="' + data + '" />';
 	                	}
 	                }, {
-	                	data: 'id'
-	                },{
 	                	data: 'name'
 	                }, {
-	                	data: 'price'
+	                	data: 'jobNo'
+	                }, {
+	                	data: 'phone'
+	                }, {
+	                	data: 'cardNo'
+	                }, {
+	                	data: 'cardPlace'
+	                }, {
+	                	data: 'address'
+	                }, {
+	                	data: 'birthday'
 	                }, {
 	                	orderabel: false, render: function(data, type, row, meta) {
-	                		var s = '<a class="btn btn-xs default blue skip_to_edit" href="daishu/unit/update?id=' + row.id + '"> 修改 </a>';
-	                		s += '<a class="btn btn-xs default red unit_delete" data-id="' + row.id + '" href="javascript:"> 删除 </a>';
+	                		var s = '<a class="btn btn-xs default blue skip_to_edit" href="ds/ayi/update?id=' + row.id + '"> 修改 </a>';
+	                		s += '<a class="btn btn-xs default red ayi_delete" data-id="' + row.id + '" href="javascript:"> 删除 </a>';
 	                		return s;
 	                	}
 	                }]
@@ -36,18 +44,30 @@ define('page/daishu/unit', ['component/curd', 'component/form'], function(CURD, 
 		},
 		initEdit: function() {
 			var the = this;
-			$('#unit_birthday').datetimepicker({
+			$('#ayi_birthday').datetimepicker({
 				format: 'yyyy-mm-dd',
 				language: 'zh-CN',
 				minView: 1
 			});
-			FORM.initFormValidate($('#unit_form'), {
+			FORM.initFormValidate($('#ayi_form'), {
 				rules: {
 					name: {
 						required: true,
 					},
-					price: {
+					phone: {
 						required: true,
+					},
+					cardNo: {
+						required: true
+					},
+					cardPlace: {
+						required: true
+					},
+					address: {
+						required: true
+					},
+					birthday: {
+						required: true
 					}
 				}
 			}, function() {
@@ -58,22 +78,22 @@ define('page/daishu/unit', ['component/curd', 'component/form'], function(CURD, 
 		},
 		bind: function() {
 			var the = this;
-			$('#unit_container').on('click', '.unit_delete', function() {
-				var unitId = $(this).data('id');
-				the.deleteAyi([unitId]);
-			}).on('click', '.units_delete', function() {
+			$('#ayi_container').on('click', '.ayi_delete', function() {
+				var ayiId = $(this).data('id');
+				the.deleteAyi([ayiId]);
+			}).on('click', '.ayis_delete', function() {
 				the.deleteAyi(grid.getSelectedRows());
 			});
 		},
 		unbind: function() {
-			$('#unit_container').off();
+			$('#ayi_container').off();
 		},
-		deleteAyi: function(unitIds) {
+		deleteAyi: function(ayiIds) {
 			var the = this;
 			CURD.deleteByIds({
-				url: 'daishu/unit/delete',
+				url: 'ds/ayi/delete',
 				data: {
-					ids: unitIds
+					ids: ayiIds
 				}
 			}, function() {
 				the.gridReload();

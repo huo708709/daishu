@@ -1,19 +1,19 @@
-define('page/daishu/member_card', ['component/curd', 'component/form'], function(CURD, FORM) {
+define('page/ds/schedule', ['component/curd', 'component/form'], function(CURD, FORM) {
 	
 	var grid = null;
 	return {
 		init: function() {
 			$.fn.editable.defaults.mode = 'inline';
 			$.fn.editable.defaults.inputclass = 'form-control';
-	        $.fn.editable.defaults.url = 'daishu/member_card/update';
-			$('#member_card_table .editable_item').editable();
+	        $.fn.editable.defaults.url = 'ds/schedule/update';
+			$('#schedule_table .editable_item').editable();
 			this.bind();
 		},
 		bind: function() {
 			var the = this;
 		},
 		unbind: function() {
-			$('#member_card_table').off();
+			$('#schedule_table').off();
 		},
 		destroy: function() {
 			if (grid) {

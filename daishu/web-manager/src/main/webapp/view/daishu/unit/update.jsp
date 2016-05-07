@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <div class="portlet light bg-inverse">
 	<div class="portlet-body form">
-		<form id="unit_form" class="form-horizontal" action="daishu/unit/update" method="post">
+		<form id="unit_form" class="form-horizontal" action="ds/unit/update" method="post">
 			<input type="hidden" name="id" value="${unit.id }">
 			<div class="form-body">
 				<div class="alert alert-danger display-hide">

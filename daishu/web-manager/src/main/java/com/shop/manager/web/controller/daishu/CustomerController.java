@@ -14,7 +14,7 @@ import com.shop.service.AbstractService;
 import com.shop.service.daishu.CustomerService;
 
 @Controller
-@RequestMapping("daishu/customer")
+@RequestMapping("ds/customer")
 public class CustomerController extends AbstractController<Customer> {
 
 	@Autowired

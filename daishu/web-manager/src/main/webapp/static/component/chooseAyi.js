@@ -19,7 +19,7 @@ define('component/chooseAyi', ['component/modal', 'component/curd'], function(Mo
 			var the = this;
 			Modal.open({
 				backdrop: 'static',
-				remote: 'daishu/ayi/choice?orderId=' + orderId,
+				remote: 'ds/ayi/choice?orderId=' + orderId,
 				loadedCallBack: function() {
 					createchooseAyiGrid.call(the);
 				},
@@ -39,7 +39,7 @@ define('component/chooseAyi', ['component/modal', 'component/curd'], function(Mo
 					
 					
 					CURD.ajax({
-						url: 'daishu/ayi/assign_ayi',
+						url: 'ds/ayi/assign_ayi',
 						data: {
 							orderId: orderId,
 							ayiId: ayiIds[0]

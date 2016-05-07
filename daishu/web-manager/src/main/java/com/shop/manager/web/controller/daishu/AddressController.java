@@ -14,7 +14,7 @@ import com.shop.service.AbstractService;
 import com.shop.service.daishu.AddressService;
 
 @Controller
-@RequestMapping("daishu/address")
+@RequestMapping("ds/address")
 public class AddressController extends AbstractController<Address> {
 
 	@Autowired

@@ -17,7 +17,7 @@ import com.shop.service.AbstractService;
 import com.shop.service.daishu.AyiService;
 
 @Controller
-@RequestMapping("daishu/ayi")
+@RequestMapping("ds/ayi")
 public class AyiController extends AbstractController<Ayi> {
 
 	@Autowired

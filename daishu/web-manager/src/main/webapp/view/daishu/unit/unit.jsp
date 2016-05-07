@@ -15,7 +15,7 @@
 		</div>
 	</div>
 	<div class="btn-group">
-        <button class="btn green skip_to_edit" type="button" url="daishu/unit/add">
+        <button class="btn green skip_to_edit" type="button" url="ds/unit/add">
             <i class="fa fa-plus"></i> 添加</button>
 		<button class="btn red units_delete" type="button">
             <i class="fa fa-plus"></i> 删除</button>

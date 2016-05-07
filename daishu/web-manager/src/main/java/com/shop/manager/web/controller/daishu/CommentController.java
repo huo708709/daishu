@@ -16,7 +16,7 @@ import com.shop.service.AbstractService;
 import com.shop.service.daishu.CommentService;
 
 @Controller
-@RequestMapping("daishu/comment")
+@RequestMapping("ds/comment")
 public class CommentController extends AbstractController<Comment> {
 
 	@Autowired

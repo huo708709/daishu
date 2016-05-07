@@ -19,7 +19,7 @@
 		</div>
 	</div>
 	<div class="btn-group">
-        <button class="btn green skip_to_edit" type="button" url="daishu/address/add">
+        <button class="btn green skip_to_edit" type="button" url="ds/address/add">
             <i class="fa fa-plus"></i> 添加</button>
 		<button class="btn red addresss_delete" type="button">
             <i class="fa fa-plus"></i> 删除</button>

@@ -20,7 +20,7 @@ import com.shop.service.daishu.OrderService;
 import com.shop.service.website.BusinessService;
 
 @Controller
-@RequestMapping("daishu/order")
+@RequestMapping("ds/order")
 public class OrderController extends AbstractController<Order> {
 
 	@Autowired

@@ -14,7 +14,7 @@ import com.shop.service.AbstractService;
 import com.shop.service.daishu.MemberCardService;
 
 @Controller
-@RequestMapping("daishu/member_card")
+@RequestMapping("ds/member_card")
 public class MemberCardController extends AbstractController<MemberCard> {
 	
 	@Autowired

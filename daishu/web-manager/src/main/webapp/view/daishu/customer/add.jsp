@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <div class="portlet light bg-inverse">
 	<div class="portlet-body form">
-		<form id="customer_form" class="form-horizontal" action="daishu/customer/add" method="post">
+		<form id="customer_form" class="form-horizontal" action="ds/customer/add" method="post">
 			<div class="form-body">
 				<div class="alert alert-danger display-hide">
                 	<button data-close="alert" class="close"></button> You have some form errors. Please check below. </div>

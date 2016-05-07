@@ -11,7 +11,7 @@ import com.shop.service.AbstractService;
 import com.shop.service.daishu.OrderService;
 
 @Controller
-@RequestMapping("daishu/order_statistic")
+@RequestMapping("ds/order_statistic")
 public class OrderStatisticController extends AbstractController<Order> {
 
 	@Autowired

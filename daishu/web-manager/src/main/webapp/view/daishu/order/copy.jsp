@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div class="portlet light bg-inverse">
 	<div class="portlet-body form">
-		<form id="order_copy_form" class="form-horizontal" action="daishu/order/copy" method="post">
+		<form id="order_copy_form" class="form-horizontal" action="ds/order/copy" method="post">
 			<input type="hidden" name="id" value="${order.id }">
 			<div class="form-body">
 				<div class="alert alert-danger display-hide">

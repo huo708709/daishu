@@ -1,20 +1,14 @@
-define('page/daishu/order', ['component/curd', 'component/form', 'component/formatter', 'component/chooseAyi','component/modal'], function(CURD, FORM, Formatter,ChooseAyi,Modal) {
+define('page/ds/order_statistic', ['component/curd', 'component/form', 'component/formatter', 'component/chooseAyi','component/modal'], function(CURD, FORM, Formatter,ChooseAyi,Modal) {
 	
 	var grid = null;
 	return {
 		init: function() {
 			grid = new Datatable();
 			grid.init({
-	            src: $('#datatable_order'),
-	            onDataLoad: function() {
-	            	$.fn.editable.defaults.mode = 'inline';
-	    			$.fn.editable.defaults.inputclass = 'form-control';
-	    	        $.fn.editable.defaults.url = 'daishu/order/changePrice';
-	    			$('#datatable_order .editable_item').editable();
-	            },
+	            src: $('#datatable_order_statistic'),
 	            dataTable: { 
 	                ajax: {
-	                    url: 'daishu/order/list_paged',
+	                    url: 'ds/order/list_paged',
 	                },
 	                order: [
 	                    [1, 'asc']
@@ -50,20 +44,7 @@ define('page/daishu/order', ['component/curd', 'component/form', 'component/form
 	                }, {
 	                	data: 'ayiName'
 	                },{
-	                	data: 'price', render: function(data, type, row, meta) {
-	                		return '<a class="editable_item" href="javascript:;" id="price" data-type="text" data-pk="'+row.id+'" data-original-title="输入价格">'+data+'</a>';
-	                	}
-	                }, {
-	                	orderabel: false, render: function(data, type, row, meta) {
-	                		var s = '<a class="btn btn-xs default purple choose_ayi" data-id="' + row.id + '" href="javascript:"> 指派阿姨 </a>';
-//	                		s += '<a class="btn btn-xs default blue skip_to_edit" href="daishu/order/update?id=' + row.id + '"> 修改 </a>';
-	                		if(row.payStatus == 1){
-	                			s += '<a class="btn btn-xs default purple order_update_pay_status" data-id="' + row.id + '" href="javascript:"> 修改支付状态为"服务中" </a>';
-	                		}
-	                		s += '<a class="btn btn-xs default red order_delete" data-id="' + row.id + '" href="javascript:"> 删除 </a><br>';
-	                		s += '<a class="btn btn-xs default blue skip_to_edit" href="daishu/order/copy?id=' + row.id + '"> 复制订单 </a><br>';
-	                		return s;
-	                	}
+	                	data: 'price'
 	                }]
 	            }
 	        });
@@ -71,26 +52,29 @@ define('page/daishu/order', ['component/curd', 'component/form', 'component/form
 		},
 		initEdit: function() {
 			var the = this;
-			$('#serviceDate').datetimepicker({
+			$('#order_birthday').datetimepicker({
 				format: 'yyyy-mm-dd',
 				language: 'zh-CN',
 				minView: 1
 			});
-			FORM.initFormValidate($('#order_copy_form'), {
+			FORM.initFormValidate($('#order_form'), {
 				rules: {
-					area: {
+					name: {
 						required: true,
 					},
-					price: {
+					phone: {
 						required: true,
 					},
-					serviceTimeType: {
+					cardNo: {
 						required: true
 					},
-					serviceDate: {
+					cardPlace: {
 						required: true
 					},
-					baojieType: {
+					address: {
+						required: true
+					},
+					birthday: {
 						required: true
 					}
 				}
@@ -102,14 +86,11 @@ define('page/daishu/order', ['component/curd', 'component/form', 'component/form
 		},
 		bind: function() {
 			var the = this;
-			$('#order_container').on('click', '.order_delete', function() {
+			$('#order_statistic_container').on('click', '.order_delete', function() {
 				var orderId = $(this).data('id');
-				the.deleteOrder([orderId]);
-			}).on('click', '.order_update_pay_status', function() {
-				var orderId = $(this).data('id');
-				the.updatePayStatusByIds([orderId]);
+				the.deleteAyi([orderId]);
 			}).on('click', '.orders_delete', function() {
-				the.deleteOrder(grid.getSelectedRows());
+				the.deleteAyi(grid.getSelectedRows());
 			});
 			$(document).on('click', '.choose_ayi', function() {
 				var userId = $(this).data('id');
@@ -117,28 +98,13 @@ define('page/daishu/order', ['component/curd', 'component/form', 'component/form
 			});
 		},
 		unbind: function() {
-			$('#order_container').off();
+			$('#order_statistic_container').off();
 			$(document).off('click', '.choose_ayi');
 		},
-		deleteOrder: function(orderIds) {
+		deleteAyi: function(orderIds) {
 			var the = this;
 			CURD.deleteByIds({
-				url: 'daishu/order/delete',
-				data: {
-					ids: orderIds
-				}
-			}, function() {
-				the.gridReload();
-			}, function() {
-				the.gridReload();
-			});
-		},
-		updatePayStatusByIds: function(orderIds) {
-			var the = this;
-			CURD.operateByIds(
-				'确认修改支付状态？',
-				{
-				url: 'daishu/order/updatePayStatusByIds',
+				url: 'ds/order/delete',
 				data: {
 					ids: orderIds
 				}

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <div class="portlet light bg-inverse">
 	<div class="portlet-body form">
-		<form id="customer_form" class="form-horizontal" action="daishu/customer/update" method="post">
+		<form id="customer_form" class="form-horizontal" action="ds/customer/update" method="post">
 			<input type="hidden" name="id" value="${customer.id }">
 			<div class="form-body">
 				<div class="alert alert-danger display-hide">

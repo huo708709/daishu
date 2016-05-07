@@ -14,7 +14,7 @@ import com.shop.service.AbstractService;
 import com.shop.service.daishu.ScheduleService;
 
 @Controller
-@RequestMapping("daishu/schedule")
+@RequestMapping("ds/schedule")
 public class ScheduleController extends AbstractController<Schedule> {
 	
 	@Autowired

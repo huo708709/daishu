@@ -1,14 +1,14 @@
-define('page/daishu/customer', ['component/curd', 'component/form'], function(CURD, FORM) {
+define('page/ds/address', ['component/curd', 'component/form'], function(CURD, FORM) {
 	
 	var grid = null;
 	return {
 		init: function() {
 			grid = new Datatable();
 			grid.init({
-	            src: $('#datatable_customer'),
+	            src: $('#datatable_address'),
 	            dataTable: { 
 	                ajax: {
-	                    url: 'daishu/customer/list_paged',
+	                    url: 'ds/address/list_paged',
 	                },
 	                order: [
 	                    [1, 'asc']
@@ -18,29 +18,23 @@ define('page/daishu/customer', ['component/curd', 'component/form'], function(CU
 	                		return '<input type="checkbox" title="' + data + '" class="checkboxes" value="' + data + '" />';
 	                	}
 	                }, {
-	                	data: 'weixinName'
-	                }, {
 	                	data: 'name'
+	                }, {
+	                	data: 'jobNo'
 	                }, {
 	                	data: 'phone'
 	                }, {
-	                	data: 'status'
+	                	data: 'cardNo'
 	                }, {
-	                	data: 'lastTime', render: function(data, type, row, meta) {
-	                		if (data) return data;
-	                		else return "";
-	                	}
-	                }, {
-	                	data: 'firstTime', render: function(data, type, row, meta) {
-	                		if (data) return data;
-	                		else return "";
-	                	}
+	                	data: 'cardPlace'
 	                }, {
 	                	data: 'address'
 	                }, {
+	                	data: 'birthday'
+	                }, {
 	                	orderabel: false, render: function(data, type, row, meta) {
-	                		var s = '<a class="btn btn-xs default blue skip_to_edit" href="daishu/customer/update?id=' + row.id + '"> 修改 </a>';
-	                		s += '<a class="btn btn-xs default red customer_delete" data-id="' + row.id + '" href="javascript:"> 删除 </a>';
+	                		var s = '<a class="btn btn-xs default blue skip_to_edit" href="ds/address/update?id=' + row.id + '"> 修改 </a>';
+	                		s += '<a class="btn btn-xs default red address_delete" data-id="' + row.id + '" href="javascript:"> 删除 </a>';
 	                		return s;
 	                	}
 	                }]
@@ -50,15 +44,29 @@ define('page/daishu/customer', ['component/curd', 'component/form'], function(CU
 		},
 		initEdit: function() {
 			var the = this;
-			FORM.initFormValidate($('#customer_form'), {
+			$('#address_birthday').datetimepicker({
+				format: 'yyyy-mm-dd',
+				language: 'zh-CN',
+				minView: 1
+			});
+			FORM.initFormValidate($('#address_form'), {
 				rules: {
 					name: {
 						required: true,
 					},
-					code: {
+					phone: {
 						required: true,
 					},
-					icon: {
+					cardNo: {
+						required: true
+					},
+					cardPlace: {
+						required: true
+					},
+					address: {
+						required: true
+					},
+					birthday: {
 						required: true
 					}
 				}
@@ -70,22 +78,22 @@ define('page/daishu/customer', ['component/curd', 'component/form'], function(CU
 		},
 		bind: function() {
 			var the = this;
-			$('#customer_container').on('click', '.customer_delete', function() {
-				var userId = $(this).data('id');
-				the.deleteCustomer([userId]);
-			}).on('click', '.customers_delete', function() {
-				the.deleteCustomer(grid.getSelectedRows());
+			$('#address_container').on('click', '.address_delete', function() {
+				var addressId = $(this).data('id');
+				the.deleteAyi([addressId]);
+			}).on('click', '.addresss_delete', function() {
+				the.deleteAyi(grid.getSelectedRows());
 			});
 		},
 		unbind: function() {
-			$('#customer_container').off();
+			$('#address_container').off();
 		},
-		deleteCustomer: function(customerIds) {
+		deleteAyi: function(addressIds) {
 			var the = this;
 			CURD.deleteByIds({
-				url: 'daishu/customer/delete',
+				url: 'ds/address/delete',
 				data: {
-					ids: customerIds
+					ids: addressIds
 				}
 			}, function() {
 				the.gridReload();

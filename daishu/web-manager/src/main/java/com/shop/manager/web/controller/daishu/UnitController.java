@@ -14,7 +14,7 @@ import com.shop.service.AbstractService;
 import com.shop.service.daishu.UnitService;
 
 @Controller
-@RequestMapping("daishu/unit")
+@RequestMapping("ds/unit")
 public class UnitController extends AbstractController<Unit> {
 
 	@Autowired

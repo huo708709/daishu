@@ -1,4 +1,4 @@
-define('page/daishu/comment', ['component/curd', 'component/form'], function(CURD, FORM) {
+define('page/ds/comment', ['component/curd', 'component/form'], function(CURD, FORM) {
 	
 	var grid = null;
 	return {
@@ -8,7 +8,7 @@ define('page/daishu/comment', ['component/curd', 'component/form'], function(CUR
 	            src: $('#datatable_comment'),
 	            dataTable: { 
 	                ajax: {
-	                    url: 'daishu/comment/list_paged',
+	                    url: 'ds/comment/list_paged',
 	                },
 	                order: [
 	                    [1, 'asc']
@@ -52,7 +52,7 @@ define('page/daishu/comment', ['component/curd', 'component/form'], function(CUR
 		deleteComment: function(commentIds) {
 			var the = this;
 			CURD.deleteByIds({
-				url: 'daishu/comment/delete',
+				url: 'ds/comment/delete',
 				data: {
 					ids: commentIds
 				}

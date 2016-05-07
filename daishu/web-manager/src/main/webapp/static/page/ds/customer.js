@@ -1,14 +1,14 @@
-define('page/daishu/ayi', ['component/curd', 'component/form'], function(CURD, FORM) {
+define('page/ds/customer', ['component/curd', 'component/form'], function(CURD, FORM) {
 	
 	var grid = null;
 	return {
 		init: function() {
 			grid = new Datatable();
 			grid.init({
-	            src: $('#datatable_ayi'),
+	            src: $('#datatable_customer'),
 	            dataTable: { 
 	                ajax: {
-	                    url: 'daishu/ayi/list_paged',
+	                    url: 'ds/customer/list_paged',
 	                },
 	                order: [
 	                    [1, 'asc']
@@ -18,23 +18,29 @@ define('page/daishu/ayi', ['component/curd', 'component/form'], function(CURD, F
 	                		return '<input type="checkbox" title="' + data + '" class="checkboxes" value="' + data + '" />';
 	                	}
 	                }, {
-	                	data: 'name'
+	                	data: 'weixinName'
 	                }, {
-	                	data: 'jobNo'
+	                	data: 'name'
 	                }, {
 	                	data: 'phone'
 	                }, {
-	                	data: 'cardNo'
+	                	data: 'status'
 	                }, {
-	                	data: 'cardPlace'
+	                	data: 'lastTime', render: function(data, type, row, meta) {
+	                		if (data) return data;
+	                		else return "";
+	                	}
+	                }, {
+	                	data: 'firstTime', render: function(data, type, row, meta) {
+	                		if (data) return data;
+	                		else return "";
+	                	}
 	                }, {
 	                	data: 'address'
 	                }, {
-	                	data: 'birthday'
-	                }, {
 	                	orderabel: false, render: function(data, type, row, meta) {
-	                		var s = '<a class="btn btn-xs default blue skip_to_edit" href="daishu/ayi/update?id=' + row.id + '"> 修改 </a>';
-	                		s += '<a class="btn btn-xs default red ayi_delete" data-id="' + row.id + '" href="javascript:"> 删除 </a>';
+	                		var s = '<a class="btn btn-xs default blue skip_to_edit" href="ds/customer/update?id=' + row.id + '"> 修改 </a>';
+	                		s += '<a class="btn btn-xs default red customer_delete" data-id="' + row.id + '" href="javascript:"> 删除 </a>';
 	                		return s;
 	                	}
 	                }]
@@ -44,29 +50,15 @@ define('page/daishu/ayi', ['component/curd', 'component/form'], function(CURD, F
 		},
 		initEdit: function() {
 			var the = this;
-			$('#ayi_birthday').datetimepicker({
-				format: 'yyyy-mm-dd',
-				language: 'zh-CN',
-				minView: 1
-			});
-			FORM.initFormValidate($('#ayi_form'), {
+			FORM.initFormValidate($('#customer_form'), {
 				rules: {
 					name: {
 						required: true,
 					},
-					phone: {
+					code: {
 						required: true,
 					},
-					cardNo: {
-						required: true
-					},
-					cardPlace: {
-						required: true
-					},
-					address: {
-						required: true
-					},
-					birthday: {
+					icon: {
 						required: true
 					}
 				}
@@ -78,22 +70,22 @@ define('page/daishu/ayi', ['component/curd', 'component/form'], function(CURD, F
 		},
 		bind: function() {
 			var the = this;
-			$('#ayi_container').on('click', '.ayi_delete', function() {
-				var ayiId = $(this).data('id');
-				the.deleteAyi([ayiId]);
-			}).on('click', '.ayis_delete', function() {
-				the.deleteAyi(grid.getSelectedRows());
+			$('#customer_container').on('click', '.customer_delete', function() {
+				var userId = $(this).data('id');
+				the.deleteCustomer([userId]);
+			}).on('click', '.customers_delete', function() {
+				the.deleteCustomer(grid.getSelectedRows());
 			});
 		},
 		unbind: function() {
-			$('#ayi_container').off();
+			$('#customer_container').off();
 		},
-		deleteAyi: function(ayiIds) {
+		deleteCustomer: function(customerIds) {
 			var the = this;
 			CURD.deleteByIds({
-				url: 'daishu/ayi/delete',
+				url: 'ds/customer/delete',
 				data: {
-					ids: ayiIds
+					ids: customerIds
 				}
 			}, function() {
 				the.gridReload();

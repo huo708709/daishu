@@ -9,7 +9,7 @@
 		(#{name},#{phone},#{cardNo},#{cardPlace},#{address},#{jobNo},#{birthday})
 	</insert>
 	<select id="selectWithOrderId" resultMap="AyiWithOrderMap">
-		select a.id,name,card_no cardNo,
+		select a.id,a.name,card_no cardNo,
 		case when b.ayi_id=a.id then 1 else 0 end selected
 		from t_ayi a 
 		left join t_order b on a.id=b.ayi_id and b.id =#{orderId}
