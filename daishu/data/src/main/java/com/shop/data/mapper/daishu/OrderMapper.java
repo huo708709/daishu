@@ -14,11 +14,11 @@ public interface OrderMapper extends AbstractMapper {
 
 	public List<Order> listOrdersByCustomerId(@Param("customerId") int customerId);
 
-	public List<Map<String,Object>> listPagedOrderData(@Param("tableParam") TableParameter parameter,@Param("startTime") String startTime,@Param("endTime") String endTime);
+	public List<Map<String,Object>> listPagedOrderData(@Param("tableParam") TableParameter parameter,@Param("startTime") String startTime, @Param("endTime") String endTime, @Param("ayiId") int ayiId);
 	
-	public int countOrderData(@Param("startTime") String startTime,@Param("endTime") String endTime);
+	public int countOrderData(@Param("startTime") String startTime,@Param("endTime") String endTime, @Param("ayiId") int ayiId);
 	
 	public Order selectByIdAndNo(@Param("id") int id, @Param("orderNo") String orderNo);
 
-	void updatePayStatusByIds(@Param("ids")int[] ids);
+	void updatePayStatusByIds(@Param("ids")int[] ids, @Param("payStatus") int payStatus);
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div id="data_order_container" class="table-container">
 	<div class="form-horizontal">
 		<div class="form-body">
@@ -11,6 +12,19 @@
                  <label class="control-label col-md-1">结束时间</label>
                  <div class="col-md-3">
                      <input id="endTime" name="endTime" type="text" placeholder="订单创建时间止" class="form-control form-filter">
+                 </div>
+             </div>
+		</div>
+		<div class="form-body">
+			<div class="form-group">
+                 <label class="control-label col-md-1">阿姨</label>
+                 <div class="col-md-3">
+                     <select name="ayiId" class="form-control form-filter">
+                     	<option value="0">全部</option>
+                     	<c:forEach items="${ayis }" var="ayi">
+                     	<option value="${ayi.id }">${ayi.name }</option>
+                     	</c:forEach>
+                     </select>
                  </div>
                  <div class="col-md-3">
                      <button class="btn btn-primary filter-submit">查询</button>

@@ -44,6 +44,8 @@ define('component/formatter', [], function() {
 				return '待评价';
 			} else if (4 == data) {
 				return '已评价';
+			} else if (5 == data) {
+				return '已取消';
 			} else{
 				return data;
 			}
@@ -70,6 +72,13 @@ define('component/formatter', [], function() {
 				return '会员卡支付';
 			} else{
 				return data;
+			}
+		},
+		customerStatusFormatter: function(data) {
+			if (1 == data) {
+				return '正常';
+			} else{
+				return '禁用';
 			}
 		}
 	};

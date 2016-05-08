@@ -1,4 +1,4 @@
-define('page/ds/customer', ['component/curd', 'component/form'], function(CURD, FORM) {
+define('page/ds/customer', ['component/curd', 'component/form', 'component/formatter'], function(CURD, FORM, Formatter) {
 	
 	var grid = null;
 	return {
@@ -24,7 +24,9 @@ define('page/ds/customer', ['component/curd', 'component/form'], function(CURD, 
 	                }, {
 	                	data: 'phone'
 	                }, {
-	                	data: 'status'
+	                	data: 'status', render: function(data, type, row, meta) {
+	                		return Formatter.customerStatusFormatter(data);
+	                	}
 	                }, {
 	                	data: 'lastTime', render: function(data, type, row, meta) {
 	                		if (data) return data;

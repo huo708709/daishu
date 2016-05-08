@@ -36,6 +36,10 @@
 		select * from t_ayi where id=#{id}
 	</select>
 	
+	<select id="listAll" resultType="Ayi">
+		select id,name from t_ayi
+	</select>
+	
 	<delete id="deleteByIds">
 		delete from t_ayi
 		<where>

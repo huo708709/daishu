@@ -36,7 +36,7 @@ public class OrderController extends AbstractController<Order> {
 	@ResponseBody
 	@RequestMapping(value = "updatePayStatusByIds", method = RequestMethod.POST)
 	public ResponseData delete(@RequestParam("ids[]") int[] ids) {
-		orderService.updatePayStatusByIds(ids);
+		orderService.updatePayStatusByIds(ids, Order.PAY_STATUS_SERVICE);
 		return this.response("修改支付状态成功", ResponseData.ACTION_TOAST);
 	}
 	@RequestMapping(value = "add", method = RequestMethod.GET)
@@ -105,6 +105,13 @@ public class OrderController extends AbstractController<Order> {
 	public ResponseData update(Order order) {
 		this.getAbstractService().update(order);
 		return this.response("修改订单成功", ResponseData.ACTION_TOAST);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "cancel_order", method = RequestMethod.POST)
+	public ResponseData cancelOrder(@RequestParam("ids[]") int[] ids) {
+		this.orderService.updatePayStatusByIds(ids, Order.PAY_STATUS_CARCEL);
+		return this.response("取消成功", ResponseData.ACTION_TOAST);
 	}
 	
 	@Override

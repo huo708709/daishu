@@ -42,6 +42,7 @@ public class Order extends IntEntity {
 	public final static int PAY_STATUS_SERVICE = 2; //服务中
 	public final static int PAY_STATUS_WAIT_COMMENT =3; //待评价
 	public final static int PAY_STATUS_COMMENTED =4; //已评价
+	public final static int PAY_STATUS_CARCEL =5; //取消
 	
 	public final static int SERVICE_TIME_TYPE_1 = 1; //待支付
 	public final static int SERVICE_TIME_TYPE_2 = 2; //服务中

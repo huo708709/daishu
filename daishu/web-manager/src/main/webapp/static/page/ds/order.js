@@ -28,6 +28,10 @@ define('page/ds/order', ['component/curd', 'component/form', 'component/formatte
 	                }, {
 	                	data: 'customerName'
 	                }, {
+	                	data: 'phone'
+	                }, {
+	                	data: 'addressContent'
+	                }, {
 	                	data: 'createTime'
 	                }, {
 	                	data: 'serviceDate'
@@ -57,10 +61,12 @@ define('page/ds/order', ['component/curd', 'component/form', 'component/formatte
 	                	orderabel: false, render: function(data, type, row, meta) {
 	                		var s = '<a class="btn btn-xs default purple choose_ayi" data-id="' + row.id + '" href="javascript:"> 指派阿姨 </a>';
 //	                		s += '<a class="btn btn-xs default blue skip_to_edit" href="ds/order/update?id=' + row.id + '"> 修改 </a>';
-	                		if(row.payStatus == 1){
+	                		if(row.payStatus == 1) {
 	                			s += '<a class="btn btn-xs default purple order_update_pay_status" data-id="' + row.id + '" href="javascript:"> 修改支付状态为"服务中" </a>';
 	                		}
-	                		s += '<a class="btn btn-xs default red order_delete" data-id="' + row.id + '" href="javascript:"> 删除 </a><br>';
+	                		if (row.payStatus != 5) {
+	                			s += '<a class="btn btn-xs default red order_delete" data-id="' + row.id + '" href="javascript:"> 取消 </a><br>';
+	                		}
 	                		s += '<a class="btn btn-xs default blue skip_to_edit" href="ds/order/copy?id=' + row.id + '"> 复制订单 </a><br>';
 	                		return s;
 	                	}
@@ -123,7 +129,8 @@ define('page/ds/order', ['component/curd', 'component/form', 'component/formatte
 		deleteOrder: function(orderIds) {
 			var the = this;
 			CURD.deleteByIds({
-				url: 'ds/order/delete',
+				deleteTip: '确认取消？',
+				url: 'ds/order/cancel_order',
 				data: {
 					ids: orderIds
 				}

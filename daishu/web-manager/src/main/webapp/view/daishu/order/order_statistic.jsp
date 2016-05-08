@@ -26,6 +26,7 @@
 		            	<option value="2">服务中</option>
 		            	<option value="3">待评价</option>
 		            	<option value="4">已评价</option>
+		            	<option value="5">已取消</option>
 		            </select>
                  </div>
                  <label class="control-label col-md-1">审核状态</label>
@@ -61,6 +62,8 @@
 				<th width="2%"><input type="checkbox" class="group-checkable"></th>
 				<th width="8%">订单号</th>
 				<th width="5%">顾客</th>
+				<th width="10%">电话</th>
+				<th width="10%">地址</th>
 				<th width="10%">下单时间</th>
 				<th width="10%">服务日期</th>
 				<th width="10%">服务时间</th>

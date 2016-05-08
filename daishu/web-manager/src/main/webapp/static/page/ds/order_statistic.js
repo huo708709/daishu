@@ -22,6 +22,10 @@ define('page/ds/order_statistic', ['component/curd', 'component/form', 'componen
 	                }, {
 	                	data: 'customerName'
 	                }, {
+	                	data: 'phone'
+	                }, {
+	                	data: 'addressContent'
+	                }, {
 	                	data: 'createTime'
 	                }, {
 	                	data: 'serviceDate'

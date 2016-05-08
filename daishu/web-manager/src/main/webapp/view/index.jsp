@@ -45,9 +45,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <link href="static/layouts/layout/css/themes/darkblue.min.css" rel="stylesheet" type="text/css" id="style_color" />
         <link href="static/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
         <!-- END THEME LAYOUT STYLES -->
-        <link rel="shortcut icon" href="favicon.ico" /> </head>
+	</head>
     <!-- END HEAD -->
-
     <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
         <div class="page-header navbar navbar-fixed-top">
             <div class="page-header-inner ">
@@ -114,7 +113,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="page-bar">
                         <ul class="page-breadcrumb">
                             <li>
-                                <a href="index.html">Home</a>
+                                <a>Home</a>
                                 <i class="fa fa-circle"></i>
                             </li>
                             <li>

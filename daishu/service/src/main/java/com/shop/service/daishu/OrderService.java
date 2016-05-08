@@ -39,15 +39,15 @@ public class OrderService extends AbstractService<Order> {
 		return this.orderMapper.selectByIdAndNo(id, orderNo);
 	}
 
-	public TableData listPagedOrderData(TableParameter parameter, String startTime,String endTime) {
+	public TableData listPagedOrderData(TableParameter parameter, String startTime, String endTime, int ayiId) {
 		TableData tableData = new TableData();
-		tableData.data = orderMapper.listPagedOrderData(parameter, startTime,endTime);
-		tableData.recordsFiltered = orderMapper.countOrderData(startTime,endTime);
+		tableData.data = orderMapper.listPagedOrderData(parameter, startTime, endTime, ayiId);
+		tableData.recordsFiltered = orderMapper.countOrderData(startTime, endTime, ayiId);
 		tableData.recordsTotal = tableData.recordsFiltered;
 		return tableData;
 	}
 
-	public void updatePayStatusByIds(int[] ids) {
-		this.orderMapper.updatePayStatusByIds(ids);
+	public void updatePayStatusByIds(int[] ids, int payStatus) {
+		this.orderMapper.updatePayStatusByIds(ids, payStatus);
 	}
 }

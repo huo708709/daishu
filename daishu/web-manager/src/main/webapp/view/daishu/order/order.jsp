@@ -28,6 +28,8 @@
 				<th width="2%"><input type="checkbox" class="group-checkable"></th>
 				<th width="8%">订单号</th>
 				<th width="5%">顾客</th>
+				<th width="10%">电话</th>
+				<th width="10%">地址</th>
 				<th width="10%">下单时间</th>
 				<th width="10%">服务日期</th>
 				<th width="10%">服务时间</th>

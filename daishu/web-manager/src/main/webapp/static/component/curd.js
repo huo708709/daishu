@@ -39,7 +39,7 @@ define('component/curd', [], function() {
 		deleteByIds: function(options, successCallBack, errorCallBack) {
 			var the = this;
 			if (options.data && options.data.ids && options.data.ids.length > 0) {
-				bootbox.confirm('确认删除？', function(result) {
+				bootbox.confirm(options.deleteTip || '确认删除？', function(result) {
 					if (result) {
 						the.ajax(options, function(data) {
 							successCallBack && successCallBack.apply(this, arguments);
@@ -49,7 +49,7 @@ define('component/curd', [], function() {
 					}
 				});
 			} else {
-				showMessage({action: 'toast',message: '请选择需要删除项目'});
+				showMessage({action: 'toast',message: '请选择需要处理的项目'});
 			}
 		},
 		operateByIds: function(msg, options, successCallBack, errorCallBack) {
