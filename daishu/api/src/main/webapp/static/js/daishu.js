@@ -162,6 +162,7 @@ var daishu = {
             			if (data.action == 'alert') {
             				alert(data.message);
             			}
+            			error.apply(this, [data.data]);
             		}
                 }
             },

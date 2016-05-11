@@ -46,7 +46,7 @@
 		update t_order set order_no=#{order_no} where id=#{id}
 	</update>
 	<update id="paySuccess" parameterType="Order">
-	update t_order set pay_status=2,transaction_id=#{transactionId},detail=#{detail},open_id=#{openId},sign=#{sign}
+	update t_order set pay_status=2,pay_type=1,transaction_id=#{transactionId},detail=#{detail},open_id=#{openId},sign=#{sign}
 		where order_no=#{orderNo}
 	</update>
 	<update id="changeProperty">

@@ -180,6 +180,8 @@ wx.ready(function() {
 					alert("支付取消");
 				}
 			});
+    	}, function() {
+    		$('#my-modal-loading').modal('close');
     	});
     }).on('click', '.huiyuanka_pay', function() {
     	var orderId = $(this).data('orderid');
@@ -188,6 +190,8 @@ wx.ready(function() {
     	daishu.io.httppost('consume/add', {orderId: orderId,orderNo:orderNo}, '', function(data) {
     		$('#my-modal-loading').modal('close');
     		window.location.href = 'userCenter';
+    	}, function() {
+    		$('#my-modal-loading').modal('close');
     	});
     }).on('click', '.order_cancel', function() {
  	    var orderId = $(this).data('orderid');
@@ -198,6 +202,8 @@ wx.ready(function() {
     	    	daishu.io.httppost('order/cancel', {id: orderId}, '', function(data) {
     	    		$('#my-modal-loading').modal('close');
     	    		window.location.href = 'userCenter';
+    	    	}, function() {
+    	    		$('#my-modal-loading').modal('close');
     	    	});
     		},
     		onCancel: function() {

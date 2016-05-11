@@ -23,7 +23,6 @@ import com.alibaba.fastjson.JSON;
 import com.shop.data.mapper.daishu.Comment;
 import com.shop.data.mapper.daishu.Customer;
 import com.shop.data.mapper.daishu.Order;
-import com.shop.data.mapper.daishu.Recharge;
 import com.shop.manager.util.CommonUtil;
 import com.shop.manager.util.ConfigUtil;
 import com.shop.manager.util.IpAddressUtil;
@@ -93,6 +92,7 @@ public class OrderController extends AbstractController<Order> {
 		inputStream.close();
 		String result = new String(outputStream.toByteArray(), "UTF-8");
 		Map<Object, Object> resultMap = XMLUtil.doXMLParse(result);
+		System.out.println(JSON.toJSONString(resultMap));
 		if (resultMap.get("result_code").toString().equalsIgnoreCase("SUCCESS")) {
 			Order order = new Order();
 			order.setPrice(Double.valueOf(String.valueOf(resultMap
@@ -113,11 +113,10 @@ public class OrderController extends AbstractController<Order> {
 	@SuppressWarnings("unchecked")
 	@ResponseBody
 	@RequestMapping(value = "pay")
-	public ResponseData pay(HttpServletRequest request, int orderId) {
+	public ResponseData pay(HttpServletRequest request, int orderId, String orderNo) {
 		String openid = (String) request.getSession().getAttribute(
 				AclFilter.OPENID);
 		Customer customer = this.getLoginCustomer(request);
-		String outTradeNo = System.currentTimeMillis() + "" + customer.getId();
 
 		String nonceStr = PayCommonUtil.CreateNoncestr();
 		try {
@@ -126,7 +125,7 @@ public class OrderController extends AbstractController<Order> {
 			parameters.put("mch_id", ConfigUtil.MCH_ID);
 			parameters.put("nonce_str", nonceStr);
 			parameters.put("body", "会员卡");
-			parameters.put("out_trade_no", outTradeNo);
+			parameters.put("out_trade_no", orderNo);
 			parameters.put("total_fee", "1");
 			parameters.put("spbill_create_ip", IpAddressUtil.getIpAddr(request));
 			parameters.put("notify_url", ConfigUtil.NOTIFY_URL1);
@@ -152,7 +151,7 @@ public class OrderController extends AbstractController<Order> {
 				payParameters.put("signType", "MD5");
 				paySign = PayCommonUtil.createSign("UTF-8", payParameters);
 				payParameters.put("paySign", paySign);
-				payParameters.put("orderNum", outTradeNo);
+				payParameters.put("orderNum", orderNo);
 				return this.response("", payParameters);
 			} else {
 				return this.response(ResponseData.CODE_ERROR, resultMap.get("return_msg"), ResponseData.ACTION_ALERT);

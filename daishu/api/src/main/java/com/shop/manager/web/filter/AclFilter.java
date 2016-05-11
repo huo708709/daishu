@@ -42,7 +42,7 @@ public class AclFilter implements Filter {
 			url = path.substring(1);
 		}
 		
-		if (null != url && !url.startsWith("auth")) {
+		if (null != url && !url.startsWith("auth") && !url.startsWith("order/pay_success") && !url.startsWith("recharge/pay_success")) {
 			Customer customer = (Customer) session.getAttribute(loginCustomer);
 			if (null == customer) {
 				response.sendRedirect(ConfigUtil.AUTH_LOGIN);
