@@ -1,5 +1,7 @@
 package com.shop.manager.web.controller.daishu;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -17,9 +19,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.fastjson.JSON;
 import com.shop.data.mapper.daishu.Comment;
 import com.shop.data.mapper.daishu.Customer;
 import com.shop.data.mapper.daishu.Order;
+import com.shop.data.mapper.daishu.Recharge;
 import com.shop.manager.util.CommonUtil;
 import com.shop.manager.util.ConfigUtil;
 import com.shop.manager.util.IpAddressUtil;
@@ -74,6 +78,39 @@ public class OrderController extends AbstractController<Order> {
 		return mav;
 	}
 	
+	@SuppressWarnings("unchecked")
+	@ResponseBody
+	@RequestMapping(value = "pay_success")
+	public String pay_success(HttpServletRequest request) throws Exception {
+		InputStream inputStream = request.getInputStream();
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		byte[] buffer = new byte[1024];
+		int len = 0;
+		while ((len = inputStream.read(buffer)) != -1) {
+			outputStream.write(buffer, 0, len);
+		}
+		outputStream.close();
+		inputStream.close();
+		String result = new String(outputStream.toByteArray(), "UTF-8");
+		Map<Object, Object> resultMap = XMLUtil.doXMLParse(result);
+		if (resultMap.get("result_code").toString().equalsIgnoreCase("SUCCESS")) {
+			Order order = new Order();
+			order.setPrice(Double.valueOf(String.valueOf(resultMap
+					.get("total_fee"))));
+			order.setTransactionId(String.valueOf(resultMap
+					.get("transaction_id")));
+			order.setOrderNo(String.valueOf(resultMap.get("out_trade_no")));
+			order.setSign(String.valueOf(resultMap.get("sign")));
+			order.setOpenId(String.valueOf(resultMap.get("openid")));
+			order.setDetail(JSON.toJSONString(resultMap));
+			this.orderService.paySuccess(order);
+
+			return PayCommonUtil.setXML("SUCCESS", "");
+		}
+		return "";
+	}
+	
+	@SuppressWarnings("unchecked")
 	@ResponseBody
 	@RequestMapping(value = "pay")
 	public ResponseData pay(HttpServletRequest request, int orderId) {
@@ -177,6 +214,13 @@ public class OrderController extends AbstractController<Order> {
 		List<Order> orders = this.orderService.listOrdersByCustomerId(customerId);
 		ResponseData data = new ResponseData("获取订单信息成功！", orders);
 		return data;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "cancel", method = RequestMethod.POST)
+	public ResponseData cancel(int id) {
+		this.orderService.updatePayStatusByIds(new int[]{id}, Order.PAY_STATUS_CARCEL);
+		return this.response("取消成功", ResponseData.ACTION_TOAST);
 	}
 	
 	@RequestMapping(value = "pingjia", method = RequestMethod.GET)

@@ -20,7 +20,10 @@ public interface OrderMapper extends AbstractMapper {
 	
 	public Order selectByIdAndNo(@Param("id") int id, @Param("orderNo") String orderNo);
 
-	void updatePayStatusByIds(@Param("ids")int[] ids, @Param("payStatus") int payStatus);
+	public void updatePayStatusByIds(@Param("ids")int[] ids, @Param("payStatus") int payStatus);
+	public void updatePayStatusAndPayTypeByIds(@Param("ids")int[] ids, @Param("payStatus") int payStatus, @Param("payType") int payType);
 	
 	public Order selectOrderDetail(@Param("id") int id);
+	
+	public int paySuccess(Order order);
 }

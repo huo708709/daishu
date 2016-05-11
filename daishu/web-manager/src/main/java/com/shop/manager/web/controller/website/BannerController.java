@@ -45,7 +45,7 @@ public class BannerController extends AbstractController<Banner> {
 	@ResponseBody
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public ResponseData add(HttpServletRequest request, @RequestParam("file") CommonsMultipartFile[] files,
-			String title, String url, String description) {
+			String title, String url, String description, int type) {
 
 		Banner banner = new Banner();
 		if (files.length > 0 && !files[0].isEmpty()) {
@@ -58,6 +58,7 @@ public class BannerController extends AbstractController<Banner> {
 		banner.setUserId(this.getShiroUser().getId());
 		banner.setUrl(url);
 		banner.setCreateTime(new Date());
+		banner.setType(type);
 		this.getAbstractService().insert(banner);
 		return this.response("添加Banner成功", ResponseData.ACTION_TOAST);
 	}

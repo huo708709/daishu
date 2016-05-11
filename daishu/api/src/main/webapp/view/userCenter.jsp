@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" href="static/css/usercenter.css">
 </head>
 <body>
-<div class="am-container" style="padding: 0">
+<div id="userCenterDiv" class="am-container" style="padding: 0">
     <div style="background-color: #f39910">
         <div style="text-align: center;padding: 0.8rem 0;"><img src="static/img/user_center_logo.png"></div>
     </div>
@@ -59,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="actions">
             	<c:choose>
             		<c:when test="${order.payStatus == 1 }">
-	                <button type="button" class="am-btn am-btn-xs am-radius am-btn-warning">取消</button>
+	                <button type="button" data-orderid="${order.id }" class="am-btn am-btn-xs am-radius am-btn-warning order_cancel">取消</button>
             		</c:when>
             		<c:when test="${order.payStatus == 2}">
 	                <button type="button" class="am-btn am-btn-xs am-radius am-btn-default" style="background-color: #fff;border: none;color: #f39910">服务中</button>
@@ -85,9 +85,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div><span>支付方式：</span><label><div>
             <c:choose>
             	<c:when test="${order.payStatus == 1 }">
-            	<button type="button" class="am-btn am-btn-xs am-radius am-btn-warning">微信支付</button>
-                <button type="button" class="am-btn am-btn-xs am-radius am-btn-warning">会员卡支付</button>
-                <button type="button" class="am-btn am-btn-xs am-radius am-btn-default">现金支付</button>
+            	<button type="button" class="am-btn am-btn-xs am-radius am-btn-warning weixin_pay" data-orderid="${order.id }" data-orderno="${order.orderNo }">微信支付</button>
+                <button type="button" class="am-btn am-btn-xs am-radius am-btn-warning huiyuanka_pay" data-orderid="${order.id }" data-orderno="${order.orderNo }">会员卡支付</button>
+                <button type="button" class="am-btn am-btn-xs am-radius am-btn-default xianjin_pay" data-orderid="${order.id }" data-orderno="${order.orderNo }">现金支付</button>
                 </c:when>
                 <c:otherwise>
                 <span type="button" style="background-color: #fff;border: none;color: #f39910;font-weight: normal;">${order.payTypeDTO }</span>
@@ -119,6 +119,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
     </div> -->
 </div>
+<div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="my-modal-loading">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">正在请求...</div>
+    <div class="am-modal-bd">
+      <span class="am-icon-spinner am-icon-spin"></span>
+    </div>
+  </div>
+</div>
+<div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">提示</div>
+    <div class="am-modal-bd">
+      您确定要取消该订单么？
+    </div>
+    <div class="am-modal-footer">
+      <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+      <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+    </div>
+  </div>
+</div>
 <script src="static/js/jquery.min.js"></script>
 <script src="static/js/amazeui.min.js"></script>
 <script src="static/js/daishu.js"></script>
@@ -132,51 +152,57 @@ wx.config({
 	signature: "${sign.signature}",
 	jsApiList: ["chooseWXPay"]
 });
-var orderId = ${orderId};
-var orderNo = ${orderNo};
 wx.error(function(res) {
 	alert(JSON.stringify(res));
 });
-var pay_type = 1;
 wx.ready(function() {
-	$('.pay_type').on('click', function() {
-		$('.pay_type').find('img.select_img').hide();
-		$('.pay_type').find('img.unselect_img').show();
-		$(this).find('img.unselect_img').hide();
-		$(this).find('img.select_img').show();
-		pay_type = $(this).data('paytype');
-	});
-	$('#payButton').on('click', function() {
-		alert(pay_type);
-		if (pay_type == 1) {
-			$('#my-modal-loading').modal();
-	    	daishu.io.httppost('order/pay', {orderId: orderId,orderNo:orderNo}, '', function(data) {
-	    		$('#my-modal-loading').modal('close');
-	    		wx.chooseWXPay({
-					appId: data.appId,
-					timestamp: data.timeStamp + "",
-					nonceStr: data.nonceStr,
-					package: data.package,
-					signType: "MD5",
-					paySign: data.paySign,
-					success: function(data) {
-						alert("支付成功");
-						window.location.href = 'userCenter';
-					},
-					fail: function() {
-						alert("支付失败");
-					},
-					cancel: function() {
-						alert("支付取消");
-					}
-				});
-	    	});
-		} else if (pay_type == 2) {
-			daishu.io.httppost('consume/add', {orderId: orderId,orderNo:orderNo}, '', function(data) {
-	    		$('#my-modal-loading').modal('close');
-	    		window.location.href = 'userCenter';
-	    	});
-		}
+	$('#userCenterDiv').on('click', '.weixin_pay', function() {
+		var orderId = $(this).data('orderid');
+		var orderNo = $(this).data('orderno');
+		$('#my-modal-loading').modal();
+    	daishu.io.httppost('order/pay', {orderId: orderId,orderNo:orderNo}, '', function(data) {
+    		$('#my-modal-loading').modal('close');
+    		wx.chooseWXPay({
+				appId: data.appId,
+				timestamp: data.timeStamp + "",
+				nonceStr: data.nonceStr,
+				package: data.package,
+				signType: "MD5",
+				paySign: data.paySign,
+				success: function(data) {
+					alert("支付成功");
+					window.location.href = 'userCenter';
+				},
+				fail: function() {
+					alert("支付失败");
+				},
+				cancel: function() {
+					alert("支付取消");
+				}
+			});
+    	});
+    }).on('click', '.huiyuanka_pay', function() {
+    	var orderId = $(this).data('orderid');
+		var orderNo = $(this).data('orderno');
+    	$('#my-modal-loading').modal();
+    	daishu.io.httppost('consume/add', {orderId: orderId,orderNo:orderNo}, '', function(data) {
+    		$('#my-modal-loading').modal('close');
+    		window.location.href = 'userCenter';
+    	});
+    }).on('click', '.order_cancel', function() {
+ 	    var orderId = $(this).data('orderid');
+    	$('#my-confirm').modal({
+    		relatedTarget: this,
+    		onConfirm: function(options) {
+    			$('#my-modal-loading').modal();
+    	    	daishu.io.httppost('order/cancel', {id: orderId}, '', function(data) {
+    	    		$('#my-modal-loading').modal('close');
+    	    		window.location.href = 'userCenter';
+    	    	});
+    		},
+    		onCancel: function() {
+    		}
+    	});
     });
 });
 </script>

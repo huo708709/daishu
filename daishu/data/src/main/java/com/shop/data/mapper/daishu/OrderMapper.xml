@@ -27,8 +27,27 @@
 		</choose>
 		</where>
 	</update>
+	<update id="updatePayStatusAndPayTypeByIds">
+		update t_order set pay_status = #{payStatus},pay_type=#{payType}
+		<where>
+		<choose>
+			<when test="null != ids">
+				<foreach collection="ids" item="id" separator="," open="id in (" close=")">
+				#{id}
+				</foreach>
+			</when>
+			<otherwise>
+			0=1
+			</otherwise>
+		</choose>
+		</where>
+	</update>
 	<update id="update" parameterType="Order">
 		update t_order set order_no=#{order_no} where id=#{id}
+	</update>
+	<update id="paySuccess" parameterType="Order">
+	update t_order set pay_status=2,transaction_id=#{transactionId},detail=#{detail},open_id=#{openId},sign=#{sign}
+		where order_no=#{orderNo}
 	</update>
 	<update id="changeProperty">
 		update t_order set ${name}=#{value} where id=#{orderId}

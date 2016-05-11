@@ -33,6 +33,10 @@ public class Order extends IntEntity {
 	private double area;//服务面积
 	private String remark;//备注
 	
+	private String transactionId;
+	private String sign;
+	private String openId;
+	private String detail;
 	
 	public final static int AUDIT_STATUS_WAIT = 1; //待审核
 	public final static int AUDIT_STATUS_PASS = 2; //审核通过
@@ -257,4 +261,37 @@ public class Order extends IntEntity {
 	public static String createOrderNo(int customerId){
 		return System.currentTimeMillis()+"C"+customerId;
 	}
+
+	public String getTransactionId() {
+		return transactionId;
+	}
+
+	public void setTransactionId(String transactionId) {
+		this.transactionId = transactionId;
+	}
+
+	public String getSign() {
+		return sign;
+	}
+
+	public void setSign(String sign) {
+		this.sign = sign;
+	}
+
+	public String getOpenId() {
+		return openId;
+	}
+
+	public void setOpenId(String openId) {
+		this.openId = openId;
+	}
+
+	public String getDetail() {
+		return detail;
+	}
+
+	public void setDetail(String detail) {
+		this.detail = detail;
+	}
+	
 }

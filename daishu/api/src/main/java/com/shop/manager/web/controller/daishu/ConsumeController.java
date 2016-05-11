@@ -56,6 +56,7 @@ public class ConsumeController extends AbstractController<Consume> {
 			consume.setTime(new Date());
 			consume.setCustomerId(order.getCustomerId());
 			this.getAbstractService().insert(consume);
+			this.orderService.updatePayStatusAndPayTypeByIds(new int[]{orderId}, Order.PAY_STATUS_SERVICE, Order.PAY_TYPE_MEMBER);
 			return this.response("消费成功", ResponseData.ACTION_TOAST);
 		} else {
 			return this.response(ResponseData.CODE_ERROR, "余额不足，当前余额" + order.getPrice(), ResponseData.ACTION_ALERT);
