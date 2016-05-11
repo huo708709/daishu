@@ -170,6 +170,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <script src="static/global/plugins/bootstrap-editable/bootstrap-editable/js/bootstrap-editable.min.js" type="text/javascript"></script>
         <script src="static/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
         <script src="static/global/plugins/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" type="text/javascript"></script>
+        <script src="static/global/plugins/jquery-zeroclipboard/jquery.zeroclipboard.min.js" type="text/javascript"></script>
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         <script src="static/global/plugins/require.js" type="text/javascript"></script>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -31,14 +32,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		data-am-slider='{&quot;directionNav&quot;:false}'
 		style="height: 21.4%">
 		<ul class="am-slides">
-			<li><img src="http://s.amazeui.org/media/i/demos/bing-1.jpg" style="height:140px;">
+			<c:forEach items="${banners }" var="banner">
+			<li><img src="../static/upload/${banner.fileId }" style="height:140px;">
 			</li>
-			<li><img src="http://s.amazeui.org/media/i/demos/bing-2.jpg" style="height:140px;">
-			</li>
-			<li><img src="http://s.amazeui.org/media/i/demos/bing-3.jpg" style="height:140px;">
-			</li>
-			<li><img src="http://s.amazeui.org/media/i/demos/bing-4.jpg" style="height:140px;">
-			</li>
+			</c:forEach>
 		</ul>
 	</div>
 	<div class="am-container margin-top-10" style="height: 71.4%;">

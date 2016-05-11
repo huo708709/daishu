@@ -36,7 +36,15 @@ public abstract class AbstractController<T> {
 		return (Customer) session.getAttribute(AclFilter.loginCustomer);
 	}
 	
+	protected void setLoginCustomer(HttpSession session, Customer customer) {
+		session.setAttribute(AclFilter.loginCustomer, customer);
+	}
+	
 	protected Customer getLoginCustomer(HttpServletRequest request) {
 		return (Customer) request.getSession().getAttribute(AclFilter.loginCustomer);
+	}
+	
+	protected void setLoginCustomer(HttpServletRequest request, Customer customer) {
+		request.getSession().setAttribute(AclFilter.loginCustomer, customer);
 	}
 }

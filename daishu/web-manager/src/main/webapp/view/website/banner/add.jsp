@@ -22,6 +22,15 @@
 		            </div>
 		        </div>
 		        <div class="form-group">
+		            <label class="control-label col-md-2">显示位置</label>
+		            <div class="col-md-10">
+		                <select class="form-control" name="type">
+		                	<option value="1" selected="selected">PC网站</option>
+		                	<option value="2">微信平台</option>
+		                </select>
+		            </div>
+		        </div>
+		        <div class="form-group">
 		            <label class="control-label col-md-2">封面图</label>
 		            <div class="col-md-10">
 		                <input name="file" type="file">

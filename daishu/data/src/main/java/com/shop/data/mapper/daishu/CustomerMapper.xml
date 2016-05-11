@@ -14,6 +14,10 @@
 			,name=#{name} where id=#{id}
 	</update>
 	
+	<update id="updatePhoneAndName">
+		update t_customer set phone=#{phone},name=#{name} where id=#{id}
+	</update>
+	
 	<update id="updateBalance">
 		update t_customer set balance=balance + #{balance} where id=#{customerId}
 	</update>

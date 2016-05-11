@@ -36,31 +36,43 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <ul class="am-avg-sm-3">
                 <li><a><img src="static/img/yue.png"><span> 余额:100元</span></a></li>
                 <li><a href="consumeDetail"><img src="static/img/xiaofeijilu.png"><span> 消费记录</span></a></li>
-                <li><a><img src="static/img/shiyongguize.png"><span> 使用规则</span></a></li>
+                <li><a href="guize"><img src="static/img/shiyongguize.png"><span> 使用规则</span></a></li>
             </ul>
         </div>
     </div>
 
     <ul class="am-list huiyuanka-list">
         <li class="am-g am-list-item-dated">
-            <div class="am-u-sm-12 am-list-main">
-				<img src="static/img/mama.png"/>
-				<span>妈妈卡:充值888元 赠送58元优惠</span>
-				<button data-viptype="1" type="button" class="am-btn am-btn-xs am-radius am-btn-default">立即充值</button>
+            <div class="am-u-sm-12 am-list-main" style="padding: 0">
+            	<div style="height: 5px;width: 100%;background: url('static/img/huiyuanka-border.png') repeat-x;"></div>
+            	<div class="content">
+					<img src="static/img/mama.png"/>
+					<span>妈妈卡:充值888元 赠送58元优惠</span>
+					<button data-viptype="1" type="button" class="am-btn am-btn-xs am-radius am-btn-default">立即充值</button>
+            	</div>
+            	<div style="height: 5px;width: 100%;background: url('static/img/huiyuanka-border.png') repeat-x;"></div>
             </div>
         </li>
         <li class="am-g am-list-item-dated">
-            <div class="am-u-sm-12 am-list-main">
-				<img src="static/img/baba.png"/>
-				<span>爸爸卡:充值1888元 赠送288元优惠</span>
-				<button data-viptype="2" type="button" class="am-btn am-btn-xs am-radius am-btn-default">立即充值</button>
+            <div class="am-u-sm-12 am-list-main" style="padding: 0">
+            	<div style="height: 5px;width: 100%;background: url('static/img/huiyuanka-border.png') repeat-x;"></div>
+            	<div class="content">
+					<img src="static/img/baba.png"/>
+					<span>爸爸卡:充值1888元 赠送288元优惠</span>
+					<button data-viptype="2" type="button" class="am-btn am-btn-xs am-radius am-btn-default">立即充值</button>
+				</div>
+            	<div style="height: 5px;width: 100%;background: url('static/img/huiyuanka-border.png') repeat-x;"></div>
             </div>
         </li>
         <li class="am-g am-list-item-dated">
-            <div class="am-u-sm-12 am-list-main">
-				<img src="static/img/baobao.png"/>
-				<span>宝宝卡:充值2888元 赠送788元优惠</span>
-				<button data-viptype="3" type="button" class="am-btn am-btn-xs am-radius am-btn-default">立即充值</button>
+            <div class="am-u-sm-12 am-list-main" style="padding: 0">
+            	<div style="height: 5px;width: 100%;background: url('static/img/huiyuanka-border.png') repeat-x;"></div>
+            	<div class="content">
+					<img src="static/img/baobao.png"/>
+					<span>宝宝卡:充值2888元 赠送788元优惠</span>
+					<button data-viptype="3" type="button" class="am-btn am-btn-xs am-radius am-btn-default">立即充值</button>
+				</div>
+            	<div style="height: 5px;width: 100%;background: url('static/img/huiyuanka-border.png') repeat-x;"></div>
             </div>
         </li>
     </ul>

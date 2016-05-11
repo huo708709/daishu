@@ -17,6 +17,8 @@ Address.prototype.init = function() {
 		var content = $(this).data('content');
 		$('#addressId').val(addressid);
 		$('#address_show').text(content);
+		$(this).closest('.am-list').find('.address-selected').attr('src', 'static/img/unselected.png');
+		$(this).find('.address-selected').attr('src', 'static/img/selected.png');
 		location.hash = '';
 	}).on('click', '.address_list', function() {
 		

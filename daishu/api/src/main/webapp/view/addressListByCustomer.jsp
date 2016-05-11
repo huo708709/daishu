@@ -6,7 +6,7 @@
     <li class="am-g am-list-item-dated list-item-address" data-addressid="${address.id }" data-content="${address.content }">
         <div class="am-u-sm-12">
             <div class="address-content-wrapper">
-                <label><input type="checkbox" style="display: none;"><img class="address-icon" src="static/img/unselected.png">
+                <label><input type="checkbox" style="display: none;"><img class="address-icon address-selected" src="static/img/unselected.png">
                     <span class="address-content">${address.content }</span></label>
             </div>
         </div>

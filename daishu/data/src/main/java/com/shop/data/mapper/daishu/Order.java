@@ -44,10 +44,10 @@ public class Order extends IntEntity {
 	public final static int PAY_STATUS_COMMENTED =4; //已评价
 	public final static int PAY_STATUS_CARCEL =5; //取消
 	
-	public final static int SERVICE_TIME_TYPE_1 = 1; //待支付
-	public final static int SERVICE_TIME_TYPE_2 = 2; //服务中
-	public final static int SERVICE_TIME_TYPE_3 =3; //待评价
-	public final static int SERVICE_TIME_TYPE_4 =4; //已评价
+	public final static int SERVICE_TIME_TYPE_1 = 1; //8:00-12:00
+	public final static int SERVICE_TIME_TYPE_2 = 2; //12:00-15:00
+	public final static int SERVICE_TIME_TYPE_3 =3; //15:00-18:00
+	public final static int SERVICE_TIME_TYPE_4 =4; //18:00-20:00
 	
 	
 	public final static int PAY_TYPE_WEIXIN = 1; //支付方式-微信
@@ -105,6 +105,27 @@ public class Order extends IntEntity {
 		return baojieType;
 	}
 
+	public String getBaojieTypeDTO() {
+		if (1 == baojieType) {
+			return "小时保洁";
+		} else if (2 == baojieType) {
+			return "请个阿姨";
+		} else if (3 == baojieType) {
+			return "收纳整理";
+		} else if (4 == baojieType) {
+			return "擦玻璃";
+		} else if (5 == baojieType) {
+			return "新居开荒";
+		} else if (6 == baojieType) {
+			return "家居家电";
+		} else if (7 == baojieType) {
+			return "企业保洁";
+		} else if (8 == baojieType) {
+			return "干洗";
+		}
+		return "";
+	}
+
 	public void setBaojieType(int baojieType) {
 		this.baojieType = baojieType;
 	}
@@ -137,6 +158,17 @@ public class Order extends IntEntity {
 		return payType;
 	}
 
+	public String getPayTypeDTO() {
+		if (1 == payType) {
+			return "微信支付";
+		} else if (2 == payType) {
+			return "现金支付";
+		} else if (3 == payType) {
+			return "会员卡支付";
+		}
+		return "";
+	}
+
 	public void setPayType(int payType) {
 		this.payType = payType;
 	}
@@ -167,6 +199,19 @@ public class Order extends IntEntity {
 
 	public int getServiceTimeType() {
 		return serviceTimeType;
+	}
+	
+	public String getServiceTimeTypeDTO() {
+		if (1 == serviceTimeType) {
+			return "8:00-12:00";
+		} else if (2 == serviceTimeType) {
+			return "12:00-15:00";
+		} else if (3 == serviceTimeType) {
+			return "15:00-18:00";
+		} else if (4 == serviceTimeType) {
+			return "18:00-20:00";
+		}
+		return "";
 	}
 
 	public void setServiceTimeType(int serviceTimeType) {

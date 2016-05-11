@@ -21,4 +21,6 @@ public interface OrderMapper extends AbstractMapper {
 	public Order selectByIdAndNo(@Param("id") int id, @Param("orderNo") String orderNo);
 
 	void updatePayStatusByIds(@Param("ids")int[] ids, @Param("payStatus") int payStatus);
+	
+	public Order selectOrderDetail(@Param("id") int id);
 }

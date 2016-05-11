@@ -32,7 +32,7 @@ public class PCController {
 	public ModelAndView index() {
 		ModelAndView mav = new ModelAndView("pc/index");
 		List<News> news = newsService.selectTop5();
-		List<Banner> banners = bannerService.selectActiveBanner();
+		List<Banner> banners = bannerService.selectActiveBanner(Banner.TYPE_PC);
 		SystemConfig systemConfig = systemConfigService.selectById(1);
 		mav.addObject("newsList", news);
 		mav.addObject("banners", banners);
@@ -45,7 +45,7 @@ public class PCController {
 		ModelAndView mav = new ModelAndView("pc/news");
 		List<News> news = newsService.selectTop5();
 		mav.addObject("newsList", news);
-		List<Banner> banners = bannerService.selectActiveBanner();
+		List<Banner> banners = bannerService.selectActiveBanner(Banner.TYPE_PC);
 		mav.addObject("banners", banners);
 		return mav;
 	}
@@ -54,7 +54,7 @@ public class PCController {
 	public ModelAndView newsDetail(String id) {
 		ModelAndView mav = new ModelAndView("pc/news_detail");
 		News news = newsService.selectById(id);
-		List<Banner> banners = bannerService.selectActiveBanner();
+		List<Banner> banners = bannerService.selectActiveBanner(Banner.TYPE_PC);
 		mav.addObject("banners", banners);
 		mav.addObject("news", news);
 		return mav;
@@ -63,7 +63,7 @@ public class PCController {
 	@RequestMapping(value = "pc/business")
 	public ModelAndView business() {
 		ModelAndView mav = new ModelAndView("pc/business");
-		List<Banner> banners = bannerService.selectActiveBanner();
+		List<Banner> banners = bannerService.selectActiveBanner(Banner.TYPE_PC);
 		mav.addObject("banners", banners);
 		List<Business> business = businessService.listAll();
 		mav.addObject("business", business);

@@ -36,6 +36,28 @@ public class SystemConfigController extends AbstractController<SystemConfig> {
 		}
 		return "";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "update_xieyi")
+	public String updateXieyi(String name, String value) {
+		try {
+			this.systemConfigService.update(name, value);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "update_guize")
+	public String updateGuize(String name, String value) {
+		try {
+			this.systemConfigService.update(name, value);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
 
 	@Override
 	public AbstractService<SystemConfig> getAbstractService() {

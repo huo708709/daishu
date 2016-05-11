@@ -22,7 +22,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.shop.data.mapper.daishu.Customer;
+import com.shop.data.mapper.daishu.Order;
 import com.shop.data.mapper.daishu.Unit;
+import com.shop.data.mapper.website.Banner;
+import com.shop.data.mapper.website.SystemConfig;
 import com.shop.manager.util.CommonUtil;
 import com.shop.manager.util.ConfigUtil;
 import com.shop.manager.util.PayCommonUtil;
@@ -30,8 +33,11 @@ import com.shop.manager.util.weixin.SignatureUtil;
 import com.shop.manager.web.filter.AclFilter;
 import com.shop.service.AbstractService;
 import com.shop.service.daishu.CustomerService;
+import com.shop.service.daishu.OrderService;
 import com.shop.service.daishu.UnitService;
+import com.shop.service.website.BannerService;
 import com.shop.service.website.BusinessService;
+import com.shop.service.website.SystemConfigService;
 
 @Controller
 public class HomeController extends AbstractController<Object> {
@@ -42,12 +48,36 @@ public class HomeController extends AbstractController<Object> {
 	private UnitService unitService;
 	@Autowired
 	private BusinessService businessService;
+	@Autowired
+	private BannerService bannerService;
+	@Autowired
+	private SystemConfigService systemConfigService;
+	@Autowired
+	private OrderService orderService;
 
 	@RequestMapping(value = "index")
 	public ModelAndView index(HttpSession session) {
 		ModelAndView mav = new ModelAndView("index");
 		Map<Object, Map<String, Object>> businessMap = this.businessService.getBusinessMap();
 		mav.addObject("businessMap", businessMap);
+		List<Banner> banners = bannerService.selectActiveBanner(Banner.TYPE_H5);
+		mav.addObject("banners", banners);
+		return mav;
+	}
+	
+	@RequestMapping(value = "xieyi")
+	public ModelAndView xieyi(HttpSession session) {
+		ModelAndView mav = new ModelAndView("xieyi");
+		SystemConfig systemConfig = this.systemConfigService.selectById(1);
+		mav.addObject("systemConfig", systemConfig);
+		return mav;
+	}
+	
+	@RequestMapping(value = "guize")
+	public ModelAndView guize(HttpSession session) {
+		ModelAndView mav = new ModelAndView("guize");
+		SystemConfig systemConfig = this.systemConfigService.selectById(1);
+		mav.addObject("systemConfig", systemConfig);
 		return mav;
 	}
 
@@ -177,8 +207,19 @@ public class HomeController extends AbstractController<Object> {
 	}
 	
 	@RequestMapping(value = "userCenter")
-	public ModelAndView userCenter() {
+	public ModelAndView userCenter(HttpSession session) {
+		Customer customer = this.getLoginCustomer(session);
 		ModelAndView mav = new ModelAndView("userCenter");
+		List<Order> orders = orderService.listOrdersByCustomerId(customer.getId());
+		mav.addObject("orders", orders);
+		
+		String code = (String) session.getAttribute(AclFilter.CODE);
+		String nonceStr = PayCommonUtil.CreateNoncestr();
+		Map<String, String> sign = SignatureUtil.getSignMap(nonceStr, "http://daishuguanjia.cn/api/userCenter");
+		mav.addObject("appId", ConfigUtil.APPID);
+		mav.addObject("sign", sign);
+		mav.addObject("code", code);
+		
 		return mav;
 	}
 

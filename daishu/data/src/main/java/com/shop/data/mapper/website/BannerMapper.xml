@@ -4,9 +4,9 @@
 <mapper namespace="com.shop.data.mapper.website.BannerMapper">
 	<insert id="insert" parameterType="Banner" useGeneratedKeys="true" keyProperty="id">
 		insert into t_banner
-		(title,description,url,status,create_time,file_id,user_id)
+		(title,description,url,status,type,create_time,file_id,user_id)
 		values
-		(#{title},#{description},#{url},#{status},#{createTime},#{fileId},#{userId})
+		(#{title},#{description},#{url},#{status},#{type},#{createTime},#{fileId},#{userId})
 	</insert>
 	
 	<update id="update" parameterType="Banner">
@@ -22,7 +22,7 @@
 	</select>
 	
 	<select id="selectActiveBanner" resultType="Banner">
-		select * from t_banner where status=0 order by id desc;
+		select * from t_banner where status=0 and type=#{type} order by id desc;
 	</select>
 	
 	<delete id="deleteByIds">

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.shop.data.mapper.daishu.Comment;
 import com.shop.data.mapper.daishu.Customer;
 import com.shop.data.mapper.daishu.Order;
 import com.shop.manager.util.CommonUtil;
@@ -29,6 +30,8 @@ import com.shop.manager.web.controller.AbstractController;
 import com.shop.manager.web.filter.AclFilter;
 import com.shop.manager.web.model.ResponseData;
 import com.shop.service.AbstractService;
+import com.shop.service.daishu.CommentService;
+import com.shop.service.daishu.CustomerService;
 import com.shop.service.daishu.OrderService;
 import com.shop.service.daishu.ScheduleService;
 
@@ -40,6 +43,10 @@ public class OrderController extends AbstractController<Order> {
 	private OrderService orderService;
 	@Autowired
 	private ScheduleService scheduleService;
+	@Autowired
+	private CustomerService customerService;
+	@Autowired
+	private CommentService commentService;
 	
 	@RequestMapping
 	public ModelAndView page() {
@@ -140,7 +147,8 @@ public class OrderController extends AbstractController<Order> {
 			order.setPayType(Order.PAY_TYPE_CASH);
 			order.setCustomerId(customer.getId());
 			this.getAbstractService().insert(order);
-			return "redirect:/order/order_ok?orderNo=" + orderNo + "&orderId=" + order.getId();
+//			customerService.updatePhoneAndName(customer.getId(), order.getName(), order.getPhone());
+//			return "redirect:/order/order_ok?orderNo=" + orderNo + "&orderId=" + order.getId();
 		} else {
 			// TODO 判断排期是否已满
 			int count = scheduleService.availableAyiCount(order.getBaojieType(), order.getServiceDate(), order.getServiceTimeType());
@@ -154,8 +162,12 @@ public class OrderController extends AbstractController<Order> {
 				order.setCustomerId(customer.getId());
 				this.getAbstractService().insert(order);
 			}
-			return "redirect:/order/order_ok?orderNo=" + orderNo + "&orderId=" + order.getId();
 		}
+		customerService.updatePhoneAndName(customer.getId(), order.getName(), order.getPhone());
+		customer.setName(order.getName());
+		customer.setPhone(customer.getPhone());
+		request.getSession().setAttribute(AclFilter.loginCustomer, customer);
+		return "redirect:/order/order_ok?orderNo=" + orderNo + "&orderId=" + order.getId();
 //		return this.response("添加订单成功", ResponseData.ACTION_TOAST);
 	}
 	
@@ -165,6 +177,25 @@ public class OrderController extends AbstractController<Order> {
 		List<Order> orders = this.orderService.listOrdersByCustomerId(customerId);
 		ResponseData data = new ResponseData("获取订单信息成功！", orders);
 		return data;
+	}
+	
+	@RequestMapping(value = "pingjia", method = RequestMethod.GET)
+	public ModelAndView pingjia(int id) {
+		ModelAndView mav = new ModelAndView("order_detail");
+		Order order = orderService.selectOrderDetail(id);
+		mav.addObject("order", order);
+		return mav;
+	}
+	
+	@RequestMapping(value = "pingjia", method = RequestMethod.POST)
+	public ModelAndView pingjia(HttpSession session, Comment comment) {
+		Customer customer = this.getLoginCustomer(session);
+		ModelAndView mav = new ModelAndView("redirect:/userCenter");
+		comment.setCustomerId(customer.getId());
+		comment.setCreateTime(new Date());
+		commentService.insert(comment);
+		orderService.updatePayStatusByIds(new int[]{comment.getOrderId()}, Order.PAY_STATUS_COMMENTED);
+		return mav;
 	}
 	
 	@Override

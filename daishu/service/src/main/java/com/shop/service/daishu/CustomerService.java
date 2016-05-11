@@ -30,6 +30,10 @@ public class CustomerService extends AbstractService<Customer> {
 		return this.customerMapper.getBalance(id);
 	}
 	
+	public int updatePhoneAndName(int id, String name, String phone) {
+		return this.customerMapper.updatePhoneAndName(id, name, phone);
+	}
+	
 	@Override
 	public AbstractMapper getAbstractMapper() {
 		return this.customerMapper;

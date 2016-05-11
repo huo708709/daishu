@@ -36,6 +36,12 @@
 	<select id="selectById" resultType="Order">
 		select * from t_order where id=#{id}
 	</select>
+	<select id="selectOrderDetail" resultType="Order">
+		select a.*,b.content addressContent
+		from t_order a 
+		left join t_address b on a.address_id = b.id
+		where a.id = #{id}
+	</select>
 	<select id="selectByIdAndNo" resultType="Order">
 		select id,order_no,customer_id,price from t_order where id=#{id} and order_no=#{orderNo}
 	</select>
@@ -45,6 +51,7 @@
 		from t_order a 
 		left join t_address b on a.address_id = b.id
 		where a.customer_id = #{customerId}
+		order by id desc
 	</select>
 	
 	<delete id="deleteByIds">

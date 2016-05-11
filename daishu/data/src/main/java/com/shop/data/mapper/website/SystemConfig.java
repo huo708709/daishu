@@ -5,6 +5,8 @@ import com.shop.data.mapper.IntEntity;
 public class SystemConfig extends IntEntity {
 
 	private String recruitmentUrl;
+	private String xieyi;
+	private String guize;
 
 	public String getRecruitmentUrl() {
 		return recruitmentUrl;
@@ -12,6 +14,22 @@ public class SystemConfig extends IntEntity {
 
 	public void setRecruitmentUrl(String recruitmentUrl) {
 		this.recruitmentUrl = recruitmentUrl;
+	}
+
+	public String getXieyi() {
+		return xieyi;
+	}
+
+	public void setXieyi(String xieyi) {
+		this.xieyi = xieyi;
+	}
+
+	public String getGuize() {
+		return guize;
+	}
+
+	public void setGuize(String guize) {
+		this.guize = guize;
 	}
 
 }

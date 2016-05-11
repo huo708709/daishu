@@ -9,11 +9,15 @@ public class Banner extends IntEntity {
 
 	public static final int STATUS_NORMAL = 0;
 	public static final int STATUS_FORBIDDEN = 1;
+	
+	public static final int TYPE_PC = 1;
+	public static final int TYPE_H5 = 2;
 
 	private String title;
 	private String description;
 	private String url;
 	private int status;
+	private int type;
 	@JSONField(format = "YYYY-MM-dd HH:mm:ss")
 	private Date createTime;
 	
@@ -44,6 +48,13 @@ public class Banner extends IntEntity {
 	}
 	public void setStatus(int status) {
 		this.status = status;
+	}
+	
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
 	}
 	public Date getCreateTime() {
 		return createTime;

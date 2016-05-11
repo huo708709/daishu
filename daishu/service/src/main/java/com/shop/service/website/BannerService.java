@@ -20,8 +20,8 @@ public class BannerService extends AbstractService<Banner> {
 		super(Banner.class);
 	}
 	
-	public List<Banner> selectActiveBanner() {
-		return this.bannerMapper.selectActiveBanner();
+	public List<Banner> selectActiveBanner(int type) {
+		return this.bannerMapper.selectActiveBanner(type);
 	}
 	
 	@Override

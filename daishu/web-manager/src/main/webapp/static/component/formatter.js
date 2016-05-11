@@ -80,6 +80,13 @@ define('component/formatter', [], function() {
 			} else{
 				return '禁用';
 			}
+		},
+		bannerTypeFormatter: function(data) {
+			if (1 == data) {
+				return 'PC网站';
+			} else if (2 == data) {
+				return 'H5微信平台';
+			}
 		}
 	};
 });

@@ -17,3 +17,61 @@
 		</table>
 	</div>
 </div>
+<div class="portlet light">
+	<div class="portlet-body form">
+		<form id="xieyi_form" class="form-horizontal" action="website/system_config/update_xieyi" method="post">
+			<input name="name" type="hidden" value="xieyi">
+			<div class="form-body">
+				<div class="alert alert-danger display-hide">
+                	<button data-close="alert" class="close"></button> You have some form errors. Please check below. </div>
+                <div class="alert alert-success display-hide">
+                	<button data-close="alert" class="close"></button> Your form validation is successful! </div>
+				<h3 class="form-section">服务协议</h3>
+		        <div class="form-group">
+		            <label class="control-label col-md-2">协议内容</label>
+		            <textarea style="display: none;" name="value" id="content_xieyi"></textarea>
+		            <div class="col-md-10">
+                        <div name="content" id="summernote_xieyi">${systemConfig.xieyi }</div>
+                    </div>
+		        </div>
+			</div>
+			<div class="form-actions">
+                <div class="row">
+                    <div class="col-md-offset-10 col-md-2">
+                        <button class="btn green" type="submit">提交</button>
+                        <button class="btn default skip_to_content" type="button">取消</button>
+                    </div>
+                </div>
+		    </div>
+		</form>
+	</div>
+</div>
+<div class="portlet light">
+	<div class="portlet-body form">
+		<form id="guize_form" class="form-horizontal" action="website/system_config/update_guize" method="post">
+			<input name="name" type="hidden" value="guize">
+			<div class="form-body">
+				<div class="alert alert-danger display-hide">
+                	<button data-close="alert" class="close"></button> You have some form errors. Please check below. </div>
+                <div class="alert alert-success display-hide">
+                	<button data-close="alert" class="close"></button> Your form validation is successful! </div>
+				<h3 class="form-section">使用规则</h3>
+		        <div class="form-group">
+		            <label class="control-label col-md-2">规则内容</label>
+		            <textarea style="display: none;" name="value" id="content_guize"></textarea>
+		            <div class="col-md-10">
+                        <div name="content" id="summernote_guize">${systemConfig.guize }</div>
+                    </div>
+		        </div>
+			</div>
+			<div class="form-actions">
+                <div class="row">
+                    <div class="col-md-offset-10 col-md-2">
+                        <button class="btn green" type="submit">提交</button>
+                        <button class="btn default skip_to_content" type="button">取消</button>
+                    </div>
+                </div>
+		    </div>
+		</form>
+	</div>
+</div>

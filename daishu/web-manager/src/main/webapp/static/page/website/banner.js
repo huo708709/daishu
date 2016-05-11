@@ -1,4 +1,4 @@
-define('page/website/banner', ['component/curd', 'component/form'], function(CURD, FORM) {
+define('page/website/banner', ['component/curd', 'component/form', 'component/formatter'], function(CURD, FORM, Formatter) {
 	
 	var grid = null;
 	return {
@@ -21,6 +21,10 @@ define('page/website/banner', ['component/curd', 'component/form'], function(CUR
 	                	data: 'title'
 	                }, {
 	                	data: 'createTime'
+	                }, {
+	                	data: 'type', render: function(data, type, row, meta) {
+	                		return Formatter.bannerTypeFormatter(data);
+	                	}
 	                }, {
 	                	data: 'url'
 	                }, {

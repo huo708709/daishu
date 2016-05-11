@@ -26,7 +26,8 @@
 				<th width="2%"><input type="checkbox" class="group-checkable"></th>
 				<th width="20%">标题</th>
 				<th width="15%">创建时间</th>
-				<th width="50%">摘要</th>
+				<th width="15%">显示位置</th>
+				<th width="35%">摘要</th>
 				<th width="13%">操作</th>
 			</tr>
 		</thead>

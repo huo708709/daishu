@@ -38,13 +38,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="am-u-sm-12 forminfo-wrapper">
             <div class="am-input-group am-input-group-lg">
                 <span class="am-input-group-label">我的姓名：</span>
-                <input name="name" type="text" class="am-form-field" placeholder="请填写您的称呼">
+                <input name="name" value="${sessionScope.loginCustomer.name}" type="text" class="am-form-field" placeholder="请填写您的称呼">
             </div>
         </div>
         <div class="am-u-sm-12 forminfo-wrapper margin-top-1">
             <div class="am-input-group am-input-group-lg">
                 <span class="am-input-group-label">我的电话：</span>
-                <input name="phone" type="text" class="am-form-field" placeholder="请填写您的电话">
+                <input name="phone" value="${sessionScope.loginCustomer.phone}" type="text" class="am-form-field" placeholder="请填写您的电话">
             </div>
         </div>
         <div class="am-u-sm-12 forminfo-wrapper margin-top-1">
@@ -63,8 +63,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div id="address_container" class="am-container am-container-page"style="padding: 0;display: none">
 	<iframe name="address_iframe" id="address_iframe" style="width: 0;height: 0;display: none;"></iframe>
 	<div id="address_list" style="padding: 0;">
-	    <!-- <button type="button" class="am-btn am-btn-default am-btn-block">添加新地址</button> -->
 	</div>
+	<a href="address/addressEdit?id=0" style="background-color: #fff;padding: 1rem" class="am-btn am-btn-default am-btn-block">添加新地址</a>
 </div>
 <div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">
   <div class="am-modal-dialog">

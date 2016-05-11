@@ -27,4 +27,6 @@ public interface CustomerMapper extends AbstractMapper {
 	 * @return
 	 */
 	public double getBalance(@Param("id") int id);
+	
+	public int updatePhoneAndName(@Param("id") int id, @Param("name") String name, @Param("phone") String phone);
 }

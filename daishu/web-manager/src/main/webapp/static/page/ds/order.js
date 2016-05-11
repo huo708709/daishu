@@ -66,7 +66,7 @@ define('page/ds/order', ['component/curd', 'component/form', 'component/formatte
 	                		if (row.payStatus != 5) {
 	                			s += '<a class="btn btn-xs default red order_delete" data-id="' + row.id + '" href="javascript:"> 取消 </a><br>';
 	                		}
-	                		s += '<a class="btn btn-xs default blue clipboardData" data-info="顾客：'+row.customerName+';电话：'+row.phone+';地址：'+row.addressContent+'"> 复制订单 </a><br>';
+	                		s += '<a class="btn btn-xs default blue clipboardData" data-zclip-text="顾客：'+row.customerName+';电话：'+row.phone+';地址：'+row.addressContent+'"> 复制订单 </a><br>';
 	                		return s;
 	                	}
 	                }]
@@ -115,9 +115,10 @@ define('page/ds/order', ['component/curd', 'component/form', 'component/formatte
 				the.updatePayStatusByIds([orderId]);
 			}).on('click', '.orders_delete', function() {
 				the.deleteOrder(grid.getSelectedRows());
-			}).on('click', '.clipboardData', function() {
-				var info = $(this).data('info');
-				copyToClipboard(info);
+			}).on('copy', '.clipboardData', function(e) {
+				e.clipboardData.clearData();
+				e.clipboardData.setData("text/plain", $(this).data("zclip-text"));
+				e.preventDefault();
 			});
 			$(document).on('click', '.choose_ayi', function() {
 				var userId = $(this).data('id');
