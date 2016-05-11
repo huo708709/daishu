@@ -34,28 +34,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <form id="orderSubmit" action="order/add" method="post">
 <input type="hidden" name="baojieType" value="${baojieType }">
 <div id="baojie_frist" class="am-container am-container-page" style="padding: 0;">
-    <div class="am-g forminfo-container">
+    <div class="am-g forminfo-container" style="margin-left: 0;margin-right: 0">
         <div class="am-u-sm-12 forminfo-wrapper">
             <div class="am-input-group am-input-group-lg">
                 <span class="am-input-group-label">我的姓名：</span>
-                <input name="name" type="text" class="am-form-field" placeholder="请填下您的称呼">
+                <input name="name" type="text" class="am-form-field" placeholder="请填写您的称呼">
             </div>
         </div>
         <div class="am-u-sm-12 forminfo-wrapper margin-top-1">
             <div class="am-input-group am-input-group-lg">
                 <span class="am-input-group-label">我的电话：</span>
-                <input name="phone" type="text" class="am-form-field" placeholder="请填下您的电话">
+                <input name="phone" type="text" class="am-form-field" placeholder="请填写您的电话">
             </div>
         </div>
         <div class="am-u-sm-12 forminfo-wrapper margin-top-1">
             <div class="am-input-group am-input-group-lg">
                 <span class="am-input-group-label">服务地址：</span>
-                <a id="address_show" href="#address" type="text" class="am-form-field" placeholder="请选择您的服务地址">请选择您的服务地址</a>
+                <a id="address_show" href="#address" type="text" class="am-form-field" style="color: #aaa" placeholder="请选择您的服务地址">请选择您的服务地址</a>
                 <input id="addressId" type="hidden" name="addressId">
             </div>
         </div>
     </div>
-    <div class="am-g margin-top-2" style="padding: 0 2rem">
+    <div class="am-g margin-top-2" style="padding: 0 2rem;margin-left: 0;margin-right: 0">
         <a href="#second" id="next" class="am-btn am-btn-warning am-btn-block am-btn-lg am-radius">下一步</a>
     </div>
 </div>

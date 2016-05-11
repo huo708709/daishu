@@ -1,5 +1,4 @@
 define('page/ds/order', ['component/curd', 'component/form', 'component/formatter', 'component/chooseAyi','component/modal'], function(CURD, FORM, Formatter,ChooseAyi,Modal) {
-	
 	var grid = null;
 	return {
 		init: function() {
@@ -67,7 +66,7 @@ define('page/ds/order', ['component/curd', 'component/form', 'component/formatte
 	                		if (row.payStatus != 5) {
 	                			s += '<a class="btn btn-xs default red order_delete" data-id="' + row.id + '" href="javascript:"> 取消 </a><br>';
 	                		}
-	                		s += '<a class="btn btn-xs default blue skip_to_edit" href="ds/order/copy?id=' + row.id + '"> 复制订单 </a><br>';
+	                		s += '<a class="btn btn-xs default blue clipboardData" data-info="顾客：'+row.customerName+';电话：'+row.phone+';地址：'+row.addressContent+'"> 复制订单 </a><br>';
 	                		return s;
 	                	}
 	                }]
@@ -116,6 +115,9 @@ define('page/ds/order', ['component/curd', 'component/form', 'component/formatte
 				the.updatePayStatusByIds([orderId]);
 			}).on('click', '.orders_delete', function() {
 				the.deleteOrder(grid.getSelectedRows());
+			}).on('click', '.clipboardData', function() {
+				var info = $(this).data('info');
+				copyToClipboard(info);
 			});
 			$(document).on('click', '.choose_ayi', function() {
 				var userId = $(this).data('id');

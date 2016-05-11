@@ -154,7 +154,7 @@ public class OrderController extends AbstractController<Order> {
 				order.setCustomerId(customer.getId());
 				this.getAbstractService().insert(order);
 			}
-			return "redirect:/order/order_pay?orderNo=" + orderNo + "&orderId=" + order.getId();
+			return "redirect:/order/order_ok?orderNo=" + orderNo + "&orderId=" + order.getId();
 		}
 //		return this.response("添加订单成功", ResponseData.ACTION_TOAST);
 	}

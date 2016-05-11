@@ -31,13 +31,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		data-am-slider='{&quot;directionNav&quot;:false}'
 		style="height: 21.4%">
 		<ul class="am-slides">
-			<li><img src="http://s.amazeui.org/media/i/demos/bing-1.jpg">
+			<li><img src="http://s.amazeui.org/media/i/demos/bing-1.jpg" style="height:140px;">
 			</li>
-			<li><img src="http://s.amazeui.org/media/i/demos/bing-2.jpg">
+			<li><img src="http://s.amazeui.org/media/i/demos/bing-2.jpg" style="height:140px;">
 			</li>
-			<li><img src="http://s.amazeui.org/media/i/demos/bing-3.jpg">
+			<li><img src="http://s.amazeui.org/media/i/demos/bing-3.jpg" style="height:140px;">
 			</li>
-			<li><img src="http://s.amazeui.org/media/i/demos/bing-4.jpg">
+			<li><img src="http://s.amazeui.org/media/i/demos/bing-4.jpg" style="height:140px;">
 			</li>
 		</ul>
 	</div>
@@ -117,18 +117,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 	</div>
-	<div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default ">
-		<ul class="am-navbar-nav am-cf am-avg-sm-4">
-			<li><a href="vip" class=""> <span
-					class="am-icon-phone"></span> <span class="am-navbar-label">会员卡</span>
+	<div data-am-widget="navbar" class="am-navbar am-cf">
+		<ul class="am-avg-sm-3" style="background-color: #f6f6f6;border-top: 1px solid #d5d5d5;">
+			<li style="text-align: right;"><a href="vip">
+			<img src="static/img/huiyuanka_icon.png" style="width: 25px;margin-bottom:3px;"> <span style="color: #666666">会员卡</span>
 			</a></li>
-			<li><a href="userCenter" class=""> <span
-					class="am-icon-share-square-o"></span> <span
-					class="am-navbar-label">我的</span>
+			<li style="text-align: center;"><a href="vip">
+			<span style="color: #666666">|</span>
 			</a></li>
-			<li><a> <span
-					class="am-icon-location-arrow"></span> <span
-					class="am-navbar-label">定位</span>
+			<li style="text-align: left;"><a href="userCenter">
+			<img src="static/img/usercenter_icon.png" style="width: 20px;margin-bottom:5px;"> <span style="color: #666666">我的</span>
 			</a></li>
 		</ul>
 	</div>

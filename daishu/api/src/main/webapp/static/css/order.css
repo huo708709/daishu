@@ -54,3 +54,6 @@ ul.week li.day p:last-child {
     color: #d2d2d2;
     border-color: #d2d2d2;
 }
+.forminfo-container .forminfo-wrapper {
+	padding: 0;
+}

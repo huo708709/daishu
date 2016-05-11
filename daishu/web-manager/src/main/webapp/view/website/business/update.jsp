@@ -5,7 +5,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <div class="portlet light bg-inverse">
 	<div class="portlet-body form">
-		<form id="business_form" class="form-horizontal" action="website/business/add" method="post">
+		<form id="business_form" class="form-horizontal" action="website/business/update" method="post">
+			<input type="hidden" name="id" value="${business.id }">
 			<div class="form-body">
 				<div class="alert alert-danger display-hide">
                 	<button data-close="alert" class="close"></button> You have some form errors. Please check below. </div>
@@ -15,13 +16,13 @@
 				<div class="form-group">
 		            <label class="control-label col-md-2">名称</label>
 		            <div class="col-md-10">
-		                <input name="name" type="text" placeholder="名称" class="form-control">
+		                <input name="name" type="text" placeholder="名称" class="form-control" value="${business.name }">
 		            </div>
 		        </div>
 		        <div class="form-group">
 		            <label class="control-label col-md-2">简介</label>
 		            <div class="col-md-10">
-		                <input name="intro" type="text" placeholder="名称" class="form-control">
+		                <input name="intro" type="text" placeholder="名称" class="form-control" value="${business.intro }">
 		            </div>
 		        </div>
 		        <div class="form-group">
@@ -29,7 +30,7 @@
 		            <div class="col-md-10">
 		            	<select name="unitId" class="form-control">
 		            		<c:forEach items="${units}" var="unit">
-		            			<option value="${unit.id }">${unit.name}</option>
+		            			<option value="${unit.id }" ${business.unitId==unit.id?'selected':'' }>${unit.name}</option>
 				            </c:forEach>
 		            	</select>
 		            </div>
@@ -38,20 +39,20 @@
 		            <label class="control-label col-md-2">code</label>
 		            <div class="col-md-10">
 		            	<select name="code" class="form-control">
-		            		<option value="changgui">changgui</option>
-		            		<option value="jingxibaojie">jingxibaojie</option>
-		            		<option value="caboli">caboli</option>
-		            		<option value="ganxi">ganxi</option>
-		            		<option value="shendubaojie">shendubaojie</option>
-		            		<option value="xinjukaihuang">xinjukaihuang</option>
-		            		<option value="jiajuhuli">jiajuhuli</option>
-		            		<option value="jiadianqingxi">jiadianqingxi</option>
+		            		<option value="changgui" ${business.code=='changgui'?'selected':'' }>changgui</option>
+		            		<option value="jingxibaojie" ${business.code=='jingxibaojie'?'selected':'' }>jingxibaojie</option>
+		            		<option value="caboli" ${business.code=='caboli'?'selected':'' }>caboli</option>
+		            		<option value="ganxi" ${business.code=='ganxi'?'selected':'' }>ganxi</option>
+		            		<option value="shendubaojie" ${business.code=='shendubaojie'?'selected':'' }>shendubaojie</option>
+		            		<option value="xinjukaihuang" ${business.code=='xinjukaihuang'?'selected':'' }>xinjukaihuang</option>
+		            		<option value="jiajuhuli" ${business.code=='jiajuhuli'?'selected':'' }>jiajuhuli</option>
+		            		<option value="jiadianqingxi" ${business.code=='jiadianqingxi'?'selected':'' }>jiadianqingxi</option>
 		            	</select>
 		            </div>
 		        </div>
 		        <div class="form-group">
 		            <label class="control-label col-md-2">描述</label>
-		            <textarea style="display: none;" name="description" id="business_description"></textarea>
+		            <textarea style="display: none;" name="description" id="business_description">${business.description }</textarea>
 		            <div class="col-md-10">
                         <div name="description" id="summernote_business"> </div>
                     </div>

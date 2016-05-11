@@ -34,33 +34,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <form id="orderSubmit" action="order/add" method="post">
 <input type="hidden" name="baojieType" value="${baojieType }">
 <div id="baojie_frist" class="am-container am-container-page" style="padding: 0;">
-    <div class="am-g forminfo-container">
+    <div class="am-g forminfo-container" style="margin-left: 0;margin-right: 0">
         <div class="am-u-sm-12 forminfo-wrapper">
-            <div class="am-input-group am-input-group-lg">
+            <div class="am-input-group am-input-group-lg" style="margin: 0.6rem;">
                 <span class="am-input-group-label">我的姓名：</span>
-                <input name="name" type="text" class="am-form-field" placeholder="请填下您的称呼">
+                <input name="name" type="text" class="am-form-field" placeholder="请填写您的称呼" style="line-height: normal;">
             </div>
         </div>
         <div class="am-u-sm-12 forminfo-wrapper margin-top-1">
-            <div class="am-input-group am-input-group-lg">
+            <div class="am-input-group am-input-group-lg" style="margin: 0.6rem;">
                 <span class="am-input-group-label">我的电话：</span>
-                <input name="phone" type="text" class="am-form-field" placeholder="请填下您的电话">
+                <input name="phone" type="text" class="am-form-field" placeholder="请填写您的电话" style="line-height: normal;">
             </div>
         </div>
         <div class="am-u-sm-12 forminfo-wrapper margin-top-1">
-            <div class="am-input-group am-input-group-lg">
+            <div class="am-input-group am-input-group-lg" style="margin: 0.6rem;">
                 <span class="am-input-group-label">服务地址：</span>
-                <a id="address_show" href="#address" type="text" class="am-form-field" placeholder="请选择您的服务地址">请选择您的服务地址</a>
+                <a id="address_show" href="#address" type="text" class="am-form-field" style="color: #aaa">请选择您的服务地址</a>
                 <input id="addressId" type="hidden" name="addressId">
             </div>
         </div>
     </div>
-    <div class="am-g margin-top-2" style="padding: 0 2rem">
+    <div class="am-g margin-top-2" style="padding: 0 2rem;margin-left: 0;margin-right: 0">
         <a href="#second" id="next" class="am-btn am-btn-warning am-btn-block am-btn-lg am-radius">下一步</a>
     </div>
 </div>
 <div id="baojie_second" class="am-container am-container-page" style="padding: 0;display: none;">
-    <div class="am-g week-container">
+    <div class="am-g week-container" style="margin-left: 0;margin-right: 0">
         <div class="am-u-sm-12 week-wrapper">
             <ul class="week">
             <c:forEach items="${dates }" var="date" varStatus="varStatus">
@@ -72,7 +72,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </c:forEach>
         </div>
     </div>
-    <div class="am-g schedule-container">
+    <div class="am-g schedule-container" style="margin-left: 0;margin-right: 0">
         <div class="am-u-sm-6 schedule-wrapper">
             <a class="schedule-time" data-servicetimetype="1"><label style="font-weight: normal;margin: 0">8:00-12:00
             <input style="display: none;" type="radio" name="serviceTimeType" value="1">
@@ -94,11 +94,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </label></a>
         </div>
     </div>
-    <div class="am-g forminfo-container">
+    <div class="am-g forminfo-container" style="margin-left: 0;margin-right: 0">
         <div class="am-u-sm-12 forminfo-wrapper">
             <div class="am-input-group am-input-group-lg">
-                <span class="am-input-group-label">服务面积：</span>
-                <input id="area" name="area" type="text" class="am-form-field" placeholder="服务面积（单位：平方米）">
+                <span class="am-input-group-label">服务总量：</span>
+                <input id="area" name="area" type="number" class="am-form-field" placeholder="面积/时长(请填写数字)">
             </div>
             <div class="am-input-group am-input-group-lg">
                 <span class="am-input-group-label">备注详情：</span>
@@ -106,12 +106,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
         </div>
         <div class="am-u-sm-12" style="margin: 0.5rem 0;padding: 0 1.5rem">
-            <label><input id="agreeProtocol" type="checkbox"> 已阅读并同意<span>《袋鼠管家服务协议》</span></label>
+            <label style="color: #999999;font-weight: normal;"><input id="agreeProtocol" type="checkbox"> 已阅读并同意<span style="color: orange;">《袋鼠管家服务协议》</span></label>
         </div>
         <div class="am-u-sm-12 forminfo-wrapper">
             <div class="am-input-group am-input-group-lg">
                 <span class="am-input-group-label">预计费用：</span>
-                <input id="priceShow" type="text" class="am-form-field" placeholder="填写相关信息后核算" disabled="true">
+                <input id="priceShow" type="text" class="am-form-field" placeholder="填写相关信息后核算" disabled="true" style="color: orange;">
                 <input id="price" data-unit="${unit.price }" type="hidden" name="price">
             </div>
         </div>

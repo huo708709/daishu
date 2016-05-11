@@ -2,6 +2,13 @@ body {
     background-color: #eef1f5;
 }
 
+.am-input-group-lg {
+	margin: 0.6rem !important;
+}
+.am-input-group-lg input {
+	line-height: normal !important;
+}
+
 /** common **/
 body {
     font-family: 微软雅黑;
