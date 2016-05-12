@@ -33,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		style="height: 21.4%">
 		<ul class="am-slides">
 			<c:forEach items="${banners }" var="banner">
-			<li><img src="../static/upload/${banner.fileId }" style="height:140px;">
+			<li><img src="../static/upload/${banner.fileId }" style="height:135px;">
 			</li>
 			</c:forEach>
 		</ul>

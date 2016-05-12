@@ -62,4 +62,8 @@ public class OrderService extends AbstractService<Order> {
 	public int paySuccess(Order order) {
 		return this.orderMapper.paySuccess(order);
 	}
+	
+	public double selectPriceById(int id) {
+		return this.orderMapper.selectPriceById(id);
+	}
 }

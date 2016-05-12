@@ -22,6 +22,10 @@ public class SystemConfigService extends AbstractService<SystemConfig> {
 		this.systemConfigMapper.update(name, value);
 	}
 	
+	public String selectTel() {
+		return this.systemConfigMapper.selectTel();
+	}
+	
 	@Override
 	public AbstractMapper getAbstractMapper() {
 		return this.systemConfigMapper;

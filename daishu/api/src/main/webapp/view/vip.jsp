@@ -47,7 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             	<div style="height: 5px;width: 100%;background: url('static/img/huiyuanka-border.png') repeat-x;"></div>
             	<div class="content">
 					<img src="static/img/mama.png"/>
-					<span>妈妈卡:充值888元 赠送58元优惠</span>
+					<span>妈妈卡:充值${cards.mama.rechargeAmount }元 赠送${cards.mama.giveAmount }元优惠</span>
 					<button data-viptype="1" type="button" class="am-btn am-btn-xs am-radius am-btn-default">立即充值</button>
             	</div>
             	<div style="height: 5px;width: 100%;background: url('static/img/huiyuanka-border.png') repeat-x;"></div>
@@ -58,7 +58,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             	<div style="height: 5px;width: 100%;background: url('static/img/huiyuanka-border.png') repeat-x;"></div>
             	<div class="content">
 					<img src="static/img/baba.png"/>
-					<span>爸爸卡:充值1888元 赠送288元优惠</span>
+					<span>爸爸卡:充值${cards.baba.rechargeAmount }元 赠送${cards.baba.giveAmount }元优惠</span>
 					<button data-viptype="2" type="button" class="am-btn am-btn-xs am-radius am-btn-default">立即充值</button>
 				</div>
             	<div style="height: 5px;width: 100%;background: url('static/img/huiyuanka-border.png') repeat-x;"></div>
@@ -69,7 +69,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             	<div style="height: 5px;width: 100%;background: url('static/img/huiyuanka-border.png') repeat-x;"></div>
             	<div class="content">
 					<img src="static/img/baobao.png"/>
-					<span>宝宝卡:充值2888元 赠送788元优惠</span>
+					<span>宝宝卡:充值${cards.baobao.rechargeAmount }元 赠送${cards.baobao.giveAmount }元优惠</span>
 					<button data-viptype="3" type="button" class="am-btn am-btn-xs am-radius am-btn-default">立即充值</button>
 				</div>
             	<div style="height: 5px;width: 100%;background: url('static/img/huiyuanka-border.png') repeat-x;"></div>
@@ -82,6 +82,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="am-modal-hd">正在载入...</div>
     <div class="am-modal-bd">
       <span class="am-icon-spinner am-icon-spin"></span>
+    </div>
+  </div>
+</div>
+<div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">提示</div>
+    <div class="am-modal-bd">
+    </div>
+    <div class="am-modal-footer">
+      <span class="am-modal-btn" data-am-modal-confirm>确定</span>
     </div>
   </div>
 </div>

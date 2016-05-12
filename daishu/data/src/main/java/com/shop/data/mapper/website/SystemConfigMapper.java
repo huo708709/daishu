@@ -7,4 +7,6 @@ import com.shop.data.mapper.AbstractMapper;
 public interface SystemConfigMapper extends AbstractMapper {
 	
 	public void update(@Param("name") String name, @Param("value") String value);
+	
+	public String selectTel();
 }

@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.shop.data.mapper.daishu.Customer;
+import com.shop.data.mapper.daishu.MemberCard;
 import com.shop.data.mapper.daishu.Order;
 import com.shop.data.mapper.daishu.Unit;
 import com.shop.data.mapper.website.Banner;
@@ -33,6 +34,7 @@ import com.shop.manager.util.weixin.SignatureUtil;
 import com.shop.manager.web.filter.AclFilter;
 import com.shop.service.AbstractService;
 import com.shop.service.daishu.CustomerService;
+import com.shop.service.daishu.MemberCardService;
 import com.shop.service.daishu.OrderService;
 import com.shop.service.daishu.UnitService;
 import com.shop.service.website.BannerService;
@@ -54,6 +56,8 @@ public class HomeController extends AbstractController<Object> {
 	private SystemConfigService systemConfigService;
 	@Autowired
 	private OrderService orderService;
+	@Autowired
+	private MemberCardService memberCardService;
 
 	@RequestMapping(value = "index")
 	public ModelAndView index(HttpSession session) {
@@ -197,6 +201,9 @@ public class HomeController extends AbstractController<Object> {
 		mav.addObject("appId", ConfigUtil.APPID);
 		mav.addObject("sign", sign);
 		mav.addObject("code", code);
+		
+		Map<String, MemberCard> cards = memberCardService.selectGroupByType();
+		mav.addObject("cards", cards);
 		return mav;
 	}
 	
@@ -219,6 +226,9 @@ public class HomeController extends AbstractController<Object> {
 		mav.addObject("appId", ConfigUtil.APPID);
 		mav.addObject("sign", sign);
 		mav.addObject("code", code);
+		
+		String tel = systemConfigService.selectTel();
+		mav.addObject("tel", tel);
 		
 		return mav;
 	}

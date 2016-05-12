@@ -38,7 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <img src="static/img/changyongdizhi.png"><a style="display: initial;height: auto;color: #ffffff;" href="address/addressList">常用地址</a>
             </li>
             <li>
-                <img src="static/img/kefurexian.png">客服热线
+                <img src="static/img/kefurexian.png"><a style="display: initial;height: auto;color: #ffffff;" href="tel:${tel }">客服热线</a>
             </li>
         </ul>
     </div>
@@ -139,6 +139,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
   </div>
 </div>
+<div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">提示</div>
+    <div class="am-modal-bd">
+    </div>
+    <div class="am-modal-footer">
+      <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+    </div>
+  </div>
+</div>
 <script src="static/js/jquery.min.js"></script>
 <script src="static/js/amazeui.min.js"></script>
 <script src="static/js/daishu.js"></script>
@@ -170,14 +180,20 @@ wx.ready(function() {
 				signType: "MD5",
 				paySign: data.paySign,
 				success: function(data) {
-					alert("支付成功");
+					//alert("支付成功");
+					$('#my-alert .am-modal-bd').text('支付成功');
+		    		$('#my-alert').modal();
 					window.location.href = 'userCenter';
 				},
 				fail: function() {
-					alert("支付失败");
+					$('#my-alert .am-modal-bd').text('支付失败');
+		    		$('#my-alert').modal();
+					//alert("支付失败");
 				},
 				cancel: function() {
-					alert("支付取消");
+					//alert("支付取消");
+					$('#my-alert .am-modal-bd').text('支付取消');
+		    		$('#my-alert').modal();
 				}
 			});
     	}, function() {

@@ -9,4 +9,8 @@
 	<select id="selectById" resultType="SystemConfig">
 		select * from t_system_config where id = 1;
 	</select>
+	
+	<select id="selectTel" resultType="string">
+		select tel from t_system_config where id = 1;
+	</select>
 </mapper>

@@ -160,7 +160,9 @@ var daishu = {
             			success.apply(this, [data.data]);
             		} else {
             			if (data.action == 'alert') {
-            				alert(data.message);
+            				$('#my-alert .am-modal-bd').text(data.message);
+        		    		$('#my-alert').modal();
+//            				alert(data.message);
             			}
             			error.apply(this, [data.data]);
             		}

@@ -12,13 +12,19 @@ wx.ready(function() {
 				signType: "MD5",
 				paySign: data.paySign,
 				success: function(data) {
-					alert("支付成功");
+//					alert("支付成功");
+					$('#my-alert .am-modal-bd').text('支付成功');
+		    		$('#my-alert').modal();
 				},
 				fail: function() {
-					alert("支付失败");
+//					alert("支付失败");
+					$('#my-alert .am-modal-bd').text('支付失败');
+		    		$('#my-alert').modal();
 				},
 				cancel: function() {
-					alert("支付取消");
+//					alert("支付取消");
+					$('#my-alert .am-modal-bd').text('支付取消');
+		    		$('#my-alert').modal();
 				}
 			});
     	});

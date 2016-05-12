@@ -116,7 +116,9 @@ public class OrderController extends AbstractController<Order> {
 	public ResponseData pay(HttpServletRequest request, int orderId, String orderNo) {
 		String openid = (String) request.getSession().getAttribute(
 				AclFilter.OPENID);
-		Customer customer = this.getLoginCustomer(request);
+//		Customer customer = this.getLoginCustomer(request);
+		
+		double price = this.orderService.selectPriceById(orderId);
 
 		String nonceStr = PayCommonUtil.CreateNoncestr();
 		try {
@@ -126,7 +128,7 @@ public class OrderController extends AbstractController<Order> {
 			parameters.put("nonce_str", nonceStr);
 			parameters.put("body", "会员卡");
 			parameters.put("out_trade_no", orderNo);
-			parameters.put("total_fee", "1");
+			parameters.put("total_fee", String.valueOf((int) price*100));
 			parameters.put("spbill_create_ip", IpAddressUtil.getIpAddr(request));
 			parameters.put("notify_url", ConfigUtil.NOTIFY_URL1);
 			parameters.put("trade_type", "JSAPI");

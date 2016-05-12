@@ -26,4 +26,6 @@ public interface OrderMapper extends AbstractMapper {
 	public Order selectOrderDetail(@Param("id") int id);
 	
 	public int paySuccess(Order order);
+	
+	public double selectPriceById(@Param("id") int id);
 }

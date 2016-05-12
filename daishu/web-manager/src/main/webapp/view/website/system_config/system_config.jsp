@@ -13,6 +13,15 @@
                         <span class="text-muted"> 输入正确的URL </span>
                     </td>
 				</tr>
+				<tr>
+					<td style="width:15%"> 客户热线 </td>
+                    <td style="width:60%">
+                        <a class="editable_item" href="javascript:;" id="tel" data-type="text" data-pk="tel" data-original-title="客户热线">${systemConfig.tel }</a>
+                    </td>
+                    <td style="width:25%">
+                        <span class="text-muted"> 输入正确的号码 </span>
+                    </td>
+				</tr>
 			</tbody>
 		</table>
 	</div>

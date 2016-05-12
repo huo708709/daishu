@@ -32,6 +32,7 @@
 		<property name="filterChainDefinitions">
 			<value>
 				/ = anon
+				/favicon.ico = anon
 				/Captcha.jpg = anon
 				/static/** = anon
 				/pc/** = anon

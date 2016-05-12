@@ -7,6 +7,7 @@ public class SystemConfig extends IntEntity {
 	private String recruitmentUrl;
 	private String xieyi;
 	private String guize;
+	private String tel;
 
 	public String getRecruitmentUrl() {
 		return recruitmentUrl;
@@ -30,6 +31,14 @@ public class SystemConfig extends IntEntity {
 
 	public void setGuize(String guize) {
 		this.guize = guize;
+	}
+
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
 	}
 
 }

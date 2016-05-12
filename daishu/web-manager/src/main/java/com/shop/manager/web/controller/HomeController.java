@@ -25,7 +25,7 @@ public class HomeController {
 	private MenuService menuService;
 
 	@RequiresAuthentication
-	@RequestMapping(value = "/")
+	@RequestMapping(value = "")
 	public ModelAndView index(HttpSession session) {
 		Subject subject = SecurityUtils.getSubject();
 		ShiroDbRealm.ShiroUser shiroUser = (ShiroDbRealm.ShiroUser)subject.getPrincipal();
