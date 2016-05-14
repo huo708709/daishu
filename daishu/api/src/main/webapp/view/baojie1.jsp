@@ -55,8 +55,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
         </div>
     </div>
-    <div class="am-g margin-top-2" style="padding: 0 2rem;margin-left: 0;margin-right: 0">
-        <a href="#second" id="next" class="am-btn am-btn-warning am-btn-block am-btn-lg am-radius">下一步</a>
+    <div class="am-g margin-top-3" style="padding: 0 2rem;margin-left: 0;margin-right: 0">
+        <a href="#second" id="next" class="am-btn am-btn-warning am-btn-block am-btn-lg am-radius" style="font-size: 1.6rem;font-weight: normal;line-height:1.5;">下一步</a>
     </div>
 </div>
 </form>

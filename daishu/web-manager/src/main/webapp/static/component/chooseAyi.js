@@ -15,7 +15,7 @@ define('component/chooseAyi', ['component/modal', 'component/curd'], function(Mo
 	}
 	
 	return {
-		assignAyi: function(orderId) {
+		assignAyi: function(orderId, successCallBack, errorCallBack) {
 			var the = this;
 			Modal.open({
 				backdrop: 'static',
@@ -45,6 +45,7 @@ define('component/chooseAyi', ['component/modal', 'component/curd'], function(Mo
 							ayiId: ayiIds[0]
 						}
 					}, function() {
+						successCallBack.call();
 					}, function() {
 					});
 				}

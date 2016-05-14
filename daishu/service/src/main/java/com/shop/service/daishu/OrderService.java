@@ -51,6 +51,10 @@ public class OrderService extends AbstractService<Order> {
 		this.orderMapper.updatePayStatusByIds(ids, payStatus);
 	}
 
+	public void updateAuditStatusById(int id, int auditStatus) {
+		this.orderMapper.updateAuditStatusById(id, auditStatus);
+	}
+
 	public void updatePayStatusAndPayTypeByIds(int[] ids, int payStatus, int payType) {
 		this.orderMapper.updatePayStatusAndPayTypeByIds(ids, payStatus, payType);
 	}

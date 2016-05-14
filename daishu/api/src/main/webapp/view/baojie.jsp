@@ -55,8 +55,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
         </div>
     </div>
-    <div class="am-g margin-top-2" style="padding: 0 2rem;margin-left: 0;margin-right: 0">
-        <a href="#second" id="next" class="am-btn am-btn-warning am-btn-block am-btn-lg am-radius">下一步</a>
+    <div class="am-g margin-top-3" style="padding: 0 2rem;margin-left: 0;margin-right: 0">
+        <a href="#second" id="next" class="am-btn am-btn-warning am-btn-block am-btn-lg am-radius" style="font-size: 1.6rem;font-weight: normal;line-height:1.5;">下一步</a>
     </div>
 </div>
 <div id="baojie_second" class="am-container am-container-page" style="padding: 0;display: none;">
@@ -65,9 +65,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <ul class="week">
             <c:forEach items="${dates }" var="date" varStatus="varStatus">
                 <li data-baojieType="${baojieType }" data-date="${date.dateFormat }" class="day ${varStatus.index == 0 ? 'active' : '' }">
-                <label style="font-weight: normal;"><p>${date.week }</p>
+                <label style="font-weight: normal;"><p style="font-size: 16px;">${date.week }</p>
                 <input style="display: none;" type="radio" name="serviceDate" value="${date.dateFormat }" ${varStatus.index == 0 ? 'checked' : '' }>
-                <p>${date.date }</p>
+                <p style="font-size: 14px;">${date.date }</p>
                 </label></li>
             </c:forEach>
         </div>
@@ -94,24 +94,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </label></a>
         </div>
     </div>
-    <div class="am-g forminfo-container" style="margin-left: 0;margin-right: 0">
+    <div class="am-g forminfo-container" style="margin-left: 0;margin-right: 0;margin-top: 1rem;">
         <div class="am-u-sm-12 forminfo-wrapper">
-            <div class="am-input-group am-input-group-lg">
+            <div class="am-input-group am-input-group-lg" style="margin-bottom: 0 !important;margin-top: 0 !important;">
                 <span class="am-input-group-label">服务总量：</span>
                 <input id="area" name="area" type="number" class="am-form-field" placeholder="面积/时长(请填写数字)">
             </div>
-            <div class="am-input-group am-input-group-lg">
+            <div class="am-input-group am-input-group-lg" style="margin-bottom: 0 !important;margin-top: 0 !important;">
                 <span class="am-input-group-label">备注详情：</span>
                 <input name="remark" type="text" class="am-form-field" placeholder="请填写您的特殊要求">
             </div>
         </div>
         <div class="am-u-sm-12" style="margin: 0.5rem 0;padding: 0 1.5rem">
-            <label style="color: #999999;font-weight: normal;"><input id="agreeProtocol" type="checkbox"> 已阅读并同意<a href="xieyi" style="color: orange;">《袋鼠管家服务协议》</a></label>
+            <label style="color: #999999;font-weight: normal;font-size: 1.4rem"><input id="agreeProtocol" type="checkbox" checked="checked"> 已阅读并同意<a href="xieyi" style="color: orange;">《袋鼠管家服务协议》</a></label>
         </div>
         <div class="am-u-sm-12 forminfo-wrapper">
             <div class="am-input-group am-input-group-lg">
-                <span class="am-input-group-label">预计费用：</span>
-                <input id="priceShow" type="text" class="am-form-field" placeholder="填写相关信息后核算" disabled="true" style="color: orange;">
+                <span class="am-input-group-label" style="color: #a80009">预计费用：</span>
+                <a id="priceShow" style="color: #a80009;line-height:40px;">填完相关信息后进行核算</a>
                 <input id="price" data-unit="${unit.price }" type="hidden" name="price">
             </div>
         </div>
@@ -125,7 +125,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<iframe name="address_iframe" id="address_iframe" style="width: 0;height: 0;display: none;"></iframe>
 	<div id="address_list" style="padding: 0;">
 	</div>
-	<a href="address/addressEdit?id=0" style="background-color: #fff;padding: 1rem" class="am-btn am-btn-default am-btn-block">添加新地址</a>
+	<a href="address/addressEdit?id=0" style="background-color: #fff;padding: 1.4rem;color: #f39910;" class="am-btn am-btn-default am-btn-block">添加新地址</a>
 </div>
 <div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">
   <div class="am-modal-dialog">

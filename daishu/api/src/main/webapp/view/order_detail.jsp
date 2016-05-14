@@ -35,18 +35,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <input id="starLevel" name="starLevel" type="hidden" value="0">
 <div id="order_detail_div" class="am-container">
     <div style="margin-top: 1rem;">
-    <img style="width: 20px;" src="static/img/user_center_ganxi.png"> <span> 快速保洁</span></div>
-    <hr data-am-widget="divider" style="margin: 1rem auto;" class="am-divider am-divider-default" />
+    <img style="width: 20px;margin-right:1rem;" src="static/img/user_center_ganxi.png"> <span style="color: #f39910"> 快速保洁</span></div>
+    <hr data-am-widget="divider" style="margin: 1rem auto;border-color: #eeeeee" class="am-divider am-divider-default" />
     <div>
-        <p style="margin-bottom: 1rem;">订单编号：${order.orderNo }</p>
-        <p style="margin: 1rem 0;">服务面积：${order.area }平方米</p>
-        <p style="margin-top: 1rem;">预计费用：${order.price }元</p>
+        <p style="margin-bottom: 1rem;color: #a0a0a0;">订单编号：<span style="color: #5d5d5d">${order.orderNo }</span></p>
+        <p style="margin: 1rem 0;color: #a0a0a0;">服务面积：<span style="color: #5d5d5d">${order.area }平方米</span></p>
+        <p style="margin-top: 1rem;color: #a0a0a0;">预计费用：<span style="color: #5d5d5d">${order.price }元</span></p>
     </div>
-    <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
+    <hr data-am-widget="divider" style="border-color: #eeeeee;" class="am-divider am-divider-default" />
     <div>
-        <p style="margin-bottom: 1rem;">预约时间：${order.serviceDate } ${order.serviceTimeTypeDTO }</p>
-        <p style="margin: 1rem 0;">服务地址：${order.addressContent }</p>
-        <p style="margin-top: 1rem;">备注详情：${order.remark }</p>
+        <p style="margin-bottom: 1rem;color: #a0a0a0;">预约时间：<span style="color: #5d5d5d">${order.serviceDate } ${order.serviceTimeTypeDTO }</span></p>
+        <p style="margin: 1rem 0;color: #a0a0a0;">服务地址：<span style="color: #5d5d5d">${order.addressContent }</span></p>
+        <p style="margin-top: 1rem;color: #a0a0a0;">备注详情：<span style="color: #5d5d5d">${order.remark }</span></p>
     </div>
     <hr data-am-widget="divider" style="margin: 1rem auto;" class="am-divider am-divider-default" />
     <div>

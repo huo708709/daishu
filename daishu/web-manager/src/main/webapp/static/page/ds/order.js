@@ -58,15 +58,17 @@ define('page/ds/order', ['component/curd', 'component/form', 'component/formatte
 	                	}
 	                }, {
 	                	orderabel: false, render: function(data, type, row, meta) {
-	                		var s = '<a class="btn btn-xs default purple choose_ayi" data-id="' + row.id + '" href="javascript:"> 指派阿姨 </a>';
-//	                		s += '<a class="btn btn-xs default blue skip_to_edit" href="ds/order/update?id=' + row.id + '"> 修改 </a>';
-	                		if(row.payStatus == 1) {
-	                			s += '<a class="btn btn-xs default purple order_update_pay_status" data-id="' + row.id + '" href="javascript:"> 修改支付状态为"服务中" </a>';
+	                		var s = '';
+	                		if (row.auditStatus == 2) {
+	                			if(row.payStatus == 1) {
+	                				s += '<a class="btn btn-xs default purple choose_ayi" data-id="' + row.id + '" href="javascript:"> 指派阿姨 </a>';
+	                			} else if(row.payStatus == 2) {
+	                				s += '<a class="btn btn-xs default purple order_update_pay_status" data-id="' + row.id + '" href="javascript:"> 修改为已支付 </a>';
+	                			}
+	                		} else if (row.auditStatus == 1) {
+	                			s += '<a class="btn btn-xs default red order_audit" data-id="' + row.id + '" href="javascript:"> 通过 </a><br>';
+	                			s += '<a class="btn btn-xs default red order_not_audit" data-id="' + row.id + '" href="javascript:"> 不通过 </a><br>';
 	                		}
-	                		if (row.payStatus != 5) {
-	                			s += '<a class="btn btn-xs default red order_delete" data-id="' + row.id + '" href="javascript:"> 取消 </a><br>';
-	                		}
-	                		s += '<a class="btn btn-xs default blue clipboardData" data-zclip-text="顾客：'+row.customerName+';电话：'+row.phone+';地址：'+row.addressContent+'"> 复制订单 </a><br>';
 	                		return s;
 	                	}
 	                }]
@@ -115,6 +117,12 @@ define('page/ds/order', ['component/curd', 'component/form', 'component/formatte
 				the.updatePayStatusByIds([orderId]);
 			}).on('click', '.orders_delete', function() {
 				the.deleteOrder(grid.getSelectedRows());
+			}).on('click', '.order_audit', function() {
+				var orderId = $(this).data('id');
+				the.auditPass(orderId);
+			}).on('click', '.order_not_audit', function() {
+				var orderId = $(this).data('id');
+				the.auditNotPass(orderId);
 			}).on('copy', '.clipboardData', function(e) {
 				e.clipboardData.clearData();
 				e.clipboardData.setData("text/plain", $(this).data("zclip-text"));
@@ -122,7 +130,9 @@ define('page/ds/order', ['component/curd', 'component/form', 'component/formatte
 			});
 			$(document).on('click', '.choose_ayi', function() {
 				var userId = $(this).data('id');
-				ChooseAyi.assignAyi(userId);
+				ChooseAyi.assignAyi(userId, function() {
+					the.gridReload();
+				});
 			});
 		},
 		unbind: function() {
@@ -151,6 +161,36 @@ define('page/ds/order', ['component/curd', 'component/form', 'component/formatte
 				url: 'ds/order/updatePayStatusByIds',
 				data: {
 					ids: orderIds
+				}
+			}, function() {
+				the.gridReload();
+			}, function() {
+				the.gridReload();
+			});
+		},
+		auditPass: function(orderId) {
+			var the = this;
+			CURD.operateById(
+				'确认审核通过？',
+				{
+				url: 'ds/order/auditPass',
+				data: {
+					id: orderId
+				}
+			}, function() {
+				the.gridReload();
+			}, function() {
+				the.gridReload();
+			});
+		},
+		auditNotPass: function(orderId) {
+			var the = this;
+			CURD.operateById(
+				'确认审核不通过？',
+				{
+				url: 'ds/order/auditNotPass',
+				data: {
+					id: orderId
 				}
 			}, function() {
 				the.gridReload();

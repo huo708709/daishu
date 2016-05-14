@@ -30,12 +30,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" href="static/css/app.css">
 </head>
 <body style="background-color: #fff">
-<div id="baojie_payment" class="am-container"style="padding: 0;padding-top: 30%">
-	<div style="text-align: center;">
-		<p style="margin-bottom: 0.8rem;">我们的客服将尽快和你联系</p>
-		<p style="margin-top: 0">请稍候~~~</p>
-	</div>
-	<div style="text-align: center;margin-top: 3rem"><img src="static/img/order_daishu_logo.png"></div>
+<div id="baojie_payment" class="am-container"style="padding: 0;padding-top: 0">
+	<img src="static/img/pay_ok.jpg" style="width: 100%;">
     <div style="position: fixed;bottom: 1rem;width: 100%;padding: 0 1rem">
         <a href="index" class="am-btn am-btn-warning am-btn-block am-btn-lg am-radius">返回首页</a>
     </div>

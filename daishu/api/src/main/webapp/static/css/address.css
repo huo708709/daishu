@@ -6,14 +6,15 @@
 }
 .am-list .list-item-address .address-icon {
     margin: 0;
-    height: 24px;
+    height: 20px;
     width: auto;
 }
 .am-list .list-item-address span {
     padding-left: 0.4rem;
+    font-size: 1.6rem !important;
 }
 .am-list .list-item-address .address-content-wrapper {
-    border-bottom: 1px solid #C0C9CC;
+    border-bottom: 1px solid #eeeeee;
 }
 .am-list .list-item-address label,.am-list .list-item-address a {
     vertical-align: middle;
@@ -27,10 +28,14 @@
     color: #5d5d5d;
 }
 .am-list .list-item-address .address-loaction, .am-list .list-item-address .address-edit, .am-list .list-item-address .address-delete {
-    font-size: 1.5rem;
+    font-size: 1.4rem !important;
     vertical-align: middle;
+    color: #7d7d7d;
 }
 .am-list .list-item-address .address-icon-small {
-    height: 18px;
+    height: 16px;
     width: auto;
+}
+.am-list .list-item-address {
+	border: none !important;
 }

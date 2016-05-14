@@ -32,28 +32,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
 <div class="am-container" style="padding: 0;">
     <div id="address_list" style="padding: 0;">
-	    <ul class="am-list">
-	    <c:forEach items="${addressList }" var="address">
+	    <ul class="am-list" style="margin-bottom: 1rem;">
+	    <c:forEach items="${addressList }" var="address" varStatus="status">
 	        <li class="am-g am-list-item-dated list-item-address">
 	            <div class="am-u-sm-12">
 	                <div class="address-content-wrapper">
-	                    <label><input type="checkbox" style="display: none;"><img class="address-icon" src="static/img/selected.png">
+	                    <label><input type="checkbox" style="display: none;">
+	                    <c:choose>
+	                    <c:when test="${status.index == 0 }">
+	                    <img class="address-icon" src="static/img/selected.png">
+	                    </c:when>
+	                    <c:otherwise>
+	                    <img class="address-icon" src="static/img/unselected.png">
+	                    </c:otherwise>
+	                    </c:choose>
 	                        <span class="address-content">${address.content }</span></label>
 	                </div>
 	            </div>
-	            <div class="am-u-sm-5 am-u-sm-offset-1">
+	            <div class="am-u-sm-5 am-u-sm-offset-1" style="line-height: 1.2">
 	                <label><img class="address-icon address-icon-small" src="static/img/localtion.png"><span class="address-loaction">${address.area }</span></label>
 	            </div>
-	            <div class="am-u-sm-3">
+	            <div class="am-u-sm-3" style="line-height: 1.2">
 	                <a href="address/addressEdit?id=${address.id }"><img class="address-icon address-icon-small" src="static/img/edit.png"><span class="address-edit">编辑</span></a>
 	            </div>
-	            <div class="am-u-sm-3">
+	            <div class="am-u-sm-3" style="line-height: 1.2">
 	                <a href="address/addressDel?id=${address.id }"><img class="address-icon address-icon-small" src="static/img/delete.png"><span class="address-delete">删除</span></a>
 	            </div>
 	        </li>
 	    </c:forEach>
 	    </ul>
-	    <a href="address/addressEdit?id=0" style="background-color: #fff;padding: 1rem" class="am-btn am-btn-default am-btn-block">添加新地址</a>
+	    <a href="address/addressEdit?id=0" style="background-color: #fff;padding: 1.4rem;color: #f39910;" class="am-btn am-btn-default am-btn-block">添加新地址</a>
 	    <!-- <a href="userCenter" class="am-btn am-btn-default am-btn-block">个人中心</a> -->
 	</div>
 </div>

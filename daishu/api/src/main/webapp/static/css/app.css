@@ -8,6 +8,19 @@ body {
 .am-input-group-lg input {
 	line-height: normal !important;
 }
+.am-input-group-lg>.am-form-field {
+	font-size: 1.6rem !important;
+}
+.am-input-group-label {
+	color: #a0a0a0;
+}
+.am-input-group-lg>.am-input-group-label {
+	font-size: 1.6rem !important;
+}
+.am-btn-warning {
+	background-color: #f39910;
+	border-color: #f39910;
+}
 
 /** common **/
 body {
@@ -21,6 +34,12 @@ body {
 }
 .margin-top-2 {
     margin-top: 2rem !important;
+}
+.margin-top-3 {
+    margin-top: 3rem !important;
+}
+.margin-top-4 {
+    margin-top: 4rem !important;
 }
 .padding-left-025 {
     padding-left: 0.25rem !important;
@@ -65,7 +84,7 @@ body {
 }
 .forminfo-container .forminfo-wrapper .am-input-group {
     margin: 0 0.6rem;
-    border-bottom: 1px solid #cccccc;
+    border-bottom: 1px solid #eeeeee;
 }
 .forminfo-container .forminfo-wrapper .am-input-group:last-child {
     margin: 0 0.6rem;

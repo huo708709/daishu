@@ -94,7 +94,7 @@ $(function() {
     $('#area').blur(function() {
     	var area = $('#area').val();
     	var unit = $('#price').data('unit');
-    	$('#priceShow').val(area * unit);
+    	$('#priceShow').text(area * unit);
     	$('#price').val(area * unit);
     });
     $('#submit_order').on('click', function(event) {

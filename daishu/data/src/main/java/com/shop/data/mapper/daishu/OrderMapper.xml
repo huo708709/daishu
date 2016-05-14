@@ -42,11 +42,14 @@
 		</choose>
 		</where>
 	</update>
+	<update id="updateAuditStatusById">
+		update t_order set audit_status=#{auditStatus} where id=#{id}
+	</update>
 	<update id="update" parameterType="Order">
 		update t_order set order_no=#{order_no} where id=#{id}
 	</update>
 	<update id="paySuccess" parameterType="Order">
-	update t_order set pay_status=2,pay_type=1,transaction_id=#{transactionId},detail=#{detail},open_id=#{openId},sign=#{sign}
+	update t_order set pay_status=3,pay_type=1,transaction_id=#{transactionId},detail=#{detail},open_id=#{openId},sign=#{sign}
 		where order_no=#{orderNo}
 	</update>
 	<update id="changeProperty">
@@ -105,6 +108,9 @@
 			<if test="null != entity">
 				<if test="null != entity.orderNo and '' != entity.orderNo">
 				and a.order_no like '%${entity.orderNo}%'
+				</if>
+				<if test="null != entity.phone and '' != entity.phone">
+				and a.phone = ${entity.phone}
 				</if>
 				<if test="null != entity.customerName and '' != entity.customerName">
 				and b.name like '%${entity.customerName}%'

@@ -1,14 +1,14 @@
 .huiyuanka-logo-wrapper {
     padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-bottom: 0;
 }
 .huiyuan-opt {
-    background-color: #cccccc;
+    background-color: #ffffff;
 }
 .huiyuan-opt li {
     padding: 0 0.4rem;
     margin: 0.8rem 0;
-    border-right: 1px solid #fef3f2;
+    border-right: 1px solid #dddddd;
     text-align: center;
 }
 .huiyuan-opt li:last-child {
@@ -30,7 +30,7 @@
     margin: 1rem 0;
 }
 .huiyuanka-list li > div > div.content {
-	padding: 1.5rem 0.8rem;
+	padding: 2rem 0.8rem;
 }
 .huiyuanka-list li > div > div > img {
 	height: 25px;
@@ -38,6 +38,7 @@
 .huiyuanka-list li > div > div > span {
 	font-size: 1.5rem;
 	padding-left: 0.5rem;
+	color: #5d5d5d;
 }
 .huiyuanka-list li > div > div > button {
 	float: right;

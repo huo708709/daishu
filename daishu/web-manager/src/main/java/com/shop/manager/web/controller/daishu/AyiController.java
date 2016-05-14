@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.shop.data.mapper.daishu.Ayi;
+import com.shop.data.mapper.daishu.Order;
 import com.shop.manager.web.controller.AbstractController;
 import com.shop.manager.web.model.ResponseData;
 import com.shop.service.AbstractService;
 import com.shop.service.daishu.AyiService;
+import com.shop.service.daishu.OrderService;
 
 @Controller
 @RequestMapping("ds/ayi")
@@ -22,6 +24,8 @@ public class AyiController extends AbstractController<Ayi> {
 
 	@Autowired
 	private AyiService ayiService;
+	@Autowired
+	private OrderService orderService;
 	
 	@RequestMapping
 	public ModelAndView page() {
@@ -67,6 +71,7 @@ public class AyiController extends AbstractController<Ayi> {
 	@RequestMapping(value = "assign_ayi")
 	public ResponseData assignRoles(int orderId, int ayiId) {
 		this.ayiService.assignAyi(orderId, ayiId);
+		orderService.updatePayStatusByIds(new int[]{orderId}, Order.PAY_STATUS_SERVICE);
 		return this.response("指派阿姨成功", ResponseData.ACTION_TOAST);
 	}
 	@Override

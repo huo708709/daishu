@@ -153,7 +153,7 @@ public class HomeController extends AbstractController<Object> {
 	@RequestMapping(value = "baojie")
 	public ModelAndView baojie(int type, String title) {
 		ModelAndView mav = null;
-		if (3 == type || 7 == type || 8 == type) {
+		if (3 == type || 7 == type || 8 == type || 9 == type) {
 			mav = new ModelAndView("baojie1");
 		} else {
 			mav = new ModelAndView("baojie");
@@ -163,7 +163,7 @@ public class HomeController extends AbstractController<Object> {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("M-d");
 		SimpleDateFormat dateFormat1 = new SimpleDateFormat("YYYY-MM-dd");
 		int days = 7;
-		if (3 == type || 7 == type || 8 == type) {
+		if (3 == type || 7 == type || 8 == type || 9 == type) {
 			days = 3;
 		}
 		for (int i = 0; i < days; i++) {

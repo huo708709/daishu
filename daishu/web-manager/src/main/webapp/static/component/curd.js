@@ -68,6 +68,22 @@ define('component/curd', [], function() {
 				showMessage({action: 'toast',message: '请选择需要操作的记录'});
 			}
 		},
+		operateById: function(msg, options, successCallBack, errorCallBack) {
+			var the = this;
+			if (options.data) {
+				bootbox.confirm(msg, function(result) {
+					if (result) {
+						the.ajax(options, function(data) {
+							successCallBack && successCallBack.apply(this, arguments);
+						}, function() {
+							errorCallBack && errorCallBack.apply(this, arguments);
+						});
+					}
+				});
+			} else {
+				showMessage({action: 'toast',message: '请选择需要操作的记录'});
+			}
+		},
 		ajax: function(options, successCallBack, errorCallBack) {
 			App.startPageLoading();
 			options = $.extend({

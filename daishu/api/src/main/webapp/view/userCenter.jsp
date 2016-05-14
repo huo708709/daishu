@@ -30,15 +30,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
 <div id="userCenterDiv" class="am-container" style="padding: 0">
     <div style="background-color: #f39910">
-        <div style="text-align: center;padding: 0.8rem 0;"><img src="static/img/user_center_logo.png"></div>
+        <div style="text-align: center;padding: 0.8rem 0 2rem 0;"><img src="static/img/user_center_logo.png" style="width: 100px;"></div>
     </div>
     <div class="user-center-opt">
         <ul class="am-navbar-nav am-cf am-avg-sm-2">
             <li>
-                <img src="static/img/changyongdizhi.png"><a style="display: initial;height: auto;color: #ffffff;" href="address/addressList">常用地址</a>
+                <img src="static/img/changyongdizhi.png"><a style="display: initial;height: auto;color: #5d5d5d;" href="address/addressList">常用地址</a>
             </li>
             <li>
-                <img src="static/img/kefurexian.png"><a style="display: initial;height: auto;color: #ffffff;" href="tel:${tel }">客服热线</a>
+                <img src="static/img/kefurexian.png"><a style="display: initial;height: auto;color: #5d5d5d;" href="tel:${tel }">客服热线</a>
             </li>
         </ul>
     </div>
@@ -54,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             		<span class="caption-subject"><img src="static/img/user_center_baojie.png"></span>
             		</c:otherwise>
             	</c:choose>
-                <span class="caption-subject">${order.baojieTypeDTO }</span>
+                <span class="caption-subject" style="color: #f39910;">${order.baojieTypeDTO }</span>
             </div>
             <div class="actions">
             	<c:choose>
@@ -78,16 +78,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
         </div>
         <div class="portlet-body">
-            <div><span>订单编号：</span>${order.orderNo }</div>
-            <div><span>预约时间：</span>${order.serviceDate } ${order.serviceTimeTypeDTO }</div>
-            <div><span>服务地址：</span>${order.addressContent }</div>
-            <div><span>服务金额：</span>${order.price }元</div>
-            <div><span>支付方式：</span><label><div>
+            <div style="color: #5d5d5d;padding: 0.2rem 0"><span style="color: #a0a0a0">订单编号：</span>${order.orderNo }</div>
+            <div style="color: #5d5d5d;padding: 0.2rem 0"><span style="color: #a0a0a0">预约时间：</span>${order.serviceDate } ${order.serviceTimeTypeDTO }</div>
+            <div style="color: #5d5d5d;padding: 0.2rem 0"><span style="color: #a0a0a0">服务地址：</span>${order.addressContent }</div>
+            <div style="color: #5d5d5d;padding: 0.2rem 0"><span style="color: #a0a0a0">服务金额：</span>${order.price }元</div>
+            <div style="color: #5d5d5d;padding: 0.2rem 0"><span style="color: #a0a0a0">支付方式：</span><label><div>
             <c:choose>
-            	<c:when test="${order.payStatus == 1 }">
+            	<c:when test="${order.payStatus < 3 }">
             	<button type="button" class="am-btn am-btn-xs am-radius am-btn-warning weixin_pay" data-orderid="${order.id }" data-orderno="${order.orderNo }">微信支付</button>
                 <button type="button" class="am-btn am-btn-xs am-radius am-btn-warning huiyuanka_pay" data-orderid="${order.id }" data-orderno="${order.orderNo }">会员卡支付</button>
-                <button type="button" class="am-btn am-btn-xs am-radius am-btn-default xianjin_pay" data-orderid="${order.id }" data-orderno="${order.orderNo }">现金支付</button>
+                <button type="button" class="am-btn am-btn-xs am-radius am-btn-default xianjin_pay" style="background-color: #bfbfbf;color: #fff;" data-orderid="${order.id }" data-orderno="${order.orderNo }">现金支付</button>
                 </c:when>
                 <c:otherwise>
                 <span type="button" style="background-color: #fff;border: none;color: #f39910;font-weight: normal;">${order.payTypeDTO }</span>

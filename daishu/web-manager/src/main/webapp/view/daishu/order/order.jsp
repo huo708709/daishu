@@ -12,16 +12,22 @@
                  <div class="col-md-3">
                      <input name="orderNo" type="text" placeholder="订单号" class="form-control form-filter">
                  </div>
+             </div>
+             <div class="form-group">
+                 <label class="control-label col-md-1">客户电话</label>
+                 <div class="col-md-3">
+                     <input name="phone" type="text" placeholder="客户电话" class="form-control form-filter">
+                 </div>
                  <div class="col-md-3">
                      <button class="btn btn-primary filter-submit">查询</button>
                  </div>
              </div>
 		</div>
 	</div>
-	<div class="btn-group">
+	<!-- <div class="btn-group">
 		<button class="btn red orders_delete" type="button">
             <i class="fa fa-plus"></i> 删除</button>
-    </div>
+    </div> -->
 	<table id="datatable_order" class="table table-striped table-bordered table-hover table-checkable">
 		<thead>
 			<tr role="row" class="heading">

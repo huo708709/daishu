@@ -8,7 +8,7 @@ ul.week,li.day {
     border-bottom: 1px solid #fef3f2;
 }
 ul.week {
-    margin: 30px 0 10px 0;
+    margin: 15px 0 10px 0;
     text-decoration: none;
 }
 ul.week li.day {
@@ -16,6 +16,7 @@ ul.week li.day {
     width: 14.285%;
     list-style: none;
     text-align: center;
+    color: #5d5d5d;
 }
 ul.week li.day.active {
     color: #f39910;
@@ -32,19 +33,19 @@ ul.week li.day p:last-child {
     padding: 1rem 0;
 }
 .schedule-container .schedule-wrapper:nth-child(odd) {
-    padding: 0.6rem 1.3rem 0.6rem 2.6rem;
+    padding: 0.8rem 1.5rem 0.8rem 4.5rem;
 }
 .schedule-container .schedule-wrapper:nth-child(even) {
-    padding: 0.6rem 2.6rem 0.6rem 1.3rem;
+    padding: 0.8rem 4.5rem 0.8rem 1.5rem;
 }
 .schedule-container a.schedule-time {
     border: 1px solid #5d5d5d;
     border-radius: 5px;
     width: 100%;
     display: block;
-    font-size: 2rem;
+    font-size: 1.6rem;
     color: #5d5d5d;
-    padding: 0.8rem;
+    padding: 0.6rem;
 }
 .schedule-container a.schedule-time.active {
     border: 1px solid #f39910;
