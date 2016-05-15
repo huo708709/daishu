@@ -66,6 +66,9 @@
 			<if test="null != entity.jobNo and '' != entity.jobNo">
 			a.job_no like '%${entity.jobNo}%'
 			</if>
+			<if test="null != entity.phone and '' != entity.phone">
+			a.phone=#{entity.phone}
+			</if>
 		</if>
 	</where>
 	</sql>

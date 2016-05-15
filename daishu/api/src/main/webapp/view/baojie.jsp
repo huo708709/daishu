@@ -73,26 +73,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
     </div>
     <div class="am-g schedule-container" style="margin-left: 0;margin-right: 0">
-        <div class="am-u-sm-6 schedule-wrapper">
-            <a class="schedule-time" data-servicetimetype="1"><label style="font-weight: normal;margin: 0">8:00-12:00
-            <input style="display: none;" type="radio" name="serviceTimeType" value="1">
-            </label></a>
-        </div>
-        <div class="am-u-sm-6 schedule-wrapper">
-            <a class="schedule-time" data-servicetimetype="2"><label style="font-weight: normal;margin: 0">12:00-15:00
-            <input style="display: none;" type="radio" name="serviceTimeType" value="2">
-            </label></a>
-        </div>
-        <div class="am-u-sm-6 schedule-wrapper">
-            <a class="schedule-time" data-servicetimetype="3"><label style="font-weight: normal;margin: 0">15:00-18:00
-            <input style="display: none;" type="radio" name="serviceTimeType" value="3">
-            </label></a>
-        </div>
-        <div class="am-u-sm-6 schedule-wrapper">
-            <a class="schedule-time" data-servicetimetype="4"><label style="font-weight: normal;margin: 0">18:00-20:00
-            <input style="display: none;" type="radio" name="serviceTimeType" value="4">
-            </label></a>
-        </div>
+    	<table style="width: 100%;border: none;">
+    		<tr>
+    			<td align="center" width="50%" style="padding: 1.5rem 1rem 1rem 3rem;"><a class="schedule-time" data-servicetimetype="1"><label style="font-weight: normal;margin: 0">8:00-12:00
+	            <input style="display: none;" type="radio" name="serviceTimeType" value="1">
+	            </label></a></td>
+    			<td width="50%" style="padding: 1.5rem 3rem 1rem 1rem;"><a class="schedule-time" data-servicetimetype="2"><label style="font-weight: normal;margin: 0">12:00-15:00
+	            <input style="display: none;" type="radio" name="serviceTimeType" value="2">
+	            </label></a></td>
+    		</tr>
+    		<tr>
+    			<td style="padding: 1rem 1rem 1.5rem 3rem;"><a class="schedule-time" data-servicetimetype="3"><label style="font-weight: normal;margin: 0">15:00-18:00
+	            <input style="display: none;" type="radio" name="serviceTimeType" value="3">
+	            </label></a></td>
+    			<td style="padding: 1rem 3rem 1.5rem 1rem;"><a class="schedule-time" data-servicetimetype="4"><label style="font-weight: normal;margin: 0">18:00-20:00
+	            <input style="display: none;" type="radio" name="serviceTimeType" value="4">
+	            </label></a></td>
+    		</tr>
+    	</table>
     </div>
     <div class="am-g forminfo-container" style="margin-left: 0;margin-right: 0;margin-top: 1rem;">
         <div class="am-u-sm-12 forminfo-wrapper">

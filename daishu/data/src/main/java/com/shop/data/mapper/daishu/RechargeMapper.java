@@ -6,5 +6,7 @@ import com.shop.data.mapper.AbstractMapper;
 
 public interface RechargeMapper extends AbstractMapper {
 	
-	public int paySuccess(@Param("recharge") Recharge recharge);
+	public int paySuccess(Recharge recharge);
+	
+	public Recharge selectByNo(@Param("outTradeNo") String outTradeNo);
 }

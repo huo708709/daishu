@@ -15,7 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <head>
     <base href="<%=basePath %>" />
         <meta charset="utf-8" />
-        <title>Metronic | User Login 2</title>
+        <title>袋鼠管家后台登录</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="" name="description" />

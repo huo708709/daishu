@@ -48,8 +48,8 @@ public class ConsumeController extends AbstractController<Consume> {
 	public ResponseData add(int orderId, String orderNo) {
 		Order order = this.orderService.selectByIdAndNo(orderId, orderNo);
 		double balance = this.customerService.getBalance(order.getCustomerId());
-		if (balance > order.getPrice()) {
-			this.customerService.updateBalance(order.getCustomerId(), order.getPrice() * -1.0);
+		if (balance > (order.getPrice() * 100)) {
+			this.customerService.updateBalance(order.getCustomerId(), order.getPrice() * -100.0);
 			Consume consume = new Consume();
 			consume.setOrderId(orderId);
 			consume.setMoney(order.getPrice());
@@ -59,7 +59,7 @@ public class ConsumeController extends AbstractController<Consume> {
 			this.orderService.updatePayStatusAndPayTypeByIds(new int[]{orderId}, Order.PAY_STATUS_WAIT_COMMENT, Order.PAY_TYPE_MEMBER);
 			return this.response("消费成功", ResponseData.ACTION_TOAST);
 		} else {
-			return this.response(ResponseData.CODE_ERROR, "余额不足，当前余额" + balance, ResponseData.ACTION_ALERT);
+			return this.response(ResponseData.CODE_ERROR, "余额不足，当前余额" + balance / 100, ResponseData.ACTION_ALERT);
 		}
 	}
 	

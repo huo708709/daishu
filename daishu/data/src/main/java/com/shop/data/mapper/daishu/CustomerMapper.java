@@ -21,6 +21,8 @@ public interface CustomerMapper extends AbstractMapper {
 	 */
 	public int updateBalance(@Param("customerId") int customerId, @Param("balance") double balance);
 	
+	public int updateBalanceByOpenId(@Param("openid") String openid, @Param("balance") double balance);
+	
 	/**
 	 * 
 	 * @param id

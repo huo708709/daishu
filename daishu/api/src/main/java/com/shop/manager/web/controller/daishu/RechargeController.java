@@ -8,6 +8,7 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,6 @@ public class RechargeController extends AbstractController<Recharge> {
 
 	@Autowired
 	private RechargeService rechargeService;
-
 	@Autowired
 	private MemberCardService memberCardService;
 
@@ -59,7 +59,7 @@ public class RechargeController extends AbstractController<Recharge> {
 
 	@ResponseBody
 	@RequestMapping(value = "pay_success")
-	public String pay_success(HttpServletRequest request) throws Exception {
+	public String pay_success(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		InputStream inputStream = request.getInputStream();
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		byte[] buffer = new byte[1024];
@@ -71,6 +71,7 @@ public class RechargeController extends AbstractController<Recharge> {
 		inputStream.close();
 		String result = new String(outputStream.toByteArray(), "UTF-8");
 		Map<Object, Object> resultMap = XMLUtil.doXMLParse(result);
+		System.out.println(JSON.toJSONString(resultMap));
 		if (resultMap.get("result_code").toString().equalsIgnoreCase("SUCCESS")) {
 			Recharge recharge = new Recharge();
 			int type = Integer.valueOf(String.valueOf(resultMap.get("attach")));
@@ -85,7 +86,11 @@ public class RechargeController extends AbstractController<Recharge> {
 			recharge.setDetail(JSON.toJSONString(resultMap));
 			this.rechargeService.paySuccess(recharge);
 
-			return PayCommonUtil.setXML("SUCCESS", "");
+			response.setContentType("text/xml");
+			response.getWriter().write(PayCommonUtil.setXML("SUCCESS", "OK"));
+			response.getWriter().flush();
+			response.getWriter().close();
+			return PayCommonUtil.setXML("SUCCESS", "OK");
 		}
 		return "";
 	}
@@ -108,7 +113,7 @@ public class RechargeController extends AbstractController<Recharge> {
 			parameters.put("nonce_str", nonceStr);
 			parameters.put("body", "会员卡");
 			parameters.put("out_trade_no", outTradeNo);
-			parameters.put("total_fee", String.valueOf((long) memberCard.getRechargeAmount() * 100));
+			parameters.put("total_fee", String.valueOf((long) (memberCard.getRechargeAmount() * 100)));
 			parameters.put("spbill_create_ip", IpAddressUtil.getIpAddr(request));
 			parameters.put("notify_url", ConfigUtil.NOTIFY_URL);
 			parameters.put("trade_type", "JSAPI");

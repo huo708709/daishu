@@ -125,6 +125,7 @@ public class OrderController extends AbstractController<Order> {
 	@RequestMapping(value = "auditNotPass", method = RequestMethod.POST)
 	public ResponseData auditNotPass(int id) {
 		this.orderService.updateAuditStatusById(id, Order.AUDIT_STATUS_NOT_PASS);
+		this.orderService.updatePayStatusByIds(new int[]{id}, Order.PAY_STATUS_CARCEL);
 		return this.response("审核不通过", ResponseData.ACTION_TOAST);
 	}
 	

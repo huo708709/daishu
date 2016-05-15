@@ -2,6 +2,9 @@ package com.shop.data.mapper.daishu;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.alibaba.fastjson.annotation.JSONField;
 import com.shop.data.mapper.IntEntity;
 
 public class Customer extends IntEntity {
@@ -10,7 +13,11 @@ public class Customer extends IntEntity {
 	public static final int STATUS_LOCK = 2;
 
 	private String weixinName;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JSONField(format = "YYYY-MM-dd HH:mm:ss")
 	private Date lastTime;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JSONField(format = "YYYY-MM-dd HH:mm:ss")
 	private Date firstTime;
 	private String address;
 	private String phone;

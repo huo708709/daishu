@@ -9,6 +9,7 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
@@ -81,7 +82,7 @@ public class OrderController extends AbstractController<Order> {
 	@SuppressWarnings("unchecked")
 	@ResponseBody
 	@RequestMapping(value = "pay_success")
-	public String pay_success(HttpServletRequest request) throws Exception {
+	public String pay_success(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		InputStream inputStream = request.getInputStream();
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		byte[] buffer = new byte[1024];
@@ -93,6 +94,7 @@ public class OrderController extends AbstractController<Order> {
 		inputStream.close();
 		String result = new String(outputStream.toByteArray(), "UTF-8");
 		Map<Object, Object> resultMap = XMLUtil.doXMLParse(result);
+		System.out.println(JSON.toJSONString(resultMap));
 		if (resultMap.get("result_code").toString().equalsIgnoreCase("SUCCESS")) {
 			Order order = new Order();
 			order.setPrice(Double.valueOf(String.valueOf(resultMap
@@ -108,7 +110,12 @@ public class OrderController extends AbstractController<Order> {
 			Order orderTmp = this.orderService.selectByOrderNo(order.getOrderNo());
 			JuheUtil.sendToCustomer(orderTmp.getPayTypeDTO(), order.getPrice() + "");
 
-			return PayCommonUtil.setXML("SUCCESS", "");
+			response.setContentType("text/xml");
+			response.getWriter().write(PayCommonUtil.setXML("SUCCESS", "OK"));
+			response.getWriter().flush();
+			response.getWriter().close();
+			
+			return PayCommonUtil.setXML("SUCCESS", "OK");
 		}
 		return "";
 	}
@@ -131,7 +138,7 @@ public class OrderController extends AbstractController<Order> {
 			parameters.put("nonce_str", nonceStr);
 			parameters.put("body", "会员卡");
 			parameters.put("out_trade_no", orderNo);
-			parameters.put("total_fee", String.valueOf((int) price*100));
+			parameters.put("total_fee", String.valueOf((int) (price*100)));
 			parameters.put("spbill_create_ip", IpAddressUtil.getIpAddr(request));
 			parameters.put("notify_url", ConfigUtil.NOTIFY_URL1);
 			parameters.put("trade_type", "JSAPI");
@@ -179,7 +186,7 @@ public class OrderController extends AbstractController<Order> {
 		int type = order.getBaojieType();
 		Customer customer = this.getLoginCustomer(request);
 		String orderNo = System.currentTimeMillis() + "" + customer.getId();
-		if (3 == type || 7 == type || 8 == type || 9 == type) {
+		if (2 == type || 3 == type || 7 == type || 8 == type || 9 == type) {
 			// TODO 新增订单
 			order.setOrderNo(orderNo);
 			order.setAuditStatus(Order.AUDIT_STATUS_WAIT);
@@ -192,8 +199,8 @@ public class OrderController extends AbstractController<Order> {
 //			return "redirect:/order/order_ok?orderNo=" + orderNo + "&orderId=" + order.getId();
 		} else {
 			// TODO 判断排期是否已满
-			int count = scheduleService.availableAyiCount(order.getBaojieType(), order.getServiceDate(), order.getServiceTimeType());
-			if (count > 0) {
+//			int count = scheduleService.availableAyiCount(order.getBaojieType(), order.getServiceDate(), order.getServiceTimeType());
+//			if (count > 0) {
 				// TODO 新增订单
 				order.setOrderNo(orderNo);
 				order.setAuditStatus(Order.AUDIT_STATUS_WAIT);
@@ -202,7 +209,7 @@ public class OrderController extends AbstractController<Order> {
 				order.setPayType(Order.PAY_TYPE_CASH);
 				order.setCustomerId(customer.getId());
 				this.getAbstractService().insert(order);
-			}
+//			}
 		}
 		customerService.updatePhoneAndName(customer.getId(), order.getName(), order.getPhone());
 		customer.setName(order.getName());
@@ -224,6 +231,7 @@ public class OrderController extends AbstractController<Order> {
 	@RequestMapping(value = "cancel", method = RequestMethod.POST)
 	public ResponseData cancel(int id) {
 		this.orderService.updatePayStatusByIds(new int[]{id}, Order.PAY_STATUS_CARCEL);
+		this.orderService.updateAuditStatusById(id, Order.AUDIT_STATUS_NOT_PASS);
 		return this.response("取消成功", ResponseData.ACTION_TOAST);
 	}
 	

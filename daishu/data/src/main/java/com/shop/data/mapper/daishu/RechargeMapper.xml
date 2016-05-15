@@ -10,12 +10,16 @@
 	</insert>
 	
 	<update id="paySuccess" parameterType="Recharge">
-		update t_recharge set pay_status=1,transaction_id=#{transactionId},detail=#{detail}
-		where out_trade_no=#{outTradeNo} and open_id=#{openId} and sign=#{sign}
+		update t_recharge set status=1,transaction_id=#{transactionId},detail=#{detail}
+		where out_trade_no=#{outTradeNo} and open_id=#{openId}
 	</update>
 	
 	<select id="selectById" resultType="Recharge">
 		select * from t_recharge where id=#{id}
+	</select>
+	
+	<select id="selectByNo" resultType="Recharge">
+		select * from t_recharge where out_trade_no=#{outTradeNo}
 	</select>
 	
 	<sql id="gridWhere">

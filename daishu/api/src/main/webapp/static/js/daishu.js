@@ -159,12 +159,12 @@ var daishu = {
             		if (0 == data.code || '0' == data.code) {
             			success.apply(this, [data.data]);
             		} else {
+            			error.apply(this, [data.data]);
             			if (data.action == 'alert') {
             				$('#my-alert .am-modal-bd').text(data.message);
         		    		$('#my-alert').modal();
 //            				alert(data.message);
             			}
-            			error.apply(this, [data.data]);
             		}
                 }
             },

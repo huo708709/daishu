@@ -26,9 +26,13 @@ public class RechargeService extends AbstractService<Recharge> {
 	}
 	
 	public int paySuccess(Recharge recharge) {
-		MemberCard memberCard = memberCardMapper.selectByType(recharge.getType());
-		customerMapper.updateBalance(recharge.getCustomerId(), recharge.getMoney() + memberCard.getGiveAmount());
-		return this.rechargeMapper.paySuccess(recharge);
+		Recharge tmp = this.rechargeMapper.selectByNo(recharge.getOutTradeNo());
+		if (tmp.getStatus() == Recharge.STATUS_NOT_PAY) {
+			MemberCard memberCard = memberCardMapper.selectByType(recharge.getType());
+			customerMapper.updateBalanceByOpenId(recharge.getOpenId(), recharge.getMoney() + memberCard.getGiveAmount() * 100);
+			return this.rechargeMapper.paySuccess(recharge);
+		}
+		return 0;
 	}
 	
 	@Override

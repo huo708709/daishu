@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -34,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
         <div class="am-u-sm-12 huiyuan-opt">
             <ul class="am-avg-sm-3">
-                <li><a><img src="static/img/yue.png" style="height: 15px;width: auto;"><span style="display: block;color: #5d5d5d;font-size: 1.3rem;"> 余额:${balance }元</span></a></li>
+                <li><a><img src="static/img/yue.png" style="height: 15px;width: auto;"><span style="display: block;color: #5d5d5d;font-size: 1.3rem;"> 余额:${balance/100 }元</span></a></li>
                 <li><a href="consumeDetail"><img src="static/img/xiaofeijilu.png" style="height: 15px;width: auto;"><span style="display: block;color: #5d5d5d;font-size: 1.3rem;"> 消费记录</span></a></li>
                 <li><a href="guize"><img src="static/img/shiyongguize.png" style="height: 15px;width: auto;"><span style="display: block;color: #5d5d5d;font-size: 1.3rem;"> 使用规则</span></a></li>
             </ul>
@@ -47,7 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             	<div style="height: 4px;width: 100%;background: url('static/img/huiyuanka-border.png') repeat-x;"></div>
             	<div class="content">
 					<img src="static/img/mama.png"/>
-					<span>妈妈卡:充值${cards.mama.rechargeAmount }元 赠送${cards.mama.giveAmount }元优惠</span>
+					<span>妈妈卡:充值${cards.mama.rechargeAmount }元 赠送<fmt:formatNumber value="${cards.mama.giveAmount }" pattern="#"/>元</span>
 					<button data-viptype="1" type="button" class="am-btn am-btn-xs am-radius am-btn-default" style="color: #00bbe9;border-color: #00bbe9;">充值</button>
             	</div>
             	<div style="height: 4px;width: 100%;background: url('static/img/huiyuanka-border.png') repeat-x;"></div>
@@ -58,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             	<div style="height: 4px;width: 100%;background: url('static/img/huiyuanka-border.png') repeat-x;"></div>
             	<div class="content">
 					<img src="static/img/baba.png"/>
-					<span>爸爸卡:充值${cards.baba.rechargeAmount }元 赠送${cards.baba.giveAmount }元优惠</span>
+					<span>爸爸卡:充值${cards.baba.rechargeAmount }元 赠送<fmt:formatNumber value="${cards.baba.giveAmount }" pattern="#"/>元</span>
 					<button data-viptype="2" type="button" class="am-btn am-btn-xs am-radius am-btn-default" style="color: #00bbe9;border-color: #00bbe9;">充值</button>
 				</div>
             	<div style="height: 4px;width: 100%;background: url('static/img/huiyuanka-border.png') repeat-x;"></div>
@@ -69,7 +70,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             	<div style="height: 4px;width: 100%;background: url('static/img/huiyuanka-border.png') repeat-x;"></div>
             	<div class="content">
 					<img src="static/img/baobao.png"/>
-					<span>宝宝卡:充值${cards.baobao.rechargeAmount }元 赠送${cards.baobao.giveAmount }元优惠</span>
+					<span>宝宝卡:充值${cards.baobao.rechargeAmount }元 赠送<fmt:formatNumber value="${cards.baobao.giveAmount }" pattern="#"/>元</span>
 					<button data-viptype="3" type="button" class="am-btn am-btn-xs am-radius am-btn-default" style="color: #00bbe9;border-color: #00bbe9;">充值</button>
 				</div>
             	<div style="height: 4px;width: 100%;background: url('static/img/huiyuanka-border.png') repeat-x;"></div>
@@ -111,6 +112,7 @@ wx.config({
 });
 wx.error(function(res) {
 	alert(JSON.stringify(res));
+	$('#my-modal-loading').modal('close');
 });
 </script>
 </body>

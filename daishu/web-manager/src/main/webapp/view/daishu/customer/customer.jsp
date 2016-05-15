@@ -12,6 +12,12 @@
                  <div class="col-md-3">
                      <input name="code" type="text" placeholder="编码" class="form-control form-filter">
                  </div>
+             </div>
+             <div class="form-group">
+                 <label class="control-label col-md-1">电话</label>
+                 <div class="col-md-3">
+                     <input name="phone" type="text" placeholder="电话" class="form-control form-filter">
+                 </div>
                  <div class="col-md-3">
                      <button class="btn btn-primary filter-submit">查询</button>
                  </div>

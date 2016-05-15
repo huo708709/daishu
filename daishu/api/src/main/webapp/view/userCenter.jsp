@@ -89,6 +89,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <button type="button" class="am-btn am-btn-xs am-radius am-btn-warning huiyuanka_pay" data-orderid="${order.id }" data-orderno="${order.orderNo }">会员卡支付</button>
                 <button type="button" class="am-btn am-btn-xs am-radius am-btn-default xianjin_pay" style="background-color: #bfbfbf;color: #fff;" data-orderid="${order.id }" data-orderno="${order.orderNo }">现金支付</button>
                 </c:when>
+                <c:when test="${order.payStatus == 5 }">
+                <span type="button" style="background-color: #fff;border: none;color: #f39910;font-weight: normal;">未支付</span>
+                </c:when>
                 <c:otherwise>
                 <span type="button" style="background-color: #fff;border: none;color: #f39910;font-weight: normal;">${order.payTypeDTO }</span>
                 </c:otherwise>
