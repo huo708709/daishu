@@ -33,6 +33,7 @@ import com.shop.manager.util.PayCommonUtil;
 import com.shop.manager.util.weixin.SignatureUtil;
 import com.shop.manager.web.filter.AclFilter;
 import com.shop.service.AbstractService;
+import com.shop.service.daishu.ConsumeService;
 import com.shop.service.daishu.CustomerService;
 import com.shop.service.daishu.MemberCardService;
 import com.shop.service.daishu.OrderService;
@@ -58,6 +59,8 @@ public class HomeController extends AbstractController<Object> {
 	private OrderService orderService;
 	@Autowired
 	private MemberCardService memberCardService;
+	@Autowired
+	private ConsumeService consumeService;
 
 	@RequestMapping(value = "index")
 	public ModelAndView index(HttpSession session) {
@@ -194,6 +197,8 @@ public class HomeController extends AbstractController<Object> {
 
 	@RequestMapping(value = "vip")
 	public ModelAndView vip(HttpSession session) {
+		Customer customer = this.getLoginCustomer(session);
+		double balance = this.customerService.getBalance(customer.getId());
 		ModelAndView mav = new ModelAndView("vip");
 		String code = (String) session.getAttribute(AclFilter.CODE);
 		String nonceStr = PayCommonUtil.CreateNoncestr();
@@ -204,12 +209,16 @@ public class HomeController extends AbstractController<Object> {
 		
 		Map<String, MemberCard> cards = memberCardService.selectGroupByType();
 		mav.addObject("cards", cards);
+		mav.addObject("balance", balance);
 		return mav;
 	}
 	
 	@RequestMapping(value = "consumeDetail")
-	public ModelAndView consumeDetail() {
+	public ModelAndView consumeDetail(HttpSession session) {
+		Customer customer = this.getLoginCustomer(session);
 		ModelAndView mav = new ModelAndView("consumeDetail");
+		List<Order> orders = consumeService.selectByCustomerId(customer.getId());
+		mav.addObject("orders", orders);
 		return mav;
 	}
 	

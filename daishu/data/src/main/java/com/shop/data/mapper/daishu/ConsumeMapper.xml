@@ -13,6 +13,13 @@
 		select * from t_consume where id=#{id}
 	</select>
 	
+	<select id="selectByCustomerId" resultType="Order">
+		select b.order_no,b.baojie_type,b.price,b.service_date,b.service_time_type,concat(c.area,c.street,c.content) addressContent from t_consume a
+		left join t_order b on a.order_id=b.id
+		left join t_address c on b.address_id=c.id
+		where a.customer_id=#{customerId}
+	</select>
+	
 	<sql id="gridWhere">
 	from t_consume a
 	</sql>

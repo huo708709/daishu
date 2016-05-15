@@ -34,7 +34,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
         <div class="am-u-sm-12 huiyuan-opt">
             <ul class="am-avg-sm-3">
-                <li><a><img src="static/img/yue.png" style="height: 15px;width: auto;"><span style="display: block;color: #5d5d5d;font-size: 1.3rem;"> 余额:100元</span></a></li>
+                <li><a><img src="static/img/yue.png" style="height: 15px;width: auto;"><span style="display: block;color: #5d5d5d;font-size: 1.3rem;"> 余额:${balance }元</span></a></li>
                 <li><a href="consumeDetail"><img src="static/img/xiaofeijilu.png" style="height: 15px;width: auto;"><span style="display: block;color: #5d5d5d;font-size: 1.3rem;"> 消费记录</span></a></li>
                 <li><a href="guize"><img src="static/img/shiyongguize.png" style="height: 15px;width: auto;"><span style="display: block;color: #5d5d5d;font-size: 1.3rem;"> 使用规则</span></a></li>
             </ul>
