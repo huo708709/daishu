@@ -166,7 +166,7 @@ wx.error(function(res) {
 	alert(JSON.stringify(res));
 });
 wx.ready(function() {
-	$('#userCenterDiv').on('click', '.weixin_pay', function() {
+	$('#userCenterDiv').on('touchend', '.weixin_pay', function() {
 		var orderId = $(this).data('orderid');
 		var orderNo = $(this).data('orderno');
 		$('#my-modal-loading').modal();
@@ -199,7 +199,7 @@ wx.ready(function() {
     	}, function() {
     		$('#my-modal-loading').modal('close');
     	});
-    }).on('click', '.huiyuanka_pay', function() {
+    }).on('touchend', '.huiyuanka_pay', function() {
     	var orderId = $(this).data('orderid');
 		var orderNo = $(this).data('orderno');
     	$('#my-modal-loading').modal();

@@ -28,7 +28,6 @@
 				<th width="10%">code</th>
 				<th width="10%">单位</th>
 				<th width="20%">简介</th>
-				<th width="20%">描述</th>
 				<th width="18%">操作</th>
 			</tr>
 		</thead>

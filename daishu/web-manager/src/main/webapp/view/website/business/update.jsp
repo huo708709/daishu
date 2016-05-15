@@ -29,6 +29,7 @@
 		            <label class="control-label col-md-2">单位</label>
 		            <div class="col-md-10">
 		            	<select name="unitId" class="form-control">
+		            		<option value="0">无</option>
 		            		<c:forEach items="${units}" var="unit">
 		            			<option value="${unit.id }" ${business.unitId==unit.id?'selected':'' }>${unit.name}</option>
 				            </c:forEach>
@@ -52,9 +53,9 @@
 		        </div>
 		        <div class="form-group">
 		            <label class="control-label col-md-2">描述</label>
-		            <textarea style="display: none;" name="description" id="business_description">${business.description }</textarea>
+		            <textarea style="display: none;" name="description" id="business_description"></textarea>
 		            <div class="col-md-10">
-                        <div name="description" id="summernote_business"> </div>
+                        <div name="description" id="summernote_business">${business.description }</div>
                     </div>
 		        </div>
 			</div>

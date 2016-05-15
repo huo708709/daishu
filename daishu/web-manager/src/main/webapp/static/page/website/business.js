@@ -26,8 +26,6 @@ define('page/website/business', ['component/curd', 'component/form'], function(C
 	                }, {
 	                	data: 'intro'
 	                }, {
-	                	data: 'description'
-	                }, {
 	                	orderabel: false, render: function(data, type, row, meta) {
 	                		var s = '<a class="btn btn-xs default blue skip_to_edit" href="website/business/update?id=' + row.id + '"> 修改 </a>';
 	                	//	s += '<a class="btn btn-xs default red business_delete" data-id="' + row.id + '" href="javascript:"> 删除 </a>';
@@ -40,6 +38,7 @@ define('page/website/business', ['component/curd', 'component/form'], function(C
 		},
 		initEdit: function() {
 			var the = this;
+			$('#summernote_business').summernote({height: 300});
 			FORM.initFormValidate($('#business_form'), {
 				rules: {
 					name: {
@@ -48,6 +47,9 @@ define('page/website/business', ['component/curd', 'component/form'], function(C
 					code: {
 						required: true,
 					}
+				},
+				preSubmit: function() {
+					$('#business_description').val($('#summernote_business').code());
 				}
 			}, function() {
             	the.gridReload();

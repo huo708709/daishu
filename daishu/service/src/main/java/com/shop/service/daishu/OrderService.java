@@ -38,6 +38,10 @@ public class OrderService extends AbstractService<Order> {
 	public Order selectByIdAndNo(int id, String orderNo) {
 		return this.orderMapper.selectByIdAndNo(id, orderNo);
 	}
+	
+	public Order selectByOrderNo(String orderNo) {
+		return this.orderMapper.selectByOrderNo(orderNo);
+	}
 
 	public TableData listPagedOrderData(TableParameter parameter, String startTime, String endTime, int ayiId) {
 		TableData tableData = new TableData();

@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.shop.data.mapper.daishu.Ayi;
 import com.shop.data.mapper.daishu.Order;
+import com.shop.manager.util.JuheUtil;
 import com.shop.manager.web.controller.AbstractController;
 import com.shop.manager.web.model.ResponseData;
 import com.shop.service.AbstractService;
@@ -72,6 +73,9 @@ public class AyiController extends AbstractController<Ayi> {
 	public ResponseData assignRoles(int orderId, int ayiId) {
 		this.ayiService.assignAyi(orderId, ayiId);
 		orderService.updatePayStatusByIds(new int[]{orderId}, Order.PAY_STATUS_SERVICE);
+		Order order = this.orderService.selectOrderDetail(orderId);
+		Ayi ayi = this.ayiService.selectById(ayiId);
+		JuheUtil.sendToAyi(ayi.getPhone(), order.getName(), order.getPhone(), order.getAddressContent(), order.getServiceDate() + order.getServiceTimeTypeDTO(), order.getBaojieTypeDTO());
 		return this.response("指派阿姨成功", ResponseData.ACTION_TOAST);
 	}
 	@Override

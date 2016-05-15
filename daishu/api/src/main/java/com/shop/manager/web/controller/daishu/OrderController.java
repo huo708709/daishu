@@ -26,6 +26,7 @@ import com.shop.data.mapper.daishu.Order;
 import com.shop.manager.util.CommonUtil;
 import com.shop.manager.util.ConfigUtil;
 import com.shop.manager.util.IpAddressUtil;
+import com.shop.manager.util.JuheUtil;
 import com.shop.manager.util.PayCommonUtil;
 import com.shop.manager.util.XMLUtil;
 import com.shop.manager.util.weixin.SignatureUtil;
@@ -92,7 +93,6 @@ public class OrderController extends AbstractController<Order> {
 		inputStream.close();
 		String result = new String(outputStream.toByteArray(), "UTF-8");
 		Map<Object, Object> resultMap = XMLUtil.doXMLParse(result);
-		System.out.println(JSON.toJSONString(resultMap));
 		if (resultMap.get("result_code").toString().equalsIgnoreCase("SUCCESS")) {
 			Order order = new Order();
 			order.setPrice(Double.valueOf(String.valueOf(resultMap
@@ -104,6 +104,9 @@ public class OrderController extends AbstractController<Order> {
 			order.setOpenId(String.valueOf(resultMap.get("openid")));
 			order.setDetail(JSON.toJSONString(resultMap));
 			this.orderService.paySuccess(order);
+			
+			Order orderTmp = this.orderService.selectByOrderNo(order.getOrderNo());
+			JuheUtil.sendToCustomer(orderTmp.getPayTypeDTO(), order.getPrice() + "");
 
 			return PayCommonUtil.setXML("SUCCESS", "");
 		}

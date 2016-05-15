@@ -50,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="am-u-sm-12 forminfo-wrapper margin-top-1">
             <div class="am-input-group am-input-group-lg" style="margin: 0.6rem;">
                 <span class="am-input-group-label">服务地址：</span>
-                <a id="address_show" href="#address" type="text" class="am-form-field" style="color: #aaa">请选择您的服务地址</a>
+                <a id="address_show" href="#address" type="text" class="am-form-field" style="color: #aaaaaa;line-height: 1.6">请选择您的服务地址</a>
                 <input id="addressId" type="hidden" name="addressId">
             </div>
         </div>

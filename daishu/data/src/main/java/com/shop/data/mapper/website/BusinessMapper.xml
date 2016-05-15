@@ -15,7 +15,10 @@
 		<if test="null != code">code=#{code},</if>
 		<if test="null != description">description=#{description},</if>
 		<if test="null != intro">intro=#{intro},</if>
-		<if test="null != unitId">unit_id=#{unitId}</if>
+		<choose>
+			<when test="0==unitId">unit_id=null</when>
+			<otherwise>unit_id=#{unitId}</otherwise>
+		</choose>
 		where id=#{id}
 	</update>
 	

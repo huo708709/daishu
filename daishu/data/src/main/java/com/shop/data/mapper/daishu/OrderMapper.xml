@@ -59,13 +59,16 @@
 		select * from t_order where id=#{id}
 	</select>
 	<select id="selectOrderDetail" resultType="Order">
-		select a.*,b.content addressContent
+		select a.*,concat(b.area,b.street,b.content) addressContent
 		from t_order a 
 		left join t_address b on a.address_id = b.id
 		where a.id = #{id}
 	</select>
 	<select id="selectByIdAndNo" resultType="Order">
 		select id,order_no,customer_id,price from t_order where id=#{id} and order_no=#{orderNo}
+	</select>
+	<select id="selectByOrderNo" resultType="Order">
+		select id,order_no,customer_id,price,phone from t_order where id=#{id} and order_no=#{orderNo}
 	</select>
 	<select id="selectPriceById" resultType="double">
 		select price from t_order where id=#{id}
