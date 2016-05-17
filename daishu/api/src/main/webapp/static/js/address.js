@@ -11,7 +11,7 @@ var Address = function(e, options) {
 }
 Address.prototype.init = function() {
 	var the = this;
-	$('#address_list').load('address/getAddressListByCustomerId');
+	$('#address_list').load('address/getAddressListByCustomerId?baojieType=' + baojieType + "&title=" + title);
 	$('#address_container').on('click', '.list-item-address', function() {
 		var addressid = $(this).data('addressid');
 		var content = $(this).data('content');

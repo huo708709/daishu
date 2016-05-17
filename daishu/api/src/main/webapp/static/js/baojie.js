@@ -13,6 +13,9 @@ $(function() {
 		} else if (hashStr == 'address') {
 			$('body .am-container-page').hide();
 			$('#address_container').show();
+		}  else if (hashStr == 'address') {
+			$('body .am-container-page').hide();
+			$('#address_container').show();
 		} else {
 			$('body .am-container-page').hide();
 			$('#baojie_frist').show();

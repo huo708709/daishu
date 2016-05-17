@@ -36,19 +36,27 @@ public class AddressController extends AbstractController<Address> {
 	}
 
 	@RequestMapping(value = "addressEdit")
-	public ModelAndView addressEdit(int id) {
+	public ModelAndView addressEdit(int id, int type, String baojieType, String title) {
 		ModelAndView mav = new ModelAndView("addressEdit");
 		if (id > 0) {
 			Address address = this.addressService.selectById(id);
 			mav.addObject("address", address);
 		}
+		mav.addObject("type", type);
+		mav.addObject("baojieType", baojieType);
+		mav.addObject("title", title);
 		return mav;
 	}
 
 	@RequestMapping(value = "addressDel")
-	public ModelAndView addressDel(HttpServletRequest request, int id) {
+	public ModelAndView addressDel(HttpServletRequest request, int id, int type, String baojieType, String title) {
 		this.addressService.updateStatus(id, Address.STATUS_HIDE);
-		ModelAndView mav = new ModelAndView("redirect:/address/addressList");
+		ModelAndView mav = null;
+		if (type == 0) {
+			mav = new ModelAndView("redirect:/address/addressList");
+		} else {
+			mav = new ModelAndView("redirect:/baojie?type=" + baojieType + "#address").addObject("title", title);
+		}
 		return mav;
 	}
 	
@@ -60,7 +68,7 @@ public class AddressController extends AbstractController<Address> {
 	}
 	
 	@RequestMapping(value = "editAddress", method = RequestMethod.POST)
-	public ModelAndView editAddress(HttpServletRequest request, Address address) {
+	public ModelAndView editAddress(HttpServletRequest request, Address address, int type, String baojieType, String title) {
 		Customer customer = this.getLoginCustomer(request);
 		address.setCustomerId(customer.getId());
 		if (0 < address.getId()) {
@@ -69,7 +77,12 @@ public class AddressController extends AbstractController<Address> {
 			address.setStatus(Address.STATUS_SHOW);
 			this.addressService.insert(address);
 		}
-		ModelAndView mav = new ModelAndView("redirect:/address/addressList");
+		ModelAndView mav = null;
+		if (0 == type) {
+			mav = new ModelAndView("redirect:/address/addressList");	
+		} else {
+			mav = new ModelAndView("redirect:/baojie?type=" + baojieType + "#address").addObject("title", title);
+		}
 		return mav;
 	}
 	
@@ -102,11 +115,13 @@ public class AddressController extends AbstractController<Address> {
 	}
 
 	@RequestMapping(value = "getAddressListByCustomerId")
-	public ModelAndView getAddressListByCustomerId(HttpServletRequest request) {
+	public ModelAndView getAddressListByCustomerId(HttpServletRequest request, int baojieType, String title) {
 		Customer customer = this.getLoginCustomer(request);
 		List<Address> list = this.addressService.getAddressListByCustomerId(customer.getId());
 		ModelAndView mav = new ModelAndView("addressListByCustomer");
 		mav.addObject("list", list);
+		mav.addObject("title", title);
+		mav.addObject("baojieType", baojieType);
 		return mav;
 	}
 	

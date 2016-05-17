@@ -33,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
 <form id="orderSubmit" action="order/add" method="post">
 <input type="hidden" name="baojieType" value="${baojieType }">
-<div id="baojie_frist" class="am-container am-container-page" style="padding: 0;">
+<div id="baojie_frist" class="am-container am-container-page" style="padding: 0;display: none;">
     <div class="am-g forminfo-container" style="margin-left: 0;margin-right: 0">
         <div class="am-u-sm-12 forminfo-wrapper">
             <div class="am-input-group am-input-group-lg">
@@ -64,7 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<iframe name="address_iframe" id="address_iframe" style="width: 0;height: 0;display: none;"></iframe>
 	<div id="address_list" style="padding: 0;">
 	</div>
-	<a href="address/addressEdit?id=0" style="background-color: #fff;padding: 1rem" class="am-btn am-btn-default am-btn-block">添加新地址</a>
+	<a href="address/addressEdit?id=0&type=1&baojieType=${baojieType }&title=${title}" style="background-color: #fff;padding: 1.4rem;color: #f39910;" class="am-btn am-btn-default am-btn-block">添加新地址</a>
 </div>
 <div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">
   <div class="am-modal-dialog">
@@ -99,6 +99,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="static/js/jquery.min.js"></script>
 <script src="static/js/amazeui.min.js"></script>
 <script src="static/js/daishu.js"></script>
+<script type="text/javascript">
+var title='${title}';
+var baojieType=${baojieType};
+</script>
 <script src="static/js/address.js"></script>
 <script src="static/js/baojie1.js"></script>
 </body>

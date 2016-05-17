@@ -33,6 +33,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div id="address_edit" style="padding: 0;">
 		<form action="address/editAddress" method="post">
 			<input type="hidden" name="id" value="${null == address ? 0 : address.id }">
+			<input type="hidden" name="type" value="${type }">
+			<input type="hidden" name="baojieType" value="${baojieType }">
+			<input type="hidden" name="title" value="${title }">
 		    <div class="am-g forminfo-container">
 		        <div class="am-u-sm-12 forminfo-wrapper">
 		            <div class="am-input-group am-input-group-lg">

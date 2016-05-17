@@ -154,7 +154,7 @@ public class HomeController extends AbstractController<Object> {
 
 	String[] weekDays = {"周日", "周一", "周二", "周三", "周四", "周五", "周六"};
 	@RequestMapping(value = "baojie")
-	public ModelAndView baojie(int type, String title) {
+	public ModelAndView baojie(int type, String title) throws Exception {
 		ModelAndView mav = null;
 		if (2 == type || 3 == type || 7 == type || 8 == type || 9 == type) {
 			mav = new ModelAndView("baojie1");
