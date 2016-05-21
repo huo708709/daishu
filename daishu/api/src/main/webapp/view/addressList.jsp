@@ -53,10 +53,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                <label><img class="address-icon address-icon-small" src="static/img/localtion.png"><span class="address-loaction">${address.area }</span></label>
 	            </div>
 	            <div class="am-u-sm-3" style="line-height: 1.2">
-	                <a href="address/addressEdit?id=${address.id }"><img class="address-icon address-icon-small" src="static/img/edit.png"><span class="address-edit">编辑</span></a>
+	                <a href="address/addressEdit?id=${address.id }&type=0"><img class="address-icon address-icon-small" src="static/img/edit.png"><span class="address-edit">编辑</span></a>
 	            </div>
 	            <div class="am-u-sm-3" style="line-height: 1.2">
-	                <a href="address/addressDel?id=${address.id }"><img class="address-icon address-icon-small" src="static/img/delete.png"><span class="address-delete">删除</span></a>
+	                <a href="address/addressDel?id=${address.id }&type=0"><img class="address-icon address-icon-small" src="static/img/delete.png"><span class="address-delete">删除</span></a>
 	            </div>
 	        </li>
 	    </c:forEach>
